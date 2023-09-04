@@ -42,7 +42,9 @@ Aquí te presentamos algunos de nuestros referentes en la industria de comercio 
    
 ### Contacto
 📧 &emsp; mail: jesus.ramirez.2045@gmail.com
-<p align="center"><a href="https://github.com/JesusRam-04" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
+<p><a href="https://github.com/JesusRam-04" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
+
+___
 
 ### Sebastián Alamo
 #### Desarrollador Web 
@@ -54,8 +56,10 @@ Desarrollo web - Bases de datos - Java.
    
 ### Contacto
 📧 &emsp; mail: alamosvc@gmail.com
-<p align="center"><a href="https://github.com/alamosvc" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
+<p><a href="https://github.com/alamosvc" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
   
+___
+
 ### Nicolás Luna
 #### Desarrollador Full Stack | Estudiante de Ingeniería informática
 
@@ -64,8 +68,9 @@ Mi actual formación en Ingeniería Informática complementa mi conjunto de habi
 
 ### Contacto
 📧 &emsp; mail: nicolasluna3150@gmail.com
-<p align="center"><a href="https://www.linkedin.com/in/nico-luna" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="alsiam"/></a><a href="https://github.com/Nicolas3150" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
+<p><a href="https://www.linkedin.com/in/nico-luna" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="alsiam"/></a><a href="https://github.com/Nicolas3150" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
 
+___
 
 ### Jordi Godoy
 #### Desarrollador Full Stack 
@@ -77,8 +82,9 @@ Hoy en día, junto a mis compañeros de proyecto aquí presentados, me encuentro
 
 ### Contacto
 📧 &emsp; mail: jordimgodoy@gmail.com
-<p align="center"><a href="https://www.linkedin.com/in/jordi-godoy/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="alsiam"/></a><a href="https://github.com/Jordig09" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
+<p><a href="https://www.linkedin.com/in/jordi-godoy/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="alsiam"/></a><a href="https://github.com/Jordig09" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
 
+___
 
 ### Agostina Svenson
 #### Desarrollador Full Stack 
@@ -89,7 +95,7 @@ Con esta capacitación busco complementar mis habilidades con otros tipos de tec
 
 ### Contacto
 📧 &emsp; mail: agostinasvenson@gmail.com
-<p align="center"><a href="https://github.com/agostinasvenson/" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
+<p><a href="https://github.com/agostinasvenson/" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
 
 
 ---
