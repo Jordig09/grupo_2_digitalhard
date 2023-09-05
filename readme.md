@@ -35,11 +35,11 @@ Aquí te presentamos algunos de nuestros referentes en la industria de comercio 
 
 ## Wireframes 
 
-### Desktop : [Clic aquí para ver](https://app.visily.ai/projects/2bcc6e2d-8783-478c-a0cf-f6decf43325e/boards/534868)
+#### Desktop : [Clic aquí para ver](https://app.visily.ai/projects/2bcc6e2d-8783-478c-a0cf-f6decf43325e/boards/533219)
 
-### Mobile : [Clic aquí para ver](https://app.visily.ai/projects/2bcc6e2d-8783-478c-a0cf-f6decf43325e/boards/533361)
+#### Mobile : [Clic aquí para ver](https://app.visily.ai/projects/2bcc6e2d-8783-478c-a0cf-f6decf43325e/boards/533361)
 
-### Tablet : [Clic aquí para ver](https://app.visily.ai/projects/2bcc6e2d-8783-478c-a0cf-f6decf43325e/boards/533361)
+#### Tablet : [Clic aquí para ver](https://app.visily.ai/projects/2bcc6e2d-8783-478c-a0cf-f6decf43325e/boards/534868)
 
 ## Equipo
 
