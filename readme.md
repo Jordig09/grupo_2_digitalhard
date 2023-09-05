@@ -32,6 +32,15 @@ Aquí te presentamos algunos de nuestros referentes en la industria de comercio 
 7. **Hardgamers** - [Sitio web](https://www.hardgamers.com.ar/)
    Se especializa en productos y componentes para gaming y entusiastas de la PC.
 
+
+## Wireframes 
+
+### Desktop : [Clic aquí para ver](https://app.visily.ai/projects/2bcc6e2d-8783-478c-a0cf-f6decf43325e/boards/534868)
+
+### Mobile : [Clic aquí para ver](https://app.visily.ai/projects/2bcc6e2d-8783-478c-a0cf-f6decf43325e/boards/533361)
+
+### Tablet : [Clic aquí para ver](https://app.visily.ai/projects/2bcc6e2d-8783-478c-a0cf-f6decf43325e/boards/533361)
+
 ## Equipo
 
 ### Jesús Ramirez
