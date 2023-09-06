@@ -104,7 +104,7 @@ Con esta capacitación busco complementar mis habilidades con otros tipos de tec
 
 ### Contacto
 📧 &emsp; mail: agostinasvenson@gmail.com
-<p><a href="https://github.com/agostinasvenson/" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
+<p><a href="https://www.linkedin.com/in/agostina-svenson/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="alsiam"/></a><a href="https://github.com/agostinasvenson" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
 
 
 ---
