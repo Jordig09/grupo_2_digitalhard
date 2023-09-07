@@ -62,10 +62,10 @@ Aplicando tecnologías y lenguajes durante mi formación en ingeniería en siste
 Busco complementar habilidades y seguir aprendiendo en el desarrollo de software.
 Desarrollo web - Bases de datos - Java.
 
-   
+      
 ### Contacto
 📧 &emsp; mail: alamosvc@gmail.com
-<p><a href="https://github.com/alamosvc" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
+<p><a href="https://www.linkedin.com/in/sebaal" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="alsiam"/></a><a href="https://github.com/alamosvc" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
   
 ___
 
