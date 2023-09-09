@@ -1,0 +1,27 @@
+{
+  "name": "grupo_2_digitalhard",
+  "version": "1.0.0",
+  "description": "Este proyecto es un sitio de comercio electrónico especializado en la venta de productos electrónicos para PC y relacionados, incluyendo PCs pre-armadas, componentes individuales, consolas de videojuegos y periféricos. Nuestro objetivo es brindar a los entusiastas de la tecnología y los gamers una plataforma confiable y conveniente para adquirir los productos que necesitan para mejorar su experiencia digital.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jordig09/grupo_2_digitalhard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jordig09/grupo_2_digitalhard/issues"
+  },
+  "homepage": "https://github.com/Jordig09/grupo_2_digitalhard#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
