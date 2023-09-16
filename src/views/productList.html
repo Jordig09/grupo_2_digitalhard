@@ -3,11 +3,160 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Montserrat:wght@100;200;300;400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/styles.css" />
     <title>Digital Hard</title>
   </head>
   <body>
-    <div>Este es el listado de productos</div>
+    <!-- HEADER - INICIO-->
+    <header>
+      <div class="nav-top">
+        <div class="box box-burger-nav">
+          <i class="fas fa-bars icon-bars" id="icon-bars"></i>
+        </div>
+        <div class="box box-logo">
+          <a href="/" class="logo"
+            ><img src="/images/digital-hard-logo-white.png" alt="Logo"
+          /></a>
+          <a href="/" class="logo-text">
+            <img src="/images/digital-hard-large-logo-white.png" alt="" />
+          </a>
+        </div>
+        <div class="box box-search" id="box-search">
+          <i class="fa-solid fa-magnifying-glass" id="search-active"></i>
+          <form action="" class="search-form">
+            <input type="text" placeholder="Buscar productos..." />
+          </form>
+          <i class="fas fa-times close-search" id="close-search"></i>
+        </div>
+        <div class="box box-user">
+          <a href="/cart" class="cart-link">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </a>
+          <div class="user" id="user-dropdown">
+            <div class="user-icon">
+              <img src="/images/default.png" alt="Imagen de usuario" />
+            </div>
+            <i class="fas fa-chevron-down arrow"></i>
+            <ul id="client-dropdown">
+              <li>
+                <a href="/login"
+                  ><i class="fa-solid fa-user"></i>Iniciar sesion</a
+                >
+              </li>
+              <li>
+                <a href="/register"
+                  ><i class="fas fa-sign-in-alt"></i>Registrarse</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <nav id="navbar">
+        <ul>
+          <li>
+            <a href="/product-list">Productos</a
+            ><i class="fas fa-chevron-down arrow" id="product-dropdown"></i>
+            <ul class="category-list" id="categoty-dropdown">
+              <li><a href="/product-list">Equipos y notebooks</a></li>
+              <li><a href="/product-list">Procesadores</a></li>
+              <li><a href="/product-list">Mothers</a></li>
+              <li><a href="/product-list">Placas de video</a></li>
+              <li><a href="/product-list">Memorias RAM</a></li>
+              <li><a href="/product-list">Almacenamiento</a></li>
+              <li><a href="/product-list">Refrigeración</a></li>
+              <li><a href="/product-list">Gabinetes</a></li>
+              <li><a href="/product-list">Fuentes</a></li>
+              <li><a href="/product-list">Perifericos</a></li>
+              <li><a href="/product-list">Sillas gamers</a></li>
+              <li><a href="/product-list">Conectividad</a></li>
+              <li><a href="/product-list">Estabilizadores y UPS</a></li>
+              <li><a href="/product-list">Cables y adaptadores</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/build">Arma tu PC</a>
+          </li>
+          <li><a href="/product-list">Promociones</a></li>
+          <li><a href="/help">Ayuda</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- HEADER - FIN-->
+
+    <!-- CONTENIDO -->
+
+    <!-- FOOTER - INICIO -->
+    <footer>
+      <div class="logo-footer">
+        <a href="/"
+          ><img src="/images/digital-hard-large-logo-white.png" alt=""
+        /></a>
+      </div>
+      <div class="middle-footer">
+        <section class="box link-footer left-footer">
+          <div class="child-left-footer">
+            <h4 class="title"><a href="/help">Ayuda</a></h4>
+            <ul>
+              <li><a href="/help">Quienes somos</a></li>
+              <li><a href="/help">Politicas de privacidad</a></li>
+              <li><a href="/help">Términos y condiciones</a></li>
+              <li><a href="/help">Botón de arrepentimiento</a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="box">
+          <h4 class="title">Subcribite a nuestro Newsleetter</h4>
+          <form action="/">
+            <div class="text-submit">
+              <i class="far fa-envelope"></i>
+              <input type="email" placeholder="Correo electrónico" />
+            </div>
+            <button type="submit">Suscribirse</button>
+          </form>
+          <div class="social">
+            <a href="https://www.facebook.com/?" target="_blank"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="https://www.instagram.com/" target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://twitter.com/" target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+          </div>
+        </section>
+        <section class="box link-footer">
+          <h4 class="title">Atención al cliente</h4>
+          <ul>
+            <li><i class="fas fa-phone-alt"></i><span>3425123456</span></li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><span>contacto@digitalhard.com.ar</span>
+            </li>
+            <li><i class="fab fa-whatsapp"></i><span>3425123456</span></li>
+          </ul>
+        </section>
+      </div>
+      <a href="/help" class="help-link">
+        <span>Ayuda</span>
+        <i class="fas fa-chevron-right"></i>
+      </a>
+      <div class="registered-mark">
+        <p>© 2023 Digital Hard.</p>
+      </div>
+    </footer>
   </body>
+  <!-- FOOTER - FIN -->
+
+  <script src="/js/index.js"></script>
 </html>
