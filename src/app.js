@@ -34,6 +34,10 @@ app.get("/build", (req, res) => {
   res.sendFile(path.join(__dirname, "/views/build.html"));
 });
 
+app.get("/help", (req, res) => {
+  res.sendFile(path.join(__dirname, "/views/help.html"));
+});
+
 app.listen(port, (err) => {
   err ? console.log(err) : console.log(`Servidor escuchando puerto ${port}`);
 });
