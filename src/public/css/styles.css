@@ -11,7 +11,12 @@
   --font-text: "Metrophobic", sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
+  scroll-behavior: smooth;
   height: 100%;
 }
 
@@ -20,6 +25,22 @@ body {
   min-height: 100%;
   flex-direction: column;
   background-color: var(--color-white);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title);
+}
+
+p,
+input,
+label,
+span {
+  font-family: var(--font-text);
 }
 
 header {
