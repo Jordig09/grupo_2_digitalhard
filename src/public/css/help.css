@@ -1,0 +1,39 @@
+main.help {
+  width: 100%;
+}
+
+main.help h2 {
+  margin: 50px;
+}
+
+main.help h4,
+main.help h3,
+main.help h2 {
+  text-transform: uppercase;
+}
+main.help h3,
+main.help h2 {
+  text-align: center;
+}
+
+main.help .box {
+  background-color: var(--color-grey);
+  width: 100%;
+}
+
+main.help .box .content {
+  margin: 0 auto;
+  padding: 5%;
+  max-width: 1200px;
+}
+
+main.help .box.color {
+  background-color: var(--color-principal);
+  color: white;
+}
+
+@media only screen and (max-width: 767px) {
+  main.help .box .content {
+    padding: 10% 5%;
+  }
+}
