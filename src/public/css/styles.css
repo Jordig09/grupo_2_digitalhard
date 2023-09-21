@@ -11,19 +11,7 @@
   --font-text: "Metrophobic", sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  height: 100%;
-}
-
 body {
-  display: flex;
-  min-height: 100%;
-  flex-direction: column;
   background-color: var(--color-white);
 }
 
@@ -601,7 +589,9 @@ section {
   font-family: var(--font-title);
 }
 
-.summary p, .discount p, .total p {
+.summary p,
+.discount p,
+.total p {
   display: flex;
   justify-content: space-between;
   margin: 5px 0;
@@ -621,22 +611,111 @@ button#checkout-button:hover {
   background-color: #0056b3;
 }
 
-.total{
+.total {
   font-weight: bold;
 }
 
 @media (max-width: 768px) {
   .cart-container {
-      flex-direction: column; 
+    flex-direction: column;
   }
 
   .product {
-      padding: 10px;
-      margin-right: 0; 
-      margin-bottom: 20px; 
+    padding: 10px;
+    margin-right: 0;
+    margin-bottom: 20px;
   }
 
   .table-item img {
-      width: 80px;
+    width: 80px;
+  }
+}
+
+section {
+  font-family: var(--font-title);
+  margin: 0;
+  padding: 0;
+}
+
+.cart-container {
+  margin-left: 100px;
+  margin-right: 300px;
+  display: flex;
+}
+
+.carrito {
+  font-family: var(--font-title);
+}
+
+.product {
+  background-color: white;
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.table-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.table-item img {
+  width: 100px;
+}
+
+.table-item p {
+  flex: 1;
+  margin: 0;
+  font-weight: bold;
+  font-family: var(--font-title);
+}
+
+.summary-container {
+  background-color: #dee1e6;
+  flex-basis: 300px;
+  padding: 20px;
+  font-family: var(--font-title);
+}
+
+.summary p,
+.discount p,
+.total p {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+button#checkout-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button#checkout-button:hover {
+  background-color: #0056b3;
+}
+
+.total {
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .cart-container {
+    flex-direction: column;
+  }
+
+  .product {
+    padding: 10px;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .table-item img {
+    width: 80px;
   }
 }
