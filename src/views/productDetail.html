@@ -11,8 +11,10 @@
       href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Montserrat:wght@100;200;300;400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/productDetail.css">
+    <link rel="stylesheet" href="css/productList.css" />
     <title>Digital Hard</title>
   </head>
   <body>
@@ -39,7 +41,7 @@
         </div>
         <div class="box box-user">
           <a href="/cart" class="cart-link">
-            <i class="fa-solid fa-cart-shopping"></i>
+            <i id="icon-cart-shopping" class="fa-solid fa-cart-shopping" data-product_quantity=0></i>
           </a>
           <div class="user" id="user-dropdown">
             <div class="user-icon">
@@ -94,6 +96,216 @@
     <!-- HEADER - FIN-->
 
     <!-- CONTENIDO -->
+    <div class="content">
+      <div class="product-images-container">
+        <div class="main-image">
+          <img id="main-image" src="/images/cooler.jpg" alt="">
+        </div>
+        <div class="other-images">
+          <img src="/images/cooler.jpg" alt="">
+          <img src="/images/cooler2.jpg" alt="">
+          <img src="/images/cooler3.jpg" alt="">
+          <img src="/images/cooler4.jpg" alt="">
+        </div>
+      </div>
+      <div class="product-details-container">
+        <div class="name-product">Procesador AMD RYZEN 3 3200G 4.0GHz Turbo + Radeon Vega 8 AM4 Wraith Stealth Cooler</div>
+        <div class="price">$ 84.900 </div>
+
+          
+          <div class="payment-methods">Pagá con Mercado Pago<br><img src="/images/MercadoPago.png" alt=""></div>
+        <div class="calculate">
+          <select class="select_envio" name="calculate" id="calculate">
+            <option value="">Calcular mi envio</option>
+          </select>
+        </div>
+        <div class="quantity">
+          Cantidad
+          <div class="group-button">
+            <button id="btn-minus"> - </button>
+            <span id="quantity-value" data-quantity=0 class="quantity-view">0</span>
+            <button id="btn-plus"> + </button>
+          </div>
+        </div>
+        <div class="actions-buttons">
+          <button id="btn-add">Agregar al carrito</button>
+          <button id="btn-buy">Comprar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-cards-normal">
+      <h3 class="product-tittle">Completá tu combo</h3>
+      <div class="product-cards"> 
+        <a href="" class="product-card-container">
+          <div class="product-card-media">
+            <div class="product-card-img-container">
+              <div class="product-card-img">
+                <img src="/images/default-product.jpg" alt="product" />
+              </div>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <h4 class="product-card-title">Nombre de producto</h4>
+            <p class="product-card-price">4000</p>
+          </div>
+        </a>
+        <a href="" class="product-card-container">
+          <div class="product-card-media">
+            <div class="product-card-img-container">
+              <div class="product-card-img">
+                <img src="/images/default-product.jpg" alt="product" />
+              </div>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <h4 class="product-card-title">Nombre de producto</h4>
+            <p class="product-card-price">4000</p>
+          </div>
+        </a>
+        <a href="" class="product-card-container">
+          <div class="product-card-media">
+            <div class="product-card-img-container">
+              <div class="product-card-img">
+                <img src="/images/default-product.jpg" alt="product" />
+              </div>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <h4 class="product-card-title">Nombre de producto</h4>
+            <p class="product-card-price">4000</p>
+          </div>
+        </a>
+        <a href="" class="product-card-container">
+          <div class="product-card-media">
+            <div class="product-card-img-container">
+              <div class="product-card-img">
+                <img src="/images/default-product.jpg" alt="product" />
+              </div>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <h4 class="product-card-title">Nombre de producto</h4>
+            <p class="product-card-price">4000</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+
+    <div class="table-content">
+      <div class="table-container">
+        <h1>CARACTERISTICAS GENERALES</h1>
+        <table>
+          <tr>
+            <th>Categoría</th>
+            <th>Característica</th>
+            <th>Valor</th>
+          </tr>
+          <tr>
+            <td rowspan="9">CARACTERISTICAS GENERALES</td>
+            <td>Modelo</td>
+            <td>Ryzen 3 3200G</td>
+          </tr>
+          <!-- Aquí puedes agregar el contenido de la tabla CARACTERISTICAS GENERALES -->
+        </table>
+      </div>
+      
+      <div class="table-container">
+        <h1>COOLERS Y DISIPADORES</h1>
+        <table>
+          <tr>
+            <th>Categoría</th>
+            <th>Característica</th>
+            <th>Valor</th>
+          </tr>
+          <tr>
+            <td rowspan="2">COOLERS Y DISIPADORES</td>
+            <td>Tdp</td>
+            <td>65 W</td>
+          </tr>
+          <!-- Aquí puedes agregar el contenido de la tabla COOLERS Y DISIPADORES -->
+        </table>
+      </div>
+      
+      <div class="table-container">
+        <h1>MEMORIA</h1>
+        <table>
+          <tr>
+            <th>Categoría</th>
+            <th>Característica</th>
+            <th>Valor</th>
+          </tr>
+          <tr>
+            <td rowspan="3">MEMORIA</td>
+            <td>L1</td>
+            <td>0.3 MB</td>
+          </tr>
+          <!-- Aquí puedes agregar el contenido de la tabla MEMORIA -->
+        </table>
+      </div>
+    </div>
+
+
+
+    <div class="product-cards-normal">
+      <h3 class="product-tittle">Otros productos que te pueden interesar</h3>
+      <div class="product-cards">
+        <a href="" class="product-card-container">
+          <div class="product-card-media">
+            <div class="product-card-img-container">
+              <div class="product-card-img">
+                <img src="/images/default-product.jpg" alt="product" />
+              </div>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <h4 class="product-card-title">Nombre de producto</h4>
+            <p class="product-card-price">4000</p>
+          </div>
+        </a>
+        <a href="" class="product-card-container">
+          <div class="product-card-media">
+            <div class="product-card-img-container">
+              <div class="product-card-img">
+                <img src="/images/default-product.jpg" alt="product" />
+              </div>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <h4 class="product-card-title">Nombre de producto</h4>
+            <p class="product-card-price">4000</p>
+          </div>
+        </a>
+        <a href="" class="product-card-container">
+          <div class="product-card-media">
+            <div class="product-card-img-container">
+              <div class="product-card-img">
+                <img src="/images/default-product.jpg" alt="product" />
+              </div>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <h4 class="product-card-title">Nombre de producto</h4>
+            <p class="product-card-price">4000</p>
+          </div>
+        </a>
+        <a href="" class="product-card-container">
+          <div class="product-card-media">
+            <div class="product-card-img-container">
+              <div class="product-card-img">
+                <img src="/images/default-product.jpg" alt="product" />
+              </div>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <h4 class="product-card-title">Nombre de producto</h4>
+            <p class="product-card-price">4000</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    
 
     <!-- FOOTER - INICIO -->
     <footer>
@@ -161,4 +373,5 @@
   <!-- FOOTER - FIN -->
 
   <script src="/js/index.js"></script>
+  <script src="/js/productDetail.js"></script>
 </html>
