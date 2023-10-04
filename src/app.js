@@ -1,43 +1,34 @@
 const express = require("express");
 const path = require("path");
 
+const productRoute = require("./routes/productsRoute");
+const buildRoute = require("./routes/buildRoute");
+const cartRoute = require("./routes/cartRoute");
+const helpRoute = require("./routes/helpRoute");
+const loginRoute = require("./routes/loginRoute");
+const mainRoute = require("./routes/mainRoute");
+const registerRoute = require("./routes/registerRoute");
+
 const app = express();
-const port = 3000;
 
 app.use(express.static(path.resolve(__dirname, "public")));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/index.html"));
+app.set("views", path.join(__dirname, "./views"));
+app.set("view engine", "ejs");
+
+app.use("/", mainRoute);
+app.use("/products", productRoute);
+app.use("/build", buildRoute);
+app.use("/cart", cartRoute);
+app.use("/help", helpRoute);
+app.use("/login", loginRoute);
+app.use("/register", registerRoute);
+
+app.get("*", (req, res) => {
+  res.render("404");
 });
 
-app.get("/product-list", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/productList.html"));
-});
-
-app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/login.html"));
-});
-
-app.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/register.html"));
-});
-
-app.get("/cart", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/cart.html"));
-});
-
-app.get("/product", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/productDetail.html"));
-});
-
-app.get("/build", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/build.html"));
-});
-
-app.get("/help", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/help.html"));
-});
-
+const port = process.env.PORT || 3000;
 app.listen(port, (err) => {
   err ? console.log(err) : console.log(`Servidor escuchando puerto ${port}`);
 });

@@ -1,0 +1,18 @@
+<a href="/products/<%= product.id %>" class="product-card-container">
+  <% if(product.discount){ %>
+  <div class="discount">
+    <span>%<%= product.discount %> off</span>
+  </div>
+  <% } %>
+  <div class="product-card-media">
+    <div class="product-card-img-container">
+      <div class="product-card-img">
+        <img src="<%= product.img[0] %>" alt="product" />
+      </div>
+    </div>
+  </div>
+  <div class="product-card-info">
+    <h4 class="product-card-title"><%= product.name %></h4>
+    <p class="product-card-price"><%= product.price %></p>
+  </div>
+</a>

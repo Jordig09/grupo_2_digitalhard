@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Montserrat:wght@100;200;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/build.css" />
+    <title>Digital Hard</title>
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+    <main>
+      <div class="view-heading">
+        <h2 class="view-title">
+          Procesador <i class="fas fa-chevron-down"></i>
+        </h2>
+        <p class="view-description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, ex
+          necessitatibus. Dolores nesciunt, dolorum labore cumque similique
+          officiis repudiandae corporis ullam qui ut tempore, porro fugiat
+          corrupti quis, facilis veritatis?
+        </p>
+      </div>
+      <div class="main-section">
+        <div class="build-menu">
+          <div class="mobile-menu">
+            <h3><i class="fas fa-ellipsis-v"></i> Componentes</h3>
+          </div>
+          <div class="components">
+            <ul class="components-list">
+              <% for(let i=0; i<10; i++){ %> <%-
+              include('./partials/componentCard.ejs') %> <% } %>
+            </ul>
+          </div>
+          <div class="order-summary">
+            <div class="summary-info">
+              <p>(0 watts)</p>
+              <div>
+                <h4>Total:&nbsp;</h4>
+                <h4 class="total-price">00:00</h4>
+              </div>
+            </div>
+            <div class="summary-navigation">
+              <div class="preview-component button">
+                <p><i class="fas fa-chevron-left"></i> Anterior</p>
+              </div>
+              <div class="next-component button">
+                <p>Siguiente <i class="fas fa-chevron-right"></i></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-list">
+          <div class="product-cards">
+            <% products.forEach(product=> { %>
+            <%-include('./partials/buildProductCard', {product}) %> <%})%>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+  </body>
+
+  <script src="/js/index.js"></script>
+</html>
