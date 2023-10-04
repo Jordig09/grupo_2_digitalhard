@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Montserrat:wght@100;200;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <title>Digital Hard</title>
+  </head>
+
+  <body>
+    <%- include('./partials/header.ejs') %>
+    <main>
+      <section class="box box-carousel">
+        <div class="carousel">
+          <div class="arrow"><i class="fas fa-chevron-left"></i></div>
+          <div class="carousel-slider">
+            <div class="product-info">
+              <h3>amd radeon rx 79000 xt</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id
+                modi quis repellendus nam illo ex quisquam iusto aspernatur
+                corporis maiores cum hic quidem nemo perspiciatis, molestiae
+                vero iste sunt?
+              </p>
+              <button class="buy-now">Comprar ahora</button>
+            </div>
+            <div class="product-img">
+              <img src="images/amd-radeon-7900xt.png" alt="" />
+            </div>
+          </div>
+          <div class="arrow"><i class="fas fa-chevron-right"></i></div>
+        </div>
+      </section>
+
+      <section class="box">
+        <h2 class="title">NOVEDADES</h2>
+        <div class="product-cards-slider">
+          <div><i class="fas fa-chevron-left"></i></div>
+          <div class="product-cards">
+            <% products.forEach(product=> { %>
+            <%-include('./partials/productCard', {product}) %> <%})%>
+          </div>
+          <div><i class="fas fa-chevron-right"></i></div>
+        </div>
+      </section>
+      <section class="box">
+        <h2 class="title">PROMOCIONES</h2>
+        <div class="product-cards-slider">
+          <div><i class="fas fa-chevron-left"></i></div>
+          <div class="product-cards">
+            <% productsOff.forEach(product=> { %>
+            <%-include('./partials/productCard', {product}) %> <%})%>
+          </div>
+          <div><i class="fas fa-chevron-right"></i></div>
+        </div>
+      </section>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+  </body>
+  <script src="/js/index.js"></script>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Montserrat:wght@100;200;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/productList.css" />
+    <title>Digital Hard</title>
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+
+    <main>
+      <h2 class="view-title">Productos</h2>
+      <div class="full-view">
+        <section class="sidebar">
+          <div class="sidebar-container">
+            <div class="categories sidebar-section">
+              <div class="sidebar-heading" id="categories">
+                <h4>Categoría</h4>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <ul id="categories-options">
+                <li><p>Mouses</p></li>
+                <li><p>Teclados</p></li>
+                <li><p>Auriculares</p></li>
+                <li><p>Monitores</p></li>
+              </ul>
+            </div>
+            <form action="">
+              <div class="brands sidebar-section">
+                <div class="sidebar-heading">
+                  <h4>Marca</h4>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="brands-options">
+                  <div class="checkbox-container">
+                    <label class="control control-checkbox">
+                      <input
+                        type="checkbox"
+                        id="hyperx"
+                        name="hyperx"
+                        value="hyperx"
+                      />
+                      Hyper X
+                      <div class="control-indicator"></div>
+                    </label>
+                  </div>
+                  <div class="checkbox-container">
+                    <label class="control control-checkbox">
+                      <input
+                        type="checkbox"
+                        id="logitech"
+                        name="logitech"
+                        value="logitech"
+                      />
+                      Logitech
+                      <div class="control-indicator"></div>
+                    </label>
+                  </div>
+                  <div class="checkbox-container">
+                    <label class="control control-checkbox">
+                      <input
+                        type="checkbox"
+                        id="redragon"
+                        name="redragon"
+                        value="redragon"
+                      />
+                      Redragon
+                      <div class="control-indicator"></div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="price sidebar-section">
+                <div class="sidebar-heading">
+                  <h4>Precio ($)</h4>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="price-picker">
+                  <div class="price-range">
+                    <div class="price-range-box">
+                      <label for="min">Min</label>
+                      <input type="text" id="min" name="min" />
+                    </div>
+                    <div class="price-range-box">
+                      <label for="max">Max</label>
+                      <input type="text" id="max" name="max" />
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    id="price"
+                    name="price"
+                    min="0"
+                    max="62499"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+        <div class="main-section">
+          <div class="filters-container">
+            <div class="filters-applied-info">
+              <div class="results"><p>8 Resultados</p></div>
+              <div class="filters-applied-container">
+                <div class="applied"><p>Filtros:</p></div>
+                <div class="filter-applied">
+                  <p>Redragon</p>
+                  <i class="fas fa-times"></i>
+                </div>
+                <div class="filter-applied">
+                  <p>Periféricos</p>
+                  <i class="fas fa-times"></i>
+                </div>
+                <div class="filter-applied">
+                  <p>Desde $0 a $7500</p>
+                  <i class="fas fa-times"></i>
+                </div>
+              </div>
+            </div>
+            <div class="selectors-container">
+              <div class="filter-selector">
+                <h4>Filtrar</h4>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="sort-selector">
+                <h4>Ordenar</h4>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+          </div>
+          <div class="products-list">
+            <div class="product-cards">
+              <% products.forEach(product=> { %>
+              <%-include('./partials/productCard', {product}) %> <%})%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('./partials/footer.ejs') %>
+  </body>
+
+  <script src="/js/index.js"></script>
+</html>
