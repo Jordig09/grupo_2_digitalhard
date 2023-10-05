@@ -102,7 +102,7 @@
               product.stock : ""%>"
             />
           </div>
-          <div class="<% if(typeof product !== 'undefined') if(product.type === 0){%> attributes-active <%}%>" id="variable-product-form">
+          <div class="<% if(typeof product !== 'undefined') if(product.type === 0){%> attributes-active <%} if(typeof product === 'undefined') {%> attributes-active <% } %>" id="variable-product-form">
             <div class="input-container">
               <label for="new-attribute">Nuevo atributo</label>
               <input
