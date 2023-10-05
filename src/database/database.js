@@ -9,4 +9,8 @@ const categories = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, "./categories.json"))
 );
 
-module.exports = { products, categories };
+const brands = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, "./brands.json"))
+);
+
+module.exports = { products, categories, brands };
