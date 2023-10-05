@@ -8,6 +8,7 @@ const helpRoute = require("./routes/helpRoute");
 const loginRoute = require("./routes/loginRoute");
 const mainRoute = require("./routes/mainRoute");
 const registerRoute = require("./routes/registerRoute");
+const editProductRoute = require("./routes/editProductRoute");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use("/cart", cartRoute);
 app.use("/help", helpRoute);
 app.use("/login", loginRoute);
 app.use("/register", registerRoute);
+app.use("/edit-product", editProductRoute);
 
 app.get("*", (req, res) => {
   res.render("404");
