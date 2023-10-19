@@ -1,33 +1,23 @@
 [
   {
     "id": 1,
-    "name": "Procesador AMD RYZEN 3 3200G 4.0GHz Turbo + Radeon Vega 8 AM4 Wraith Stealth Cooler",
-    "price": 84900,
-    "img": [
+
+    "images": [
       "/images/cooler4.jpg",
       "/images/cooler.jpg",
       "/images/default-product.jpg"
     ],
-    "discount": 20,
+    "name": "Procesador AMD RYZEN 3 3200G 4.0GHz Turbo + Radeon Vega 8 AM4 Wraith Stealth Cooler",
+    "brand": 3,
+    "price": 84900,
+    "discount": "20",
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id modi quis repellendus nam illo ex quisquam iusto aspernatur corporis maiores cum hic quidem nemo perspiciatis, molestiae vero iste sunt?",
-    "marca": 3,
-    "category": [1, 3],
-    "stock": 20,
-    "type": 1,
-    "variaciones": [
-      {
-        "color": "Rojo",
-        "stock": 10
-      },
-      {
-        "color": "Azul",
-        "stock": 5
-      }
-    ],
-    "especification": [
+    "categories": [1, 3],
+    "stock": 3,
+    "specification": [
       {
         "title": "Memoria",
-        "especification": [
+        "specification": [
           {
             "name": "L1",
             "text": "0.3 MB"
@@ -36,7 +26,7 @@
       },
       {
         "title": "Cooler y disipadores",
-        "especification": [
+        "specification": [
           {
             "name": "Tdp",
             "text": "60 W"
@@ -49,7 +39,8 @@
       },
       {
         "title": "Otras caracteristicas",
-        "especification": [
+
+        "specification": [
           {
             "name": "Modelo",
             "text": "Ryzen 3 3200G"
@@ -60,25 +51,20 @@
   },
   {
     "id": 2,
+
+    "images": [
+      "/images/cooler4.jpg",
+      "/images/cooler.jpg",
+      "/images/default-product.jpg"
+    ],
     "name": "Tarjeta gráfica NVIDIA GeForce RTX 3080 Ti 12GB GDDR6X",
+    "brand": 2,
     "price": 149900,
-    "img": ["/images/default-product.jpg"],
     "discount": 10,
     "description": "Una potente tarjeta gráfica que ofrece un rendimiento excepcional para juegos y aplicaciones de alta demanda.",
-    "marca": "NVIDIA",
-    "category": [1, 3],
-    "stock": 15,
-    "variaciones": [
-      {
-        "color": "Negro",
-        "stock": 10
-      },
-      {
-        "color": "Blanco",
-        "stock": 5
-      }
-    ],
-    "especification": [
+    "categories": [0, 5],
+    "stock": 10,
+    "specification": [
       {
         "title": "Memoria",
         "especification": [
@@ -101,21 +87,19 @@
   },
   {
     "id": 3,
+    "images": [
+      "/images/cooler4.jpg",
+      "/images/cooler.jpg",
+      "/images/default-product.jpg"
+    ],
     "name": "Monitor IPS de 27 pulgadas 1440p con HDR",
+    "brand": 4,
     "price": 59900,
-    "img": ["/images/default-product.jpg"],
     "discount": 15,
     "description": "Un monitor con una calidad de imagen impresionante, perfecto para diseñadores y jugadores.",
-    "marca": "Dell",
-    "category": [2],
-    "stock": 8,
-    "variaciones": [
-      {
-        "color": "Negro",
-        "stock": 8
-      }
-    ],
-    "especification": [
+    "categories": [0, 1, 3],
+    "stock": "21",
+    "specification": [
       {
         "title": "Tamaño de pantalla",
         "especification": [
@@ -138,21 +122,15 @@
   },
   {
     "id": 4,
+    "images": ["/images/default-product.jpg"],
     "name": "Teclado mecánico RGB Corsair K95 Platinum XT",
+    "brand": 5,
     "price": 24900,
-    "img": ["/images/default-product.jpg"],
     "discount": 0,
     "description": "Un teclado mecánico premium con iluminación RGB personalizable y teclas programables.",
-    "marca": "Corsair",
-    "category": [4],
-    "stock": 20,
-    "variaciones": [
-      {
-        "color": "Negro",
-        "stock": 20
-      }
-    ],
-    "especification": [
+    "categories": [1, 4],
+    "stock": 15,
+    "specification": [
       {
         "title": "Tipo de teclado",
         "especification": [
@@ -177,22 +155,16 @@
     "id": 5,
     "name": "Mouse inalámbrico Logitech G Pro X Superlight",
     "price": 8999,
-    "img": ["/images/default-product.jpg"],
+    "images": ["/images/default-product.jpg"],
     "discount": 10,
     "description": "Un ratón de alto rendimiento diseñado para jugadores profesionales, con conectividad inalámbrica ultrarrápida.",
-    "marca": "Logitech",
-    "category": [4],
+    "brand": 1,
+    "categories": [4],
     "stock": 12,
-    "variaciones": [
-      {
-        "color": "Negro",
-        "stock": 12
-      }
-    ],
-    "especification": [
+    "specification": [
       {
         "title": "Tipo de conexión",
-        "especification": [
+        "specification": [
           {
             "name": "Conectividad",
             "text": "Inalámbrica"
@@ -201,7 +173,7 @@
       },
       {
         "title": "Sensor",
-        "especification": [
+        "specification": [
           {
             "name": "Sensor óptico",
             "text": "Sí"
@@ -214,22 +186,16 @@
     "id": 6,
     "name": "Disco duro externo Samsung Portable SSD T7",
     "price": 11999,
-    "img": ["/images/default-product.jpg"],
+    "images": ["/images/default-product.jpg"],
     "discount": 0,
     "description": "Una unidad de estado sólido portátil de alta velocidad para almacenamiento adicional y transferencias rápidas de datos.",
-    "marca": "Samsung",
-    "category": [5],
+    "brand": 6,
+    "categories": [5],
     "stock": 18,
-    "variaciones": [
-      {
-        "color": "Plateado",
-        "stock": 18
-      }
-    ],
-    "especification": [
+    "specification": [
       {
         "title": "Capacidad",
-        "especification": [
+        "specification": [
           {
             "name": "Capacidad de almacenamiento",
             "text": "1 TB"
@@ -238,7 +204,7 @@
       },
       {
         "title": "Velocidad de transferencia",
-        "especification": [
+        "specification": [
           {
             "name": "Velocidad",
             "text": "540 MB/s"
@@ -251,22 +217,16 @@
     "id": 7,
     "name": "Memoria RAM Corsair Vengeance RGB Pro 32GB DDR4",
     "price": 7999,
-    "img": ["/images/default-product.jpg"],
+    "images": ["/images/default-product.jpg"],
     "discount": 0,
     "description": "Memoria RAM de alta velocidad y capacidad con iluminación RGB para mejorar el rendimiento de tu PC.",
-    "marca": "Corsair",
-    "category": [6],
+    "brand": 5,
+    "categories": [6],
     "stock": 15,
-    "variaciones": [
-      {
-        "color": "Negro",
-        "stock": 15
-      }
-    ],
-    "especification": [
+    "specification": [
       {
         "title": "Capacidad",
-        "especification": [
+        "specification": [
           {
             "name": "Capacidad de almacenamiento",
             "text": "32 GB"
@@ -275,7 +235,7 @@
       },
       {
         "title": "Tipo de memoria",
-        "especification": [
+        "specification": [
           {
             "name": "Tipo",
             "text": "DDR4"
@@ -288,22 +248,16 @@
     "id": 8,
     "name": "Auriculares inalámbricos SteelSeries Arctis Pro Wireless",
     "price": 19999,
-    "img": ["/images/default-product.jpg"],
+    "images": ["/images/default-product.jpg"],
     "discount": 15,
     "description": "Auriculares de gaming inalámbricos con sonido de alta calidad y una comodidad excepcional.",
-    "marca": "SteelSeries",
-    "category": [7],
+    "brand": 7,
+    "categories": [7],
     "stock": 10,
-    "variaciones": [
-      {
-        "color": "Negro",
-        "stock": 10
-      }
-    ],
-    "especification": [
+    "specification": [
       {
         "title": "Conectividad",
-        "especification": [
+        "specification": [
           {
             "name": "Tipo de conexión",
             "text": "Inalámbrica"
@@ -312,7 +266,7 @@
       },
       {
         "title": "Sonido",
-        "especification": [
+        "specification": [
           {
             "name": "Sonido envolvente",
             "text": "Sí"

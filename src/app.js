@@ -1,30 +1,32 @@
 const express = require("express");
 const path = require("path");
-
-const productRoute = require("./routes/productsRoute");
-const buildRoute = require("./routes/buildRoute");
-const cartRoute = require("./routes/cartRoute");
-const helpRoute = require("./routes/helpRoute");
-const loginRoute = require("./routes/loginRoute");
-const mainRoute = require("./routes/mainRoute");
-const registerRoute = require("./routes/registerRoute");
-const editProductRoute = require("./routes/editProductRoute");
+const methodOverride = require("method-override");
 
 const app = express();
 
 app.use(express.static(path.resolve(__dirname, "public")));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(methodOverride("_method"));
 
 app.set("views", path.join(__dirname, "./views"));
 app.set("view engine", "ejs");
 
-app.use("/", mainRoute);
-app.use("/products", productRoute);
+const mainRouter = require("./routes/main");
+const productsRouter = require("./routes/products");
+const buildRoute = require("./routes/buildRoute");
+const cartRoute = require("./routes/cartRoute");
+const helpRoute = require("./routes/helpRoute");
+const loginRoute = require("./routes/loginRoute");
+const registerRoute = require("./routes/registerRoute");
+
+app.use("/", mainRouter);
+app.use("/products", productsRouter);
 app.use("/build", buildRoute);
 app.use("/cart", cartRoute);
 app.use("/help", helpRoute);
 app.use("/login", loginRoute);
 app.use("/register", registerRoute);
-app.use("/edit-product", editProductRoute);
 
 app.get("*", (req, res) => {
   res.render("404");

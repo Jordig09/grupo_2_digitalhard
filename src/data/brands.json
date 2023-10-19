@@ -1,26 +1,30 @@
 [
   {
-    "id": 0,
+    "id": 1,
     "name": "Logitech"
   },
   {
-    "id": 1,
-    "name": "Redragon"
-  },
-  {
     "id": 2,
-    "name": "HyperX"
+    "name": "Nvidia"
   },
   {
     "id": 3,
-    "name": "Lenovo"
+    "name": "AMD"
   },
   {
     "id": 4,
-    "name": "Sentey"
+    "name": "Dell"
   },
   {
     "id": 5,
-    "name": "Aorus"
+    "name": "Corsair"
+  },
+  {
+    "id": 6,
+    "name": "Samsung"
+  },
+  {
+    "id": 7,
+    "name": "Steel Series"
   }
 ]

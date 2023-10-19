@@ -9,10 +9,10 @@
     <div class="content">
       <div class="product-images-container">
         <div class="main-image">
-          <img id="main-image" src="<%= product.img[0] %>" alt="" />
+          <img id="main-image" src="<%= product.images[0] %>" alt="" />
         </div>
         <div class="other-images">
-          <% product.img.forEach(image=> { %>
+          <% product.images.forEach(image=> { %>
           <img src="<%= image %>" alt="" />
           <%})%>
         </div>
@@ -58,7 +58,7 @@
     </div>
 
     <div class="table-content">
-      <% product.especification.forEach(item => { %>
+      <% product.specification.forEach(item => { %>
       <%-include('./partials/especificationTable', { item }) %> <%})%>
     </div>
     <% }else{ %>

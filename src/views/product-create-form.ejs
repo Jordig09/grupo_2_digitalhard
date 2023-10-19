@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+  <%- include('./partials/head.ejs',{styles}) %>
+  <body>
+    <%- include('./partials/header.ejs') %>
+    <main>
+      <h2 class="view-title">Crear Producto</h2>
+      <form action="/products" method="POST" class="edit-form">
+        <section>
+          <h4>Información General</h4>
+          <div class="input-container">
+            <label for="name">Nombre de Producto</label>
+            <input type="text" id="name" name="name" />
+          </div>
+          <div class="input-container">
+            <label for="brand">Marca</label>
+            <select name="brand" id="brand">
+              <% brands.forEach(brand => { %>
+              <option value="<%= brand.id %>" id="<%= brand.name %>">
+                <%= brand.name %>
+              </option>
+              <%}); %>
+            </select>
+          </div>
+          <div class="input-group">
+            <div class="input-container">
+              <label for="price">Precio</label>
+              <input type="number" id="price" name="price" min="0" />
+            </div>
+            <div class="input-container">
+              <label for="discount">Descuento (%)</label>
+              <input
+                type="number"
+                id="discount"
+                name="discount"
+                min="0"
+                max="100"
+              />
+            </div>
+          </div>
+          <div class="input-container">
+            <label for="description">Descripción del producto</label>
+            <textarea name="description" id="description" rows="5"></textarea>
+          </div>
+        </section>
+        <section>
+          <h4>Imágenes</h4>
+          <div class="file-input">
+            <input
+              type="file"
+              id="images"
+              name="images"
+              multiple
+              accept=".png, .jpg, .jpeg, .webp"
+            />
+          </div>
+          <div class="file-info">
+            <p><i class="fas fa-info"></i></p>
+            <p>Solo están permitidos archivos .png, .jpg, .jpeg y .webp</p>
+          </div>
+        </section>
+        <section>
+          <h4>Categorías</h4>
+          <div class="box-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Buscar Categorías..." />
+          </div>
+          <div class="category-checkboxes">
+            <% categories.forEach(category => { %>
+            <label>
+              <input
+                type="checkbox"
+                id="<%= category.name %>"
+                name="categories"
+                value="<%= category.id %>"
+              />
+              <%= category.name %>
+            </label>
+            <%}); %>
+          </div>
+        </section>
+        <section>
+          <h4>Atributos</h4>
+          <div id="simple-product-form" class="input-container">
+            <label for="stock">Stock</label>
+            <input type="number" name="stock" id="stock" min="0" />
+          </div>
+        </section>
+        <div class="submit">
+          <input type="submit" id="submit" value="Crear" />
+        </div>
+      </form>
+    </main>
+    <%- include('./partials/footer.ejs') %>
+  </body>
+  <script src="/js/index.js"></script>
+  <script src="/js/editProduct.js"></script>
+</html>
