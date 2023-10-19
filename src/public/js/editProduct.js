@@ -1,11 +1,4 @@
-let select = document.getElementById("attributes");
-let simpleProduct = document.getElementById("simple-product-form");
 let variableProduct = document.getElementById("variable-product-form");
-
-select.addEventListener("change", function () {
-  simpleProduct.classList.toggle("attributes-active");
-  variableProduct.classList.toggle("attributes-active");
-});
 
 let newAttribute = document.getElementById("new-attribute");
 let attributeVariant = document.getElementById("attribute-variant");
@@ -23,7 +16,7 @@ attributeSubmit.addEventListener("click", function (e) {
     newVariant.classList.add("variable-attributes");
     newVariant.innerHTML = `
       <div class="input-container">
-        <label for="new-attribute${i}">Valor Atributo (${variantType} ${i})</label>
+        <label for="new-attribute${i}">Título</label>
         <input
           type="text"
           name="new-attribute${i}"
@@ -32,12 +25,11 @@ attributeSubmit.addEventListener("click", function (e) {
         />
       </div>
       <div class="input-container">
-        <label for="new-attribute${i}-stock">Stock</label>
+        <label for="new-attribute${i}-value">Valor</label>
         <input
-          type="number"
-          name="new-attribute${i}-stock"
-          id="new-attribute${i}-stock"
-          min=0
+          type="text"
+          name="new-attribute${i}-value"
+          id="new-attribute${i}-value"
           class="new-attribute"
         />
       </div>

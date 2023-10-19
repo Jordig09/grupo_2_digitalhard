@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Logitech"
+  },
+  {
+    "id": 2,
+    "name": "Nvidia"
+  },
+  {
+    "id": 3,
+    "name": "AMD"
+  },
+  {
+    "id": 4,
+    "name": "Dell"
+  },
+  {
+    "id": 5,
+    "name": "Corsair"
+  },
+  {
+    "id": 6,
+    "name": "Samsung"
+  },
+  {
+    "id": 7,
+    "name": "Steel Series"
+  }
+]

@@ -1,4 +1,4 @@
-const database = require("../database/database");
+const database = require("../data/database");
 
 const controller = {
   index: (req, res) => {
