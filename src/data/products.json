@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+
     "images": [
       "/images/cooler4.jpg",
       "/images/cooler.jpg",
@@ -38,6 +39,7 @@
       },
       {
         "title": "Otras caracteristicas",
+
         "specification": [
           {
             "name": "Modelo",
@@ -49,6 +51,7 @@
   },
   {
     "id": 2,
+
     "images": [
       "/images/cooler4.jpg",
       "/images/cooler.jpg",
