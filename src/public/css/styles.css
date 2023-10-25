@@ -625,18 +625,41 @@ button#checkout-button:hover {
   font-weight: bold;
 }
 
-@media (max-width: 768px) {
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 964px) {
+  .cart {
+    margin: 10px;
+    font-size: 30px;
+  }
+
   .cart-container {
-      flex-direction: column; 
+    margin: 10px;
+    flex-direction: column;
   }
 
   .product {
-      padding: 10px;
-      margin-right: 0; 
-      margin-bottom: 20px; 
+    padding: 10px;
   }
 
   .table-item img {
-      width: 80px;
+    width: 80px;
+  }
+
+  .table-item p {
+    margin: 5px 0;
+    font-weight: normal;
+  }
+
+  .summary-container {
+    margin: 10px;
+  }
+
+  button#checkout-button {
+    padding: 8px;
+    font-size: 16px;
   }
 }
