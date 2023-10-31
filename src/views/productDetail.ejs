@@ -5,19 +5,20 @@
     <%- include('./partials/header.ejs') %>
     <main>
       <!-- CONTENIDO -->  
-      <div class="breadcrumb">
-        <nav class="breadcrumb-nav">
-          <ul class="breadcrumb-items">
-            <li><a>DigitalHard</a> <i class="fa-solid fa-chevron-right"></i></li>
-            <li><a>Categoria </a><i class="fa-solid fa-chevron-right"></i></li>
-            <li><a>SubCategoria </a><i class="fa-solid fa-chevron-right"></i></li>
-            <li><a>Nombre Producto</a> </li>
-          </ul>
-        </nav>
-      </div>   
+  
       <section class="box">
-        
         <% if(product){ %>
+        <div class="breadcrumb">
+          <nav class="breadcrumb-nav">
+            <ul class="breadcrumb-items">
+              <li><a href="/">DigitalHard</a> <i class="fa-solid fa-chevron-right"></i></li>
+              <li><a>Categoria </a><i class="fa-solid fa-chevron-right"></i></li>
+              <li><a>SubCategoria </a><i class="fa-solid fa-chevron-right"></i></li>
+              <li><a ><%= product.name %></a> </li>
+            </ul>
+          </nav>
+        </div> 
+        
         <div class="content">
           <div class="product-images-container">
             <div class="main-image">
