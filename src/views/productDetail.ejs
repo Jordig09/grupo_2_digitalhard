@@ -74,8 +74,12 @@
       </section>
       <!-- tablas --> 
       <section class="box">
-        <h3 class="title">Epecificaciones</h3>
-        <div class="table-content">
+        <div class="toggle-specs">
+          
+          <h3 class="title-specs" >Epecificaciones</h3>
+          <button id="button-specs-toggle" class="button-specs-toggle">Especificaciones<i class="fa-solid fa-chevron-down"></i></button>
+        </div>
+        <div class="table-content" id="table-content">
           <% product.especification.forEach(item => { %>
           <%-include('./partials/especificationTable', { item }) %> <%})%>
         </div>
