@@ -83,6 +83,22 @@ i.fa-cart-shopping{
 h3.title-specs, .table-content{
     display:none;
 }
+.toggle-description{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.button-description-toggle{
+    display:flex;
+    width: 100%;
+    justify-content: space-between;
+    padding:10px 30px;
+    cursor: pointer;
+    background-color: var(--color-principal);
+    color: var(--color-white);
+}
 
 .table-content-active{
     display:flex;
@@ -200,6 +216,10 @@ h3.title-specs, .table-content{
     flex-direction: row;
     justify-content: space-between;
 
+}
+.box-toggle{
+    display: flex;
+    justify-content: center;
 }
 /*---------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------------*/
