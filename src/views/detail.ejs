@@ -3,9 +3,21 @@
   <%- include('./partials/head.ejs') %>
   <body>
     <%- include('./partials/header.ejs') %>
-
+    <main>
     <!-- CONTENIDO -->
+    
+    <section class="box">
     <% if(product){ %>
+      <div class="breadcrumb">
+        <nav class="breadcrumb-nav">
+          <ul class="breadcrumb-items">
+            <li><a href="/">DigitalHard</a> <i class="fa-solid fa-chevron-right"></i></li>
+            <li><a>Categoria </a><i class="fa-solid fa-chevron-right"></i></li>
+            <li><a>SubCategoria </a><i class="fa-solid fa-chevron-right"></i></li>
+            <li><a ><%= product.name %></a> </li>
+          </ul>
+        </nav>
+      </div> 
     <div class="content">
       <div class="product-images-container">
         <div class="main-image">
@@ -19,13 +31,15 @@
       </div>
       <div class="product-details-container">
         <div class="name-product"><%= product.name %></div>
-        <div class="price">$ <%= product.price %></div>
+        <div class="price"><i class="fa-solid fa-dollar-sign"></i><%= product.price %></div>
+
 
         <div class="payment-methods">
-          Pagá con Mercado Pago<br /><img
+          <img
             src="/images/MercadoPago.png"
             alt=""
           />
+          <p>Pagá con Mercado Pago</p>
         </div>
         <div class="calculate">
           <select class="select_envio" name="calculate" id="calculate">
@@ -33,7 +47,7 @@
           </select>
         </div>
         <div class="quantity">
-          Cantidad
+          <p>Cantidad</p>
           <div class="group-button">
             <button id="btn-minus">-</button>
             <span id="quantity-value" data-quantity="0" class="quantity-view"
@@ -43,34 +57,56 @@
           </div>
         </div>
         <div class="actions-buttons">
-          <button id="btn-add">Agregar al carrito</button>
-          <button id="btn-buy">Comprar</button>
+          <button class="add-cart"><i class="fa-solid fa-cart-shopping"> </i> Agregar al carrito</button>
+          <button class="buy-now">Comprar ahora</button>
         </div>
       </div>
     </div>
-
+  </section>
+  <!-- 1er card --> 
+  <section class="box">
+    <h3 class="title">Completá tu combo</h3>
     <div class="product-cards-normal">
-      <h3 class="product-tittle">Completá tu combo</h3>
       <div class="product-cards">
         <% products.forEach(product=> { %> <%-include('./partials/productCard',
         {product}) %> <%})%>
       </div>
     </div>
 
-    <div class="table-content">
+  </section>
+  <!-- Description --> 
+  <section class="box-toggle">
+      <div class="toggle-description">
+        <button id="button-description-toggle" class="button-description-toggle">Caracteristicas<i class="fa-solid fa-chevron-down"></i></button>
+        <p><%= product.description %></p>
+      </div>  
+  </section>
+  <!-- tablas --> 
+  <section class="box">
+    <div class="toggle-specs">
+      
+      <h3 class="title-specs" >Epecificaciones</h3>
+      <button id="button-specs-toggle" class="button-specs-toggle">Especificaciones<i class="fa-solid fa-chevron-down"></i></button>
+    </div>
+    <div class="table-content" id="table-content">
       <% product.specification.forEach(item => { %>
       <%-include('./partials/especificationTable', { item }) %> <%})%>
     </div>
     <% }else{ %>
-    <h3 class="product-tittle">Lo siento!! No encontramos el producto</h3>
+      <h3 class="title">Lo siento!! No encontramos el producto</h3>
     <% } %>
+  </section>
+  <!-- 2do card --> 
+  <section class="box">
+    <h3 class="title">Otros productos que te pueden interesar</h3>
     <div class="product-cards-normal">
-      <h3 class="product-tittle">Otros productos que te pueden interesar</h3>
       <div class="product-cards">
         <% products.forEach(product=> { %> <%-include('./partials/productCard',
         {product}) %> <%})%>
       </div>
     </div>
+  </section>
+</main>
 
     <%- include('./partials/footer.ejs') %>
   </body>

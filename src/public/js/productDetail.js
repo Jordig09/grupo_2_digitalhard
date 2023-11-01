@@ -1,3 +1,8 @@
+document.getElementById("button-specs-toggle").addEventListener("click", () => {
+    document
+    .getElementById("table-content")
+    .classList.toggle("table-content-active");
+});
 const imagesElements = document.querySelectorAll('.other-images img');
 const imgMain = document.getElementById('main-image');
 
