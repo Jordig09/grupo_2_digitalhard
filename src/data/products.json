@@ -285,19 +285,5 @@
         ]
       }
     ]
-  },
-  {
-    "id": 9,
-    "images": [
-      "/images/products-images/img-1698958289654.jpg",
-      "/images/products-images/img-1698958289664.jpg"
-    ],
-    "name": "Nombre 6",
-    "brand": 1,
-    "price": 1234,
-    "discount": 12,
-    "description": "12asd",
-    "categories": [0],
-    "stock": 21
   }
 ]
