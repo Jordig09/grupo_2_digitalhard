@@ -1,16 +1,12 @@
 [
   {
     "id": 1,
-    "images": [
-      "/images/cooler4.jpg",
-      "/images/cooler.jpg",
-      "/images/default-product.jpg"
-    ],
+    "images": ["/images/cooler4.jpg", "/images/cooler.jpg"],
     "name": "Procesador AMD RYZEN 3 3200G 4.0GHz Turbo + Radeon Vega 8 AM4 Wraith Stealth Cooler",
     "brand": 3,
     "price": 84900,
-    "discount": "20",
-    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id modi quis repellendus nam illo ex quisquam iusto aspernatur corporis maiores cum hic quidem nemo perspiciatis, molestiae vero iste sunt?",
+    "discount": 20,
+    "description": "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id modi quis repellendus nam illo ex quisquam iusto aspernatur corporis maiores cum hic quidem nemo perspiciatis, molestiae vero iste sunt?",
     "categories": [1, 3],
     "stock": 3,
     "specification": [
@@ -49,11 +45,7 @@
   },
   {
     "id": 2,
-    "images": [
-      "/images/cooler4.jpg",
-      "/images/cooler.jpg",
-      "/images/default-product.jpg"
-    ],
+    "images": ["/images/cooler4.jpg", "/images/cooler.jpg"],
     "name": "Tarjeta gráfica NVIDIA GeForce RTX 3080 Ti 12GB GDDR6X",
     "brand": 2,
     "price": 149900,
@@ -84,11 +76,7 @@
   },
   {
     "id": 3,
-    "images": [
-      "/images/cooler4.jpg",
-      "/images/cooler.jpg",
-      "/images/default-product.jpg"
-    ],
+    "images": ["/images/cooler4.jpg", "/images/cooler.jpg"],
     "name": "Monitor IPS de 27 pulgadas 1440p con HDR",
     "brand": 4,
     "price": 59900,
@@ -119,7 +107,7 @@
   },
   {
     "id": 4,
-    "images": ["/images/default-product.jpg"],
+    "images": ["/images/products-images/default-product.jpg"],
     "name": "Teclado mecánico RGB Corsair K95 Platinum XT",
     "brand": 5,
     "price": 24900,
@@ -152,7 +140,7 @@
     "id": 5,
     "name": "Mouse inalámbrico Logitech G Pro X Superlight",
     "price": 8999,
-    "images": ["/images/default-product.jpg"],
+    "images": ["/images/products-images/default-product.jpg"],
     "discount": 10,
     "description": "Un ratón de alto rendimiento diseñado para jugadores profesionales, con conectividad inalámbrica ultrarrápida.",
     "brand": 1,
@@ -183,7 +171,7 @@
     "id": 6,
     "name": "Disco duro externo Samsung Portable SSD T7",
     "price": 11999,
-    "images": ["/images/default-product.jpg"],
+    "images": ["/images/products-images/default-product.jpg"],
     "discount": 0,
     "description": "Una unidad de estado sólido portátil de alta velocidad para almacenamiento adicional y transferencias rápidas de datos.",
     "brand": 6,
@@ -214,7 +202,7 @@
     "id": 7,
     "name": "Memoria RAM Corsair Vengeance RGB Pro 32GB DDR4",
     "price": 7999,
-    "images": ["/images/default-product.jpg"],
+    "images": ["/images/products-images/default-product.jpg"],
     "discount": 0,
     "description": "Memoria RAM de alta velocidad y capacidad con iluminación RGB para mejorar el rendimiento de tu PC.",
     "brand": 5,
@@ -245,7 +233,7 @@
     "id": 8,
     "name": "Auriculares inalámbricos SteelSeries Arctis Pro Wireless",
     "price": 19999,
-    "images": ["/images/default-product.jpg"],
+    "images": ["/images/products-images/default-product.jpg"],
     "discount": 15,
     "description": "Auriculares de gaming inalámbricos con sonido de alta calidad y una comodidad excepcional.",
     "brand": 7,
@@ -271,5 +259,19 @@
         ]
       }
     ]
+  },
+  {
+    "id": 9,
+    "images": [
+      "/images/products-images/img-1698958289654.jpg",
+      "/images/products-images/img-1698958289664.jpg"
+    ],
+    "name": "Nombre 6",
+    "brand": 1,
+    "price": 1234,
+    "discount": 12,
+    "description": "12asd",
+    "categories": [0],
+    "stock": 21
   }
 ]

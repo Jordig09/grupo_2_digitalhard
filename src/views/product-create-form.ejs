@@ -5,7 +5,12 @@
     <%- include('./partials/header.ejs') %>
     <main>
       <h2 class="view-title">Crear Producto</h2>
-      <form action="/products" method="POST" class="edit-form">
+      <form
+        action="/products"
+        method="POST"
+        enctype="multipart/form-data"
+        class="edit-form"
+      >
         <section>
           <h4>Información General</h4>
           <div class="input-container">
@@ -46,6 +51,7 @@
         <section>
           <h4>Imágenes</h4>
           <div class="file-input">
+            <label for="images">+</label>
             <input
               type="file"
               id="images"
@@ -53,6 +59,7 @@
               multiple
               accept=".png, .jpg, .jpeg, .webp"
             />
+            <div id="preview" class="preview"></div>
           </div>
           <div class="file-info">
             <p><i class="fas fa-info"></i></p>
@@ -65,11 +72,11 @@
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" placeholder="Buscar Categorías..." />
           </div>
-          <div class="category-checkboxes">
+          <div class="category-radio">
             <% categories.forEach(category => { %>
-            <label>
+            <label class="category-label">
               <input
-                type="checkbox"
+                type="radio"
                 id="<%= category.name %>"
                 name="categories"
                 value="<%= category.id %>"
@@ -78,6 +85,7 @@
             </label>
             <%}); %>
           </div>
+          <div id="subcategory-radio" class="category-radio"></div>
         </section>
         <section>
           <h4>Atributos</h4>
@@ -94,5 +102,5 @@
     <%- include('./partials/footer.ejs') %>
   </body>
   <script src="/js/index.js"></script>
-  <script src="/js/editProduct.js"></script>
+  <script src="/js/createProduct.js"></script>
 </html>

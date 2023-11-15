@@ -8,7 +8,7 @@
         Editar Producto
       </h2>
       <div class="edit-form">
-        <form action="/products/<%= product.id %>?_method=PUT" method="POST">
+        <form action="/products/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data" id="edit-form">
           <section>
             <h4>Información General</h4>
             <div class="input-container">
@@ -37,12 +37,13 @@
             </div>
             <div class="input-container">
               <label for="description">Descripción del producto</label>
-              <textarea name="description" id="description" rows="5"> <%=  product.description %></textarea>
+              <textarea name="description" id="description" rows="5"><%= product.description %></textarea>
             </div>
           </section>
           <section>
             <h4>Imágenes</h4>
             <div class="file-input">
+              <label for="images">+</label>
               <input
                 type="file"
                 id="images"
@@ -50,6 +51,14 @@
                 multiple
                 accept=".png, .jpg, .jpeg, .webp"
               />
+              <div id="preview" class="preview"><% product.images[0] != "/images/products-images/default-product.jpg" && product.images.forEach(image => { %>
+                <div class="image-container" id="<%= image %>">
+                  <img src="<%= image %>" alt="img-preview" class="preview-img">
+                  <div class="overlay">
+                    <div class="overlay-text">X</div>
+                  </div>
+                </div>
+              <% }); %></div>
             </div>
             <div class="file-info">
               <p><i class="fas fa-info"></i></p>
@@ -62,7 +71,7 @@
               <i class="fa-solid fa-magnifying-glass"></i>
               <input type="text" placeholder="Buscar Categorías..." />
             </div>
-            <div class="category-checkboxes">
+            <div class="category-radio">
               <% categories.forEach(category => { %>
               <label>
                 <input
