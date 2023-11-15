@@ -4,10 +4,17 @@ const methodOverride = require("method-override");
 
 const app = express();
 
+var session = require("express-session")
+
+var recordarmeMiddleware = require("./midllewares/recordarmeMiddleware")
+
+app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride("_method"));
+app.use(recordarmeMiddleware);
+
 
 app.set("views", path.join(__dirname, "./views"));
 app.set("view engine", "ejs");
