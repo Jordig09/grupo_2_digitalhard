@@ -11,33 +11,37 @@
     "stock": 3,
     "specification": [
       {
-        "title": "Memoria",
+        "title": "Rendimiento",
         "specification": [
           {
-            "name": "L1",
-            "text": "0.3 MB"
-          }
-        ]
-      },
-      {
-        "title": "Cooler y disipadores",
-        "specification": [
-          {
-            "name": "Tdp",
-            "text": "60 W"
+            "name": "Núcleos",
+            "text": "6"
           },
           {
-            "name": "RGB",
-            "text": "SI"
+            "name": "Frecuencia Base",
+            "text": "3.7 GHz"
+          },
+          {
+            "name": "Frecuencia Turbo",
+            "text": "4.6 GHz"
           }
         ]
       },
       {
-        "title": "Otras caracteristicas",
+        "title": "TDP",
         "specification": [
           {
-            "name": "Modelo",
-            "text": "Ryzen 3 3200G"
+            "name": "TDP",
+            "text": "65 W"
+          }
+        ]
+      },
+      {
+        "title": "Tecnología",
+        "specification": [
+          {
+            "name": "Arquitectura Zen 3",
+            "text": "Sí"
           }
         ]
       }
@@ -48,27 +52,37 @@
     "images": ["/images/cooler4.jpg", "/images/cooler.jpg"],
     "name": "Tarjeta gráfica NVIDIA GeForce RTX 3080 Ti 12GB GDDR6X",
     "brand": 2,
-    "price": 149900,
-    "discount": 10,
-    "description": "Una potente tarjeta gráfica que ofrece un rendimiento excepcional para juegos y aplicaciones de alta demanda.",
-    "categories": [0, 5],
-    "stock": 10,
+    "price": 279990,
+    "discount": "15",
+    "description": "Una placa base de alto rendimiento con soporte para procesadores Intel Core de 10ª y 11ª generación, WiFi 6 integrado y RGB personalizable.",
+    "categories": [1, 4],
+    "stock": 8,
+    "variations": [
+      {
+        "color": "Negro",
+        "stock": 10
+      }
+    ],
     "specification": [
       {
-        "title": "Memoria",
-        "especification": [
+        "title": "Formato",
+        "specification": [
           {
-            "name": "VRAM",
-            "text": "12 GB GDDR6X"
+            "name": "Factor de forma",
+            "text": "ATX"
           }
         ]
       },
       {
-        "title": "Rendimiento",
-        "especification": [
+        "title": "Conectividad",
+        "specification": [
           {
-            "name": "Núcleos CUDA",
-            "text": "10240"
+            "name": "WiFi",
+            "text": "WiFi 6"
+          },
+          {
+            "name": "Bluetooth",
+            "text": "5.2"
           }
         ]
       }
@@ -86,20 +100,28 @@
     "stock": "21",
     "specification": [
       {
-        "title": "Tamaño de pantalla",
-        "especification": [
+        "title": "Pantalla",
+        "specification": [
           {
-            "name": "Tamaño",
+            "name": "Tamaño de pantalla",
             "text": "27 pulgadas"
+          },
+          {
+            "name": "Resolución",
+            "text": "2560x1440 (QHD)"
+          },
+          {
+            "name": "Frecuencia de actualización",
+            "text": "165Hz"
           }
         ]
       },
       {
-        "title": "Resolución",
-        "especification": [
+        "title": "Tecnología",
+        "specification": [
           {
-            "name": "Resolución",
-            "text": "1440p"
+            "name": "Tecnología de sincronización",
+            "text": "FreeSync"
           }
         ]
       }
@@ -118,18 +140,18 @@
     "specification": [
       {
         "title": "Tipo de teclado",
-        "especification": [
+        "specification": [
           {
-            "name": "Tipo",
-            "text": "Mecánico"
+            "name": "Tipo de interruptor",
+            "text": "Cherry MX Speed"
           }
         ]
       },
       {
-        "title": "Iluminación",
-        "especification": [
+        "title": "Retroiluminación",
+        "specification": [
           {
-            "name": "RGB",
+            "name": "Retroiluminación RGB",
             "text": "Sí"
           }
         ]
@@ -148,19 +170,23 @@
     "stock": 12,
     "specification": [
       {
-        "title": "Tipo de conexión",
+        "title": "Rendimiento",
         "specification": [
           {
-            "name": "Conectividad",
-            "text": "Inalámbrica"
+            "name": "Núcleos CUDA",
+            "text": "10240"
+          },
+          {
+            "name": "Memoria de video",
+            "text": "12 GB GDDR6X"
           }
         ]
       },
       {
-        "title": "Sensor",
+        "title": "Tecnología",
         "specification": [
           {
-            "name": "Sensor óptico",
+            "name": "Trazado de rayos en tiempo real",
             "text": "Sí"
           }
         ]
@@ -244,16 +270,16 @@
         "title": "Conectividad",
         "specification": [
           {
-            "name": "Tipo de conexión",
-            "text": "Inalámbrica"
+            "name": "Conectividad inalámbrica",
+            "text": "Sí (2.4 GHz)"
           }
         ]
       },
       {
-        "title": "Sonido",
+        "title": "Micrófono",
         "specification": [
           {
-            "name": "Sonido envolvente",
+            "name": "Micrófono con cancelación de ruido",
             "text": "Sí"
           }
         ]
