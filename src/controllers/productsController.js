@@ -55,20 +55,40 @@ const controller = {
     });
   },
   store: (req, res) => {
-    const products = getProducts();
-    req.body.categories = req.body.categories.map(Number);
-    req.body.brand = Number(req.body.brand);
-    req.body.price = Number(req.body.price);
-    req.body.discount = Number(req.body.discount);
-    req.body.stock = Number(req.body.stock);
-    const productToCreate = {
-      id: products[products.length - 1].id + 1,
-      images: "default-image.png",
-      ...req.body,
-    };
-    products.push(productToCreate);
-    fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
-    res.redirect("/products");
+    try {
+      const products = getProducts();
+      const files = req.files;
+      req.body.categories = Array.isArray(req.body.categories)
+        ? req.body.categories.map(Number)
+        : [Number(req.body.categories)];
+      req.body.brand = Number(req.body.brand);
+      req.body.price = Number(req.body.price);
+      req.body.discount = Number(req.body.discount);
+      req.body.stock = Number(req.body.stock);
+      const productToCreate = {
+        id: products[products.length - 1].id + 1,
+        images:
+          req.files.length > 0
+            ? req.files.map(
+                (file) => `/images/products-images/${file.filename}`
+              )
+            : ["/images/products-images/default-product.jpg"],
+        ...req.body,
+      };
+      products.push(productToCreate);
+      fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
+      res.redirect("/products");
+    } catch (error) {
+      for (let file of req.files) {
+        fs.unlink(
+          path.join("./src/public/images/products-images", file.filename),
+          (err) => {
+            if (err) console.error(err);
+          }
+        );
+        res.status(500).send("Hubo un error al guardar los datos");
+      }
+    }
   },
   edit: (req, res) => {
     const products = getProducts();
@@ -91,7 +111,37 @@ const controller = {
     const indexProduct = products.findIndex(
       (product) => product.id == req.params.id
     );
-    req.body.categories = req.body.categories.map(Number);
+    if (req.files) {
+      products[indexProduct].images[0] =
+        "/images/products-images/default-product.jpg"
+          ? (products[indexProduct].images = req.files.map(
+              (file) => `/images/products-images/${file.filename}`
+            ))
+          : req.files.forEach((file) => {
+              products[indexProduct].images.push(
+                `/images/products-images/${file.filename}`
+              );
+            });
+    }
+    if (req.body.deleteImages) {
+      if (!Array.isArray(req.body.deleteImages))
+        req.body.deleteImages = [req.body.deleteImages];
+      req.body.deleteImages.forEach((image) => {
+        fs.unlink(path.join("./src/public", image), (err) => {
+          if (err) console.error(err);
+        });
+        const index = products[indexProduct].images.indexOf(image);
+        products[indexProduct].images.splice(index, 1); // Elimina las imágenes del producto
+      });
+      delete req.body.deleteImages;
+    }
+    req.body.images =
+      products[indexProduct].images != ""
+        ? products[indexProduct].images
+        : ["/images/products-images/default-product.jpg"];
+    req.body.categories = Array.isArray(req.body.categories)
+      ? req.body.categories.map(Number)
+      : [Number(req.body.categories)];
     req.body.brand = Number(req.body.brand);
     req.body.price = Number(req.body.price);
     req.body.discount = Number(req.body.discount);
@@ -108,6 +158,12 @@ const controller = {
     const indexProduct = products.findIndex(
       (product) => product.id == req.params.id
     );
+    const product = products[indexProduct];
+    product.images.forEach((image) => {
+      fs.unlink(path.join("./src/public", image), (err) => {
+        if (err) console.error(err);
+      });
+    });
     products.splice(indexProduct, 1);
     fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
     res.redirect("/products");

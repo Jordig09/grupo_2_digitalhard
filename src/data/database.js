@@ -6,7 +6,7 @@ const products = JSON.parse(
 );
 
 const categories = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, "./categories.json"))
+  fs.readFileSync(path.resolve(__dirname, "./categoriesNew.json"))
 );
 
 const brands = JSON.parse(
