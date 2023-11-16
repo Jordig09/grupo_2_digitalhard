@@ -14,6 +14,7 @@ app.set("view engine", "ejs");
 
 const mainRouter = require("./routes/main");
 const productsRouter = require("./routes/products");
+const usersRouter = require("./routes/usersRoutes")
 const buildRoute = require("./routes/buildRoute");
 const cartRoute = require("./routes/cartRoute");
 const helpRoute = require("./routes/helpRoute");
@@ -22,6 +23,8 @@ const registerRoute = require("./routes/registerRoute");
 
 app.use("/", mainRouter);
 app.use("/products", productsRouter);
+app.use("/users", usersRouter);
+
 app.use("/build", buildRoute);
 app.use("/cart", cartRoute);
 app.use("/help", helpRoute);
