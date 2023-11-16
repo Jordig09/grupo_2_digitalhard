@@ -1,0 +1,101 @@
+[
+  {
+    "id": 0,
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "password": "password1",
+    "rol": true,
+    "avatar": "default.png"
+  },
+  {
+    "id": 1,
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "jane.smith@example.com",
+    "password": "password2",
+    "rol": false,
+    "avatar": "default.png"
+  },
+  {
+    "id": 2,
+    "firstName": "Michael",
+    "lastName": "Johnson",
+    "email": "michael.johnson@example.com",
+    "password": "password3",
+    "rol": true,
+    "avatar": "default.png"
+  },
+  {
+    "id": 3,
+    "firstName": "Emily",
+    "lastName": "Brown",
+    "email": "emily.brown@example.com",
+    "password": "password4",
+    "rol": false,
+    "avatar": "default.png"
+  },
+  {
+    "id": 4,
+    "firstName": "William",
+    "lastName": "Davis",
+    "email": "william.davis@example.com",
+    "password": "password5",
+    "rol": true,
+    "avatar": "default.png"
+  },
+  {
+    "id": 5,
+    "firstName": "Olivia",
+    "lastName": "Wilson",
+    "email": "olivia.wilson@example.com",
+    "password": "password6",
+    "rol": false,
+    "avatar": "default.png"
+  },
+  {
+    "id": 6,
+    "firstName": "James",
+    "lastName": "Martinez",
+    "email": "james.martinez@example.com",
+    "password": "password7",
+    "rol": true,
+    "avatar": "default.png"
+  },
+  {
+    "id": 7,
+    "firstName": "Sophia",
+    "lastName": "Anderson",
+    "email": "sophia.anderson@example.com",
+    "password": "password8",
+    "rol": true,
+    "avatar": "default.png"
+  },
+  {
+    "id": 8,
+    "firstName": "Daniel",
+    "lastName": "Gonzalez",
+    "email": "daniel.gonzalez@example.com",
+    "password": "password9",
+    "rol": false,
+    "avatar": "default.png"
+  },
+  {
+    "id": 9,
+    "firstName": "Isabella",
+    "lastName": "Taylor",
+    "email": "isabella.taylor@example.com",
+    "password": "password10",
+    "rol": true,
+    "avatar": "default.png"
+  },
+  {
+    "id": 10,
+    "firstName": "Jordi",
+    "lastName": "Godoy",
+    "email": "jordii09.jg@gmail.com",
+    "password": "$2b$10$2cqwASbLGwUb/xfVIEgBtOId/ogvqV1vsLhd8/QAxtFftiZ4Y.SBG",
+    "rol": true,
+    "avatar": "avatar-1700140505526.jpg"
+  }
+]

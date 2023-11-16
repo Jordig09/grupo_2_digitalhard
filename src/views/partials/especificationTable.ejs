@@ -1,0 +1,15 @@
+<div class="table-container">
+  <h3><%= item.title %></h3>
+  <table>
+    <tr>
+      <th>Característica</th>
+      <th>Valor</th>
+    </tr>
+    <% item.specification.forEach(value => { %>
+    <tr>
+      <td><%= value.name %></td>
+      <td><%= value.text %></td>
+    </tr>
+    <% }) %>
+  </table>
+</div>

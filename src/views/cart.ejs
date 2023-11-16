@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+  <%- include('./partials/head.ejs',{styles}) %>
+  <body>
+    <%- include('./partials/header.ejs') %>
+
+    <!-- CONTENIDO - INICIO -->
+    <section>
+      <div class="cart-container">
+        <div class="product">
+          <h3><i class="fas fa-cart-shopping"></i> Resumen de compra</h3>
+          <% cart.products.forEach(product=> { %>
+          <%-include('./partials/cartCard', { product }) %> <%})%>
+        </div>
+
+        <div class="summary-container">
+          <div class="summary">
+            <p><i class="far fa-clipboard"></i> Resumen</p>
+          </div>
+
+          <div class="discount-summary">
+            <div class="subtotal">
+              <p>Subtotal</p>
+              <p>$<%= cart.subtotal %></p>
+            </div>
+            <div class="discount">
+              <p>Descuento</p>
+              <p>$<%= cart.discount %></p>
+            </div>
+          </div>
+
+          <br />
+
+          <div class="cart-summary">
+            <div class="total">
+              <p>Total</p>
+              <p>$<%= cart.total %></p>
+            </div>
+            <button id="checkout-button">Proceder al pago</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CONTENIDO - FINAL -->
+
+    <%- include('./partials/footer.ejs') %>
+  </body>
+
+  <script src="/js/index.js"></script>
+</html>

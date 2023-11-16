@@ -1,43 +1,53 @@
 const express = require("express");
 const path = require("path");
+const methodOverride = require("method-override");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+
+const mainRouter = require("./routes/main");
+const productsRouter = require("./routes/products");
+const usersRouter = require("./routes/users");
+const buildRoute = require("./routes/buildRoute");
+const cartRoute = require("./routes/cartRoute");
+const helpRoute = require("./routes/helpRoute");
 
 const app = express();
-const port = 3000;
+
+const userLoggedMiddleware = require("./middlewares/userLoggedMiddleware");
+
+app.use(
+  session({
+    secret: "Shhh, It's a secret",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(cookieParser());
+
+app.use(userLoggedMiddleware);
+
+app.set("views", path.join(__dirname, "./views"));
+app.set("view engine", "ejs");
 
 app.use(express.static(path.resolve(__dirname, "public")));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/index.html"));
+app.use(methodOverride("_method"));
+
+app.use("/", mainRouter);
+app.use("/products", productsRouter);
+app.use("/build", buildRoute);
+app.use("/cart", cartRoute);
+app.use("/help", helpRoute);
+app.use("/user", usersRouter);
+
+app.get("*", (req, res) => {
+  res.render("404");
 });
 
-app.get("/product-list", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/productList.html"));
-});
-
-app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/login.html"));
-});
-
-app.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/register.html"));
-});
-
-app.get("/cart", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/cart.html"));
-});
-
-app.get("/product", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/productDetail.html"));
-});
-
-app.get("/build", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/build.html"));
-});
-
-app.get("/help", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/help.html"));
-});
-
+const port = process.env.PORT || 3000;
 app.listen(port, (err) => {
   err ? console.log(err) : console.log(`Servidor escuchando puerto ${port}`);
 });
