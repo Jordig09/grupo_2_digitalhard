@@ -11,23 +11,47 @@
           />
         </div>
         <div class="form">
-          <form action="/" method="post" class="form-inner">
+          <form
+            action="/user/register"
+            method="post"
+            enctype="multipart/form-data"
+            class="form-inner"
+          >
             <h2 id="title">Crear cuenta</h2>
             <div class="inputs">
-              <label for="txfName">Nombre y apellido</label>
+              <label for="txfFirstName">Nombre</label>
               <input
                 type="text"
-                id="txfName"
-                name="name"
-                placeholder="Nombre Apellido"
+                id="txfFirstName"
+                name="firstName"
+                placeholder="Nombre"
+                value="<%= locals.oldData?.firstName && oldData?.firstName%>"
               />
+              <% if(locals.errors?.firstName) { %>
+              <p class="error"><%= errors.firstName.msg %></p>
+              <% } %>
+              <label for="txfLastName">Apellido</label>
+              <input
+                type="text"
+                id="txfLastName"
+                name="lastName"
+                placeholder="Apellido"
+                value="<%= locals.oldData?.lastName && oldData?.lastName %>"
+              />
+              <% if(locals.errors?.lastName) { %>
+              <p class="error"><%= errors.lastName.msg %></p>
+              <% } %>
               <label for="txfEmail">Correo electrónico</label>
               <input
                 type="email"
                 id="txfEmail"
                 name="email"
                 placeholder="ejemplo@ejemplo.com"
+                value="<%= locals.oldData?.email && oldData?.email %>"
               />
+              <% if(locals.errors?.email) { %>
+              <p class="error"><%= errors.email.msg %></p>
+              <% } %>
               <label for="txfPassword">Contraseña</label>
               <input
                 type="password"
@@ -35,11 +59,15 @@
                 name="password"
                 placeholder="Establece tu contraseña"
               />
+              <% if(locals.errors?.password) { %>
+              <p class="error"><%= errors.password.msg %></p>
+              <% } %>
+              <label for="avatar">Imágen de Perfil</label>
               <input
-                type="password"
-                id="txfPassword"
-                name="password"
-                placeholder="Vuelve a escribir tu contraseña"
+                type="file"
+                id="avatar"
+                name="avatar"
+                accept=".png, .jpg, .jpeg, .webp"
               />
               <button type="submit" id="buttonSubmit">Regístrame</button>
               <button type="button" id="googleLogin">

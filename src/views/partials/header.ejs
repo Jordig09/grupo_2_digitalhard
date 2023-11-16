@@ -28,14 +28,24 @@
         </div>
         <i class="fas fa-chevron-down arrow"></i>
         <ul id="client-dropdown">
+          <% if(locals.isLogged) { %>
           <li>
-            <a href="/login"><i class="fa-solid fa-user"></i>Iniciar sesion</a>
+            <a href="/user/profile"
+              ><i class="fa-solid fa-user"></i>Mi perfil</a
+            >
+          </li>
+          <% } else { %>
+          <li>
+            <a href="/user/login"
+              ><i class="fa-solid fa-user"></i>Iniciar sesion</a
+            >
           </li>
           <li>
-            <a href="/register"
+            <a href="/user/register"
               ><i class="fas fa-sign-in-alt"></i>Registrarse</a
             >
           </li>
+          <% } %>
         </ul>
       </div>
     </div>
