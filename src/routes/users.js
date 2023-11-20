@@ -3,21 +3,21 @@ const router = express.Router();
 const usersController = require('../controllers/usersController');
 
 // Listar Usuarios
-router.get('/', usersController.listarUsuarios);
+router.get('/', usersController.index);
 
 // Mostrar Detalles de Usuario
 router.get('/:id', usersController.detalleUsuario);
 
 // Crear Usuario
-router.get('/register', usersController.mostrarFormularioCreacion); // Muestra el formulario para crear un usuario
+router.get('/create', usersController.formCreateUser);
 router.post('/', usersController.create); // Procesa la creación de un usuario
 
 // Editar Usuario
-router.get('/edit/:id', usersController.mostrarFormularioEdicion);
+router.get('/:id/edit', usersController.formEditUser);
 router.put('/:id', usersController.actualizarUsuario);
 
 // Eliminar Usuario
-router.get('/delete/:id', usersController.mostrarConfirmacionEliminacion);
+router.get('/:id/delete', usersController.mostrarConfirmacionEliminacion);
 router.delete('/:id', usersController.eliminarUsuario);
 
 module.exports = router;

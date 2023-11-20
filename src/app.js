@@ -14,7 +14,7 @@ app.set("view engine", "ejs");
 
 const mainRouter = require("./routes/main");
 const productsRouter = require("./routes/products");
-const usersRouter = require("./routes/usersRoutes")
+const usersRouter = require('./routes/users');
 const buildRoute = require("./routes/buildRoute");
 const cartRoute = require("./routes/cartRoute");
 const helpRoute = require("./routes/helpRoute");

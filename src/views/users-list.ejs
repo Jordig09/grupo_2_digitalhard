@@ -13,8 +13,8 @@
                 <h3><%= user.name %></h3>
                 <p>Correo electrónico: <%= user.email %></p>
                 <!-- Otros detalles del usuario pueden ir aquí -->
-                <a href="/users/edit/<%= user.id %>">Editar</a> | 
-                <a href="/users/delete/<%= user.id %>">Eliminar</a>
+                <a href="/users/<%= user.id %>/edit">Editar</a> | 
+                <a href="/users/<%= user.id %>/delete">Eliminar</a>
               </li>
             <% }) %>
           </ul>
