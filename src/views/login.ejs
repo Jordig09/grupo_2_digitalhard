@@ -20,6 +20,7 @@
                 id="txfEmail"
                 name="email"
                 placeholder="ejemplo@ejemplo.com"
+                value="<%= locals.oldData?.email && oldData?.email %>"
               />
               <label for="txfPassword">Contraseña</label>
               <input
@@ -28,8 +29,8 @@
                 name="password"
                 placeholder="Escriba aquí su contraseña"
               />
-              <% if (locals.errors?.unauthorized) { %>
-              <p class="error"><%= errors.unauthorized.msg %></p>
+              <% if (locals.errors) { %>
+              <p class="error"><%= errors.email.msg %></p>
               <% }%>
               <div class="remember-forgot">
                 <div class="remember">

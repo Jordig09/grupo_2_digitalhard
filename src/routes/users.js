@@ -4,7 +4,10 @@ const path = require("path");
 
 const controller = require("../controllers/usersController");
 
-const { createUserValidation } = require("../middlewares/userValidations");
+const {
+  createUserValidation,
+  validateUserLogin,
+} = require("../middlewares/userValidations");
 const isNotLoggedMiddleware = require("../middlewares/isNotLoggedMiddleware");
 const isLoggedMiddleware = require("../middlewares/isLoggedMiddleware");
 
@@ -32,7 +35,7 @@ router.post(
   controller.registerProcess
 );
 router.get("/login", isLoggedMiddleware, controller.login);
-router.post("/login", controller.loginProcess);
+router.post("/login", validateUserLogin, controller.loginProcess);
 router.get("/profile", isNotLoggedMiddleware, controller.profile);
 router.get("/logout", controller.logout);
 

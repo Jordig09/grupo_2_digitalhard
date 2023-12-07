@@ -20,6 +20,7 @@
   padding: 10px;
   background-color: #eeeeee;
   border: none;
+  resize: none;
 }
 
 .edit-form section h4 {

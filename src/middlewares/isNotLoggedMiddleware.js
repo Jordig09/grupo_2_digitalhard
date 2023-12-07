@@ -1,6 +1,6 @@
 function isLoggedMiddleware(req, res, next) {
-  if (!req.session.user) {
-    return res.redirect("login");
+  if (!req.session._id) {
+    return res.redirect("/user/login");
   }
   next();
 }
