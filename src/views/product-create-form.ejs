@@ -50,8 +50,8 @@
         </section>
         <section>
           <h4>Imágen Principal</h4>
-          <div class="main-file-input">
-            <label for="mainImage"></label>
+          <div class="file-input">
+            <label for="mainImage">+</label>
             <input
               type="file"
               id="mainImage"
@@ -93,7 +93,7 @@
               <input
                 type="radio"
                 id="<%= subcategory.name %>"
-                name="subcategories"
+                name="subcategory"
                 value="<%= subcategory.id %>"
               />
               <%= subcategory.name %>
@@ -109,15 +109,12 @@
             <input type="number" name="stock" id="stock" min="0" />
           </div>
         </section>
-        <section id="specification">
+        <section>
           <h4>Especificaciones</h4>
-          <button
-            type="button"
-            id="btn-add-specification"
-            onclick="addNewSpecification()"
-          >
-            +
-          </button>
+          <div id="specifications"></div>
+          <div class="input-container">
+            <button type="button" id="btn-add-specification">Añadir</button>
+          </div>
         </section>
         <div class="submit">
           <input type="submit" id="submit" value="Crear" />

@@ -1,4 +1,5 @@
 let images = document.getElementById("images");
+let mainImage = document.getElementById("mainImage");
 
 images.addEventListener("change", function (e) {
   let preview = document.getElementById("preview");
@@ -15,76 +16,88 @@ images.addEventListener("change", function (e) {
   });
 });
 
+mainImage.addEventListener("change", function (e) {
+  let preview = document.getElementById("main-preview");
+  preview.innerHTML = "";
+
+  Array.from(e.target.files).forEach((file) => {
+    let img = document.createElement("img");
+    img.src = URL.createObjectURL(file);
+    img.classList.add("preview-img");
+    img.onload = function () {
+      URL.revokeObjectURL(img.src);
+    };
+    preview.appendChild(img);
+  });
+});
+
 const arraySpecification = [];
-// const titleSpecifications = [];
 
-function renderSpecification() {
-  let specificationDiv = document.getElementById("specification");
-  specificationDiv.innerHTML = `<h4>Especificaciones</h4>
-    <button type="button" id="btn-add-specification" onclick="addNewSpecification()">+</button>`;
+const specificationsDiv = document.getElementById("specifications");
+const specificationsBtn = document.getElementById("btn-add-specification");
 
-  for (let i = 0; i < arraySpecification.length; i++) {
-    specificationDiv.innerHTML += `<div class="table-container">
-    <div class="input-container">
-      <label for="titleSpecification">Titulo</label>
-      <input type="text" name="titleSpecification" value="${arraySpecification[i].title}" id="title-${i}" />
-      <button type="button" id="btn-add-row-${i}">Add Row</button>
-    </div>
-    <table id="table-${i}">
-      <tr>
-        <th>Característica</th>
-        <th>Valor</th>
-      </tr>
-    </table>
+specificationsBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  addNewSpecification();
+  const newSpecification = document.createElement("div");
+  newSpecification.innerHTML = `
+  <div class="input-container">
+    <label for="specification-title-${arraySpecification.length}">Título</label>
+    <input
+      type="text"
+      id="specification-title-${arraySpecification.length}"
+      name="specification-title-${arraySpecification.length}"
+    />
+    <div id="subspecifications${arraySpecification.length - 1}"></div>
+    <button
+      type="button"
+      id="btn-add-row-${arraySpecification.length}"
+      data-index="${arraySpecification.length - 1}"
+    >
+    Añadir nueva fila
+    </button>
   </div>`;
-    for (let j = 0; j < arraySpecification[i].specification.length; j++) {
-      document.getElementById(`table-${i}`).innerHTML += `
-      <tr>
-          <td>
-            <div class="input-container">
-              <input type="text" name="${arraySpecification[i].title}" value="${arraySpecification[i].specification[j].name}" />
-            </div>
-          </td>
-          <td>
-            <div class="input-container">
-              <input type="text" name="${arraySpecification[i].title}" value="${arraySpecification[i].specification[j].text}" />
-            </div>
-          </td>
-          <td>
-            <button type="button" id="btn-delete-row-${i}-${j}">X</button>
-          </td>
-        </tr>`;
-    }
-  }
-  for (let i = 0; i < arraySpecification.length; i++) {
-    document.getElementById(`title-${i}`).addEventListener("change", (e) => {
-      arraySpecification[i].title = e.target.value;
-      renderSpecification();
+  specificationsDiv.append(newSpecification);
+
+  const btnAddRow = document.getElementById(
+    `btn-add-row-${arraySpecification.length}`
+  );
+  const subspecifications = document.getElementById(
+    `subspecifications${arraySpecification.length - 1}`
+  );
+  btnAddRow.addEventListener("click", function (e) {
+    e.preventDefault;
+    const index = this.getAttribute("data-index");
+    arraySpecification[index].specification.push({
+      name: "",
+      text: "",
     });
-    document
-      .getElementById(`btn-add-row-${i}`)
-      .addEventListener("click", (e) => {
-        arraySpecification[i].specification.push({
-          name: "",
-          text: "",
-        });
-        renderSpecification();
-      });
-    for (let j = 0; j < arraySpecification[i].specification.length; j++) {
-      document
-        .getElementById(`btn-delete-row-${i}-${j}`)
-        .addEventListener("click", (e) => {
-          arraySpecification[i].specification.splice(j, 1);
-          renderSpecification();
-        });
-    }
-  }
-}
+    const newRow = document.createElement("div");
+    newRow.innerHTML = `<div class="input-group">
+      <div class="input-container">
+        <label for="specification-name-${arraySpecification[index].specification.length}">Nombre</label>
+        <input
+          type="text"
+          id="specification-name-${arraySpecification[index].specification.length}"
+          name="specification-name-${arraySpecification[index].specification.length}"
+        />
+      </div>
+      <div class="input-container">
+        <label for="specification-text-${arraySpecification[index].specification.length}">Valor</label>
+        <input
+          type="text"
+          id="specification-text-${arraySpecification[index].specification.length}"
+          name="specification-text-${arraySpecification[index].specification.length}"
+        />
+      </div>
+    </div>`;
+    subspecifications.append(newRow);
+  });
+});
 
 function addNewSpecification() {
   arraySpecification.push({
     title: "",
     specification: [],
   });
-  renderSpecification();
 }
