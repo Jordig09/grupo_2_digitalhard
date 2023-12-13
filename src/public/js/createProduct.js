@@ -1,8 +1,17 @@
+/* Preview de imagenes */
 let images = document.getElementById("images");
 let mainImage = document.getElementById("mainImage");
 
-images.addEventListener("change", function (e) {
-  let preview = document.getElementById("preview");
+images.addEventListener("change", (e) => {
+  imagePreview("preview", e);
+});
+
+mainImage.addEventListener("change", (e) => {
+  imagePreview("main-preview", e);
+});
+
+function imagePreview(id, e) {
+  let preview = document.getElementById(id);
   preview.innerHTML = "";
 
   Array.from(e.target.files).forEach((file) => {
@@ -14,34 +23,21 @@ images.addEventListener("change", function (e) {
     };
     preview.appendChild(img);
   });
-});
+}
 
-mainImage.addEventListener("change", function (e) {
-  let preview = document.getElementById("main-preview");
-  preview.innerHTML = "";
-
-  Array.from(e.target.files).forEach((file) => {
-    let img = document.createElement("img");
-    img.src = URL.createObjectURL(file);
-    img.classList.add("preview-img");
-    img.onload = function () {
-      URL.revokeObjectURL(img.src);
-    };
-    preview.appendChild(img);
-  });
-});
+/* Creación de nuevas especificaciones */
 
 const arraySpecification = [];
 
 const specificationsDiv = document.getElementById("specifications");
 const specificationsBtn = document.getElementById("btn-add-specification");
 
-specificationsBtn.addEventListener("click", function (e) {
+specificationsBtn.addEventListener("click", (e) => {
   e.preventDefault();
   addNewSpecification();
   const newSpecification = document.createElement("div");
   newSpecification.innerHTML = `
-  <div class="input-container">
+  <div class="input-container specification-container">
     <label for="specification-title-${arraySpecification.length}">Título</label>
     <input
       type="text"
@@ -101,3 +97,38 @@ function addNewSpecification() {
     specification: [],
   });
 }
+
+/* Busqueda de categorías */
+const categorySearchInput = document.querySelector("#category-search");
+const categoriesDiv = document.querySelector("#categories");
+
+categorySearchInput.addEventListener("input", (e) => {
+  let searchValue = e.target.value;
+
+  fetch(`/search?q=${searchValue}`)
+    .then((response) => response.json())
+    .then((categories) => {
+      categoriesDiv.innerHTML = "";
+      categories.forEach((category) => {
+        let p = document.createElement("p");
+        p.innerText = category.name;
+        categoriesDiv.append(p);
+        category.subcategories.forEach((subcategory) => {
+          let input = document.createElement("label");
+          input.classList.add("category-label");
+          input.innerHTML = `
+            <input
+              type="radio"
+              id="${subcategory.name}"
+              name="subcategory"
+              value="${subcategory.id}"
+            />
+            ${subcategory.name}`;
+          categoriesDiv.append(input);
+        });
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});

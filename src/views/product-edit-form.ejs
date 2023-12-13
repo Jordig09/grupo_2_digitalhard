@@ -71,18 +71,21 @@
               <i class="fa-solid fa-magnifying-glass"></i>
               <input type="text" placeholder="Buscar Categorías..." />
             </div>
-            <div class="category-radio">
+            <div class="category-radio" id="categories">
               <% categories.forEach(category => { %>
-              <label>
+              <p><%= category.name %></p>
+              <% category.subcategories.forEach(subcategory => { %>
+              <label class="category-label">
                 <input
-                  type="checkbox"
-                  id="<%= category.name %>"
-                  name="categories"
-                  value="<%= category.id %>"
-                  <%= product.categories.some(cat => category.id === cat) && 'checked'%>
-                /> <%= category.name %>
+                  type="radio"
+                  id="<%= subcategory.name %>"
+                  name="subcategory"
+                  value="<%= subcategory.id %>"
+                  <%= (product.subcategory_id == subcategory.id) && "checked"  %>
+                />
+                <%= subcategory.name %>
               </label>
-              <%}); %>
+              <% }); %> <%}); %>
             </div>
           </section>
           <section>

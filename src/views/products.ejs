@@ -11,66 +11,48 @@
             <div class="categories sidebar-section">
               <div class="sidebar-heading" id="categories">
                 <h4>Categoría</h4>
-                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-chevron-down sidebar-dropdown-arrow"></i>
               </div>
-              <ul id="categories-options">
-                <li><p>Mouses</p></li>
-                <li><p>Teclados</p></li>
-                <li><p>Auriculares</p></li>
-                <li><p>Monitores</p></li>
-              </ul>
+              <div id="categories-options" class="dropdown-container">
+                <% categories.forEach(category => { %>
+                <ul>
+                  <p class="category-title"><%= category.name %></p>
+                  <% category.subcategories.forEach(subcategory => { %>
+                  <li><p><%= subcategory.name %></p></li>
+                  <% });%>
+                </ul>
+                <% }); %>
+              </div>
             </div>
             <form action="">
               <div class="brands sidebar-section">
                 <div class="sidebar-heading">
                   <h4>Marca</h4>
-                  <i class="fas fa-chevron-down"></i>
+                  <i class="fas fa-chevron-down sidebar-dropdown-arrow"></i>
                 </div>
-                <div class="brands-options">
+                <div class="brands-options dropdown-container">
+                  <% brands.forEach(brand => { %>
                   <div class="checkbox-container">
                     <label class="control control-checkbox">
                       <input
                         type="checkbox"
-                        id="hyperx"
-                        name="hyperx"
-                        value="hyperx"
+                        id="<%= brand.name %>"
+                        name="<%= brand.name %>"
+                        value="<%= brand.name %>"
                       />
-                      Hyper X
+                      <%= brand.name %>
                       <div class="control-indicator"></div>
                     </label>
                   </div>
-                  <div class="checkbox-container">
-                    <label class="control control-checkbox">
-                      <input
-                        type="checkbox"
-                        id="logitech"
-                        name="logitech"
-                        value="logitech"
-                      />
-                      Logitech
-                      <div class="control-indicator"></div>
-                    </label>
-                  </div>
-                  <div class="checkbox-container">
-                    <label class="control control-checkbox">
-                      <input
-                        type="checkbox"
-                        id="redragon"
-                        name="redragon"
-                        value="redragon"
-                      />
-                      Redragon
-                      <div class="control-indicator"></div>
-                    </label>
-                  </div>
+                  <% }) %>
                 </div>
               </div>
               <div class="price sidebar-section">
                 <div class="sidebar-heading">
                   <h4>Precio ($)</h4>
-                  <i class="fas fa-chevron-down"></i>
+                  <i class="fas fa-chevron-down sidebar-dropdown-arrow"></i>
                 </div>
-                <div class="price-picker">
+                <div class="price-picker dropdown-container">
                   <div class="price-range">
                     <div class="price-range-box">
                       <label for="min">Min</label>
@@ -137,4 +119,5 @@
   </body>
 
   <script src="/js/index.js"></script>
+  <script src="/js/products.js"></script>
 </html>

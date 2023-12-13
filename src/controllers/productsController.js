@@ -7,9 +7,15 @@ const path = require("path");
 const controller = {
   index: async (req, res) => {
     try {
+      const [categories, brands] = await Promise.all([
+        db.Category.findAll({ include: ["subcategories"] }),
+        db.Brand.findAll(),
+      ]);
       const products = await db.Product.findAll();
       res.render("products.ejs", {
-        products: products,
+        products,
+        categories,
+        brands,
         styles: [
           "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
           "https://fonts.googleapis.com/css2?family=Metrophobic&family=Montserrat:wght@100;200;300;400&display=swap",
@@ -71,7 +77,9 @@ const controller = {
   },
   store: async (req, res) => {
     try {
-      res.send({ ...req.body });
+      db.Product.create({
+        ...req.body,
+      });
       // const {
       //   name,
       //   brand,
@@ -107,8 +115,6 @@ const controller = {
       //   mainImage: mainImage.filename,
       //   specification,
       // };
-
-      res.send(specification);
       // const product = await db.Product.create(newProduct);
 
       // req.files.forEach(async (file) => {
@@ -121,7 +127,7 @@ const controller = {
       //     });
       //   }
       // });
-      // res.redirect("/products");
+      res.redirect("/products");
     } catch (error) {
       for (let file of req.files) {
         fs.unlink(
@@ -134,12 +140,18 @@ const controller = {
       }
     }
   },
-  edit: (req, res) => {
-    const products = getProducts();
+  edit: async (req, res) => {
+    const product = await db.Product.findByPk(req.params.id, {
+      include: [{ association: "images" }],
+    });
+    const [categories, brands] = await Promise.all([
+      db.Category.findAll({ include: ["subcategories"] }),
+      db.Brand.findAll(),
+    ]);
     res.render("product-edit-form", {
-      product: products.find((prod) => prod.id == req.params.id),
-      categories: database.categories,
-      brands: database.brands,
+      product,
+      categories,
+      brands,
       styles: [
         "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
         "https://fonts.googleapis.com/css2?family=Metrophobic&family=Montserrat:wght@100;200;300;400&display=swap",
