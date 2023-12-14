@@ -10,6 +10,7 @@
         method="POST"
         enctype="multipart/form-data"
         class="edit-form"
+        id="form"
       >
         <section>
           <h4>Información General</h4>
@@ -81,10 +82,6 @@
         </section>
         <section>
           <h4>Categorías</h4>
-          <!-- <div class="box-search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Buscar Categorías..." />
-          </div> -->
           <div class="category-radio">
             <% categories.forEach(category => { %>
             <p><%= category.name %></p>
@@ -100,7 +97,6 @@
             </label>
             <% }); %> <%}); %>
           </div>
-          <!-- <div id="subcategory-radio" class="category-radio"></div> -->
         </section>
         <section>
           <h4>Atributos</h4>

@@ -16,10 +16,12 @@
                 <i class="fa-solid fa-chevron-right"></i>
               </li>
               <li>
-                <a>Categoria </a><i class="fa-solid fa-chevron-right"></i>
+                <a><%= product.category.name %> </a
+                ><i class="fa-solid fa-chevron-right"></i>
               </li>
               <li>
-                <a>SubCategoria </a><i class="fa-solid fa-chevron-right"></i>
+                <a><%= product.subcategory.name %> </a
+                ><i class="fa-solid fa-chevron-right"></i>
               </li>
               <li><a><%= product.name %></a></li>
             </ul>
@@ -28,17 +30,14 @@
         <div class="content">
           <div class="product-images-container">
             <div class="main-image">
-              <img
-                id="main-image"
-                src="/images/products/<%= product.mainImage %>"
-                alt=""
-              />
+              <img id="main-image" src="/images/products/<%= product?.mainImage
+              || product.images[0]?.url || "default-product.jpg" %>" alt="" />
             </div>
             <div class="other-images">
               <img src="/images/products/<%= product.mainImage %>" alt="" />
-              <% product.images.forEach(image=> { %>
+              <% if(product.images) { %> <% product.images.forEach(image=> { %>
               <img src="/images/products/<%= image.url %>" alt="" />
-              <%})%>
+              <%})%> <% } %>
             </div>
           </div>
           <div class="product-details-container">
@@ -109,7 +108,7 @@
           </button>
         </div>
         <div class="table-content" id="table-content">
-          <% product.specification.forEach(item => { %>
+          <% specifications.forEach(item => { %>
           <%-include('./partials/especificationTable', { item }) %> <%})%>
         </div>
         <% }else{ %>

@@ -9,6 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      Specification.hasMany(models.SpecificationDetails, {
+        as: "detail",
+        foreignKey: "specification_id",
+      });
     }
   }
   Specification.init(

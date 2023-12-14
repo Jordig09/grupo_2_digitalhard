@@ -21,10 +21,13 @@ module.exports = (sequelize, DataTypes) => {
         as: "subcategory",
         foreignKey: "subcategory_id",
       });
-      Product.belongsToMany(models.Image, {
+      Product.hasMany(models.Image, {
         as: "images",
         foreignKey: "product_id",
-        through: "ImageProduct",
+      });
+      Product.hasMany(models.SpecificationDetails, {
+        as: "specification",
+        foreignKey: "product_id",
       });
     }
   }

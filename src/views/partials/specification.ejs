@@ -1,0 +1,50 @@
+<% specification.forEach( (spec, i) => { %>
+<div class="input-container">
+  <label for="specification-title">Título</label>
+  <input
+    type="text"
+    id="specification-title-<%= i + 1 %>"
+    name="specification-title"
+    value="<%= spec.title %>"
+    data-index="<%=  spec.id %>"
+  />
+  <div id="subspecifications<%= i %>">
+    <% spec.detail.forEach( (det, j) => { %>
+    <div class="input-group">
+      <div class="input-container">
+        <label for="specification-name-<%= i %>">Nombre</label>
+        <input
+          type="text"
+          id="specification-name-<%= i %>-<%= j %>"
+          name="specification-name-<%= i %>"
+          value="<%= det.name %>"
+        />
+      </div>
+      <div class="input-container">
+        <label for="specification-text-<%= i %>">Valor</label>
+        <input
+          type="text"
+          id="specification-text-<%= i %>-<%= j %>"
+          name="specification-text-<%= i %>"
+          value="<%= det.text %>"
+        />
+      </div>
+      <button
+        type="button"
+        id="btn-delete-row-<%= i %>-<%= j %>"
+        data-index="<%= i %>-<%= j %>"
+        index="<%= det.id %>"
+      >
+        X
+      </button>
+    </div>
+    <% }) %>
+  </div>
+  <button type="button" id="btn-add-row-<%= i + 1 %>" data-index="<%= i %>">
+    Añadir nueva fila
+  </button>
+  <button type="button" id="btn-delete-spec-<%= i + 1 %>" data-index="<%= i %>">
+    Borrar especificacion
+  </button>
+</div>
+<% }) %>

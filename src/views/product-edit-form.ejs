@@ -19,7 +19,7 @@
               <label for="brand">Marca</label>
               <select name="brand" id="brand">
                 <% brands.forEach(brand => { %>
-                  <option value="<%= brand.id %>" id="<%= brand.name %>" <%= product.brand === brand.id && 'selected' %>>
+                  <option value="<%= brand.id %>" id="<%= brand.name %>" <%= product.brand_id === brand.id && 'selected' %>>
                     <%= brand.name %>
                   </option>
                 <%}); %>
@@ -41,7 +41,29 @@
             </div>
           </section>
           <section>
-            <h4>Imágenes</h4>
+            <h4>Imágen Principal</h4>
+            <div class="file-input">
+              <label for="mainImage">+</label>
+              <input
+                type="file"
+                id="mainImage"
+                name="mainImage"
+                accept=".png, .jpg, .jpeg, .webp"
+              />
+              <div id="main-preview" class="preview">
+                <% if(product.mainImage){ %>
+                <div class="image-container" id="<%= product.mainImage %>">
+                  <img src="/images/products/<%= product.mainImage %>" alt="img-preview" class="preview-img" id="product-image">
+                  <div class="overlay">
+                    <div class="overlay-text">X</div>
+                  </div>
+                </div>
+                <% } %>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h4>Otras imágenes</h4>
             <div class="file-input">
               <label for="images">+</label>
               <input
@@ -51,9 +73,9 @@
                 multiple
                 accept=".png, .jpg, .jpeg, .webp"
               />
-              <div id="preview" class="preview"><% product.images[0] != "/images/products-images/default-product.jpg" && product.images.forEach(image => { %>
-                <div class="image-container" id="<%= image %>">
-                  <img src="<%= image %>" alt="img-preview" class="preview-img">
+              <div id="preview" class="preview"><% product.images.forEach(image => { %>
+                <div class="image-container" id="<%= image.url %>">
+                  <img src="/images/products/<%= image.url %>" alt="img-preview" class="preview-img">
                   <div class="overlay">
                     <div class="overlay-text">X</div>
                   </div>
@@ -67,22 +89,21 @@
           </section>
           <section>
             <h4>Categorías</h4>
-            <div class="box-search">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" placeholder="Buscar Categorías..." />
-            </div>
             <div class="category-radio">
               <% categories.forEach(category => { %>
-              <label>
+              <p><%= category.name %></p>
+              <% category.subcategories.forEach(subcategory => { %>
+              <label class="category-label">
                 <input
-                  type="checkbox"
-                  id="<%= category.name %>"
-                  name="categories"
-                  value="<%= category.id %>"
-                  <%= product.categories.some(cat => category.id === cat) && 'checked'%>
-                /> <%= category.name %>
+                  type="radio"
+                  id="<%= subcategory.name %>"
+                  name="subcategory"
+                  value="<%= subcategory.id %>"
+                  <%= product.category_id == category.id && 'checked'%>
+                />
+                <%= subcategory.name %>
               </label>
-              <%}); %>
+              <% }); %> <%}); %>
             </div>
           </section>
           <section>
@@ -96,6 +117,15 @@
                 min="0"
                 value="<%= product.stock %>"
               />
+            </div>
+          </section>
+          <section>
+            <h4>Especificaciones</h4>
+            <div id="specifications">
+              <%- include('./partials/specification.ejs', {  specification: specifications}) %>
+            </div>
+            <div class="input-container">
+              <button type="button" id="btn-add-specification">Añadir</button>
             </div>
           </section>
           <div class="submit">
@@ -112,5 +142,5 @@
     <%- include('./partials/footer.ejs') %>
   </body>
   <script src="/js/index.js"></script>
-  <script src="/js/editProduct.js"></script>
+  <script src="/js/editProduct.js" ></script>
 </html>

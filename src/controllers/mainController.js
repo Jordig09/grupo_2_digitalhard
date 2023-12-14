@@ -4,18 +4,11 @@ const { Op } = require("sequelize");
 const controller = {
   index: async (req, res) => {
     try {
-      // while (products.length < 4 && j < database.products.length) {
-      //   let prod =
-      //     database.products[Math.floor(Math.random() * database.products.length)];
-      //   products.includes(prod) ? "" : products.push(prod);
-      // }
-      // while (productsOff.length < 4 && i < database.products.length) {
-      //   if (database.products[i].discount) productsOff.push(database.products[i]);
-      //   i++;
-      // }
       const products = await db.Product.findAll();
       const productsOff = await db.Product.findAll({
-        where: { [Op.or]: [{ discount: null }, { discount: 0 }] },
+        where: {
+          discount: { [Op.gt]: 0 },
+        },
       });
       res.render("main.ejs", {
         products: products,
