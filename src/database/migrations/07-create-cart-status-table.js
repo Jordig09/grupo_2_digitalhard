@@ -2,27 +2,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("subcategories", {
+    await queryInterface.createTable("cart_status", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      status: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      category_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: { tableName: "categories" },
-          key: "id",
-        },
       },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("subcategories");
+    await queryInterface.dropTable("cart_status");
   },
 };

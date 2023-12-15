@@ -11,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Cart.belongsTo(models.User, {
         as: "user",
-        foreignKey: "user_id",
+        foreignKey: "users_id",
       });
     }
   }
   Cart.init(
     {
-      user_id: {
+      users_id: {
         type: DataTypes.INTEGER,
       },
       status_id: {

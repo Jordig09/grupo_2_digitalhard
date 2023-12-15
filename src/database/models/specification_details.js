@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       SpecificationDetails.belongsTo(models.Product, {
         as: "product",
-        foreignKey: "product_id",
+        foreignKey: "products_id",
       });
       SpecificationDetails.belongsTo(models.Specification, {
         as: "specification",
-        foreignKey: "specification_id",
+        foreignKey: "specifications_id",
       });
     }
   }
@@ -29,11 +29,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      product_id: {
+      products_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      specification_id: {
+      specifications_id: {
         type: DataTypes.INTEGER,
       },
     },

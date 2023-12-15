@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Specification.hasMany(models.SpecificationDetails, {
         as: "detail",
-        foreignKey: "specification_id",
+        foreignKey: "specifications_id",
       });
     }
   }
