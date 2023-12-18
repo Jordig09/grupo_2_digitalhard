@@ -8,8 +8,10 @@ const {
   createUserValidation,
   validateUserLogin,
 } = require("../middlewares/userValidations");
-const isNotLoggedMiddleware = require("../middlewares/isNotLoggedMiddleware");
-const isLoggedMiddleware = require("../middlewares/isLoggedMiddleware");
+const {
+  isLoggedMiddleware,
+  isNotLoggedMiddleware,
+} = require("../middlewares/isLoggedMiddleware");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

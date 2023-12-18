@@ -13,7 +13,7 @@
     </div>
     <div class="box box-search" id="box-search">
       <i class="fa-solid fa-magnifying-glass" id="search-active"></i>
-      <form action="" class="search-form">
+      <form action="/products" class="search-form">
         <input type="text" placeholder="Buscar productos..." />
       </form>
       <i class="fas fa-times close-search" id="close-search"></i>
@@ -24,7 +24,14 @@
       </a>
       <div class="user" id="user-dropdown">
         <div class="user-icon">
+          <% if(locals.avatar){ %>
+          <img
+            src="/images/users/<%= locals.avatar %>"
+            alt="Imagen de usuario"
+          />
+          <% }else{ %>
           <img src="/images/default.png" alt="Imagen de usuario" />
+          <%} %>
         </div>
         <i class="fas fa-chevron-down arrow"></i>
         <ul id="client-dropdown">
@@ -32,6 +39,11 @@
           <li>
             <a href="/user/profile"
               ><i class="fa-solid fa-user"></i>Mi perfil</a
+            >
+          </li>
+          <li>
+            <a href="/user/logout"
+              ><i class="fas fa-sign-in-alt"></i>Cerrar sesión</a
             >
           </li>
           <% } else { %>

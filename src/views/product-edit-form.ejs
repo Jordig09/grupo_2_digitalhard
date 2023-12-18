@@ -99,7 +99,7 @@
                   id="<%= subcategory.name %>"
                   name="subcategory"
                   value="<%= subcategory.id %>"
-                  <%= product.category_id == category.id && 'checked'%>
+                  <%= product.subcategories_id == subcategory.id && 'checked'%>
                 />
                 <%= subcategory.name %>
               </label>

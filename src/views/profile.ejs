@@ -2,17 +2,15 @@
 <html lang="es">
   <%- include('./partials/head.ejs', {styles}) %>
   <body>
-    <%- include('./partials/header.ejs') %>
+    <%- include('./partials/header.ejs') %> <% if(locals.isAdmin){ %>
+    <div><h2>Administrador</h2></div>
+    <% } %>
     <div>
-      <div>
-        <div>
-          <h2>Hola <%= user.firstName %> <%= user.lastName %></h2>
-          <img src="/images/users/<%= user.avatar %>" />
-          <br />
-          <br />
-          <div><%= user.email %></div>
-        </div>
-      </div>
+      <h2>Hola <%= user.firstName %> <%= user.lastName %></h2>
+      <img src="/images/users/<%= user.avatar %>" />
+      <br />
+      <br />
+      <div><%= user.email %></div>
     </div>
     <%- include('./partials/footer.ejs') %>
   </body>

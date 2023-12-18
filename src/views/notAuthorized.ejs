@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <style>
+      .error-container {
+        margin: auto;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-container">
+      <h1>RUTA NO AUTORIZADA</h1>
+      <p>En instantes te redigiremos al inicio...</p>
+      <a href="/">Volver a la página de inicio</a>
+    </div>
+  </body>
+  <script>
+    function redireccionar(pagina) {
+      location.href = pagina;
+    }
+    function volver() {
+      setTimeout(redireccionar, 2000, "/");
+    }
+    volver();
+  </script>
+</html>

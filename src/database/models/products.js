@@ -13,10 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         as: "brand",
         foreignKey: "brands_id",
       });
-      Product.belongsTo(models.Category, {
-        as: "category",
-        foreignKey: "categories_id",
-      });
       Product.belongsTo(models.Subcategory, {
         as: "subcategory",
         foreignKey: "subcategories_id",
@@ -58,9 +54,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
       brands_id: {
-        type: DataTypes.INTEGER,
-      },
-      categories_id: {
         type: DataTypes.INTEGER,
       },
       subcategories_id: {

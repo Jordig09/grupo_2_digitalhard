@@ -7,13 +7,13 @@ const session = require("express-session");
 const mainRouter = require("./routes/main");
 const productsRouter = require("./routes/products");
 const usersRouter = require("./routes/users");
-// const buildRoute = require("./routes/buildRoute");
+const buildRoute = require("./routes/buildRoute");
 // const cartRoute = require("./routes/cartRoute");
-// const helpRoute = require("./routes/helpRoute");
+const helpRoute = require("./routes/helpRoute");
 
 const app = express();
 
-// const userLoggedMiddleware = require("./middlewares/userLoggedMiddleware");
+const userLoggedMiddleware = require("./middlewares/userLoggedMiddleware");
 
 app.use(
   session({
@@ -25,7 +25,7 @@ app.use(
 
 app.use(cookieParser());
 
-// app.use(userLoggedMiddleware);
+app.use(userLoggedMiddleware);
 
 app.set("views", path.join(__dirname, "./views"));
 app.set("view engine", "ejs");
@@ -39,9 +39,9 @@ app.use(methodOverride("_method"));
 app.use("/", mainRouter);
 app.use("/products", productsRouter);
 app.use("/categories", productsRouter);
-// app.use("/build", buildRoute);
+app.use("/build", buildRoute);
 // app.use("/cart", cartRoute);
-// app.use("/help", helpRoute);
+app.use("/help", helpRoute);
 app.use("/user", usersRouter);
 
 app.get("*", (req, res) => {

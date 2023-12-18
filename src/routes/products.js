@@ -4,6 +4,9 @@ const path = require("path");
 
 const productsController = require("../controllers/productsController");
 
+const { isNotLoggedMiddleware } = require("../middlewares/isLoggedMiddleware");
+const { checkIsAdmin } = require("../middlewares/auth");
+
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -20,12 +23,22 @@ const upload = multer({ storage });
 
 router.get("/", productsController.index);
 
-router.get("/create", productsController.create);
+router.get(
+  "/create",
+  isNotLoggedMiddleware,
+  checkIsAdmin,
+  productsController.create
+);
 
 router.post("/", upload.any(), productsController.store);
 router.get("/:id", productsController.detail);
 
-router.get("/:id/edit", productsController.edit);
+router.get(
+  "/:id/edit",
+  isNotLoggedMiddleware,
+  checkIsAdmin,
+  productsController.edit
+);
 router.put("/:id", upload.any(), productsController.update);
 
 router.delete("/:id", productsController.destroy);

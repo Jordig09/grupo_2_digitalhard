@@ -56,8 +56,14 @@ const controller = {
   index: async (req, res) => {
     try {
       const products = await db.Product.findAll();
+      const [categories, brands] = await Promise.all([
+        db.Category.findAll({ include: ["subcategories"] }),
+        db.Brand.findAll(),
+      ]);
       res.render("products.ejs", {
         products,
+        categories,
+        brands,
         styles: [
           "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
           "https://fonts.googleapis.com/css2?family=Metrophobic&family=Montserrat:wght@100;200;300;400&display=swap",
@@ -98,25 +104,28 @@ const controller = {
       const { name, brand, price, discount, stock, description, subcategory } =
         req.body;
       const { specification } = getSpecification(req);
-      const subcategory_id = +subcategory;
+      const subcategories_id = +subcategory;
       const mainImage = req.files.find((file) => file.fieldname == "mainImage");
-      const subcategoryDB = await db.Subcategory.findByPk(subcategory_id);
+      const subcategoryDB = await db.Subcategory.findByPk(subcategories_id);
       const newProduct = {
         name,
         description,
-        brand_id: +brand,
+        brands_id: +brand,
         price: +price,
         discount: +discount,
         stock: +stock,
-        subcategory_id,
-        category_id: subcategoryDB.category_id,
+        subcategories_id,
+        categories_id: subcategoryDB.categories_id,
         mainImage: mainImage.filename,
       };
 
       const product = await db.Product.create(newProduct);
       req.files.forEach(async (file) => {
         if (file.fieldname == "images") {
-          await db.Image.create({ url: file.filename, product_id: product.id });
+          await db.Image.create({
+            url: file.filename,
+            products_id: product.id,
+          });
         }
       });
       specification.forEach(async (spec) => {
@@ -128,8 +137,8 @@ const controller = {
           await db.SpecificationDetails.create({
             name: data.name,
             text: data.text,
-            product_id: product.id,
-            specification_id: title.dataValues.id,
+            products_id: product.id,
+            specifications_id: title.dataValues.id,
           });
         });
       });
@@ -151,8 +160,16 @@ const controller = {
       const product = await db.Product.findByPk(req.params.id, {
         include: [
           "images",
-          "category",
-          "subcategory",
+          {
+            model: db.Subcategory,
+            as: "subcategory",
+            include: [
+              {
+                model: db.Category,
+                as: "category",
+              },
+            ],
+          },
           {
             model: db.SpecificationDetails,
             as: "specification",
@@ -178,7 +195,6 @@ const controller = {
           });
         else specifications[index].detail.push(data);
       });
-
       const products = await db.Product.findAll({ limit: 4 });
       res.render("detail", {
         product,
@@ -206,8 +222,16 @@ const controller = {
       const product = await db.Product.findByPk(req.params.id, {
         include: [
           "images",
-          "category",
-          "subcategory",
+          {
+            model: db.Subcategory,
+            as: "subcategory",
+            include: [
+              {
+                model: db.Category,
+                as: "category",
+              },
+            ],
+          },
           {
             model: db.SpecificationDetails,
             as: "specification",
@@ -233,7 +257,6 @@ const controller = {
           });
         else specifications[index].detail.push(data);
       });
-
       res.render("product-edit-form", {
         product,
         specifications,
@@ -272,7 +295,7 @@ const controller = {
           const findSpec = await db.SpecificationDetails.findOne({
             where: {
               [Op.and]: [
-                { product_id: Number(req.params.id) },
+                { products_id: Number(req.params.id) },
                 { name: specification[i].specifications[j].name },
                 { text: specification[i].specifications[j].text },
               ],
@@ -289,8 +312,8 @@ const controller = {
             await db.SpecificationDetails.create({
               name: specification[i].specifications[j].name,
               text: specification[i].specifications[j].text,
-              product_id: req.params.id,
-              specification_id: title.dataValues.id,
+              products_id: req.params.id,
+              specifications_id: title.dataValues.id,
             });
           } else {
             if (specification[i].title != findSpec.title) {
@@ -302,32 +325,30 @@ const controller = {
                   title: specification[i].title,
                 }));
               await db.SpecificationDetails.update(
-                { specification_id: title.dataValues.id },
+                { specifications_id: title.dataValues.id },
                 { where: { id: findSpec.id } }
               );
             }
           }
         }
       }
-      const subcategory_id = +subcategory;
-      const mainImage = req.files.find((file) => file.fieldname == "mainImage");
-      const subcategoryDB = await db.Subcategory.findByPk(subcategory_id);
+      const subcategories_id = +subcategory;
       const productUpdate = {
         name,
         description,
-        brand_id: +brand,
+        brands_id: +brand,
         price: +price,
         discount: +discount,
         stock: +stock,
-        subcategory_id,
-        category_id: +subcategoryDB.category_id,
-        mainImage: mainImage ? mainImage.filename : null,
+        subcategories_id,
       };
+      const mainImage = req.files.find((file) => file.fieldname == "mainImage");
+      if (mainImage) productUpdate.mainImage = mainImage.filename;
       req.files.forEach(async (file) => {
         if (file.fieldname == "images") {
           await db.Image.create({
             url: file.filename,
-            product_id: Number(req.params.id),
+            products_id: Number(req.params.id),
           });
         }
       });
@@ -350,7 +371,7 @@ const controller = {
         { where: { id: req.params.id } }
       );
 
-      res.redirect(`/products/${req.params.id}/edit`);
+      res.redirect(`/products/${req.params.id}`);
     } catch (error) {
       res.status(500).send(error);
     }
@@ -361,7 +382,7 @@ const controller = {
         include: ["images", "specification"],
       });
       product.images.forEach(async (image) => {
-        await db.Image.destroy({ where: { product_id: req.params.id } });
+        await db.Image.destroy({ where: { products_id: req.params.id } });
         fs.unlink(
           path.join("./src/public/images/products/", image.url),
           (err) => {
@@ -376,7 +397,7 @@ const controller = {
         }
       );
       await db.SpecificationDetails.destroy({
-        where: { product_id: req.params.id },
+        where: { products_id: req.params.id },
       });
       await db.Product.destroy({ where: { id: req.params.id } });
       res.redirect("/products");
