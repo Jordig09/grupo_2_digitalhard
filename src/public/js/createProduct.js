@@ -69,23 +69,27 @@ specificationsBtn.addEventListener("click", (e) => {
       text: "",
     });
     const newRow = document.createElement("div");
+    newRow.id = `row-${index}-${i}`;
     newRow.innerHTML = `<div class="input-group">
       <div class="input-container">
-        <label for="specification-name-${arraySpecification[index].specification.length}">Nombre</label>
+        <label for="specification-name-${index}">Nombre</label>
         <input
           type="text"
-          id="specification-name-${arraySpecification[index].specification.length}"
-          name="specification-name-${arraySpecification[index].specification.length}"
+          id="specification-name-${index}-${i}"
+          name="specification-name-${index}"
+          value="${data?.name}"
         />
       </div>
       <div class="input-container">
-        <label for="specification-text-${arraySpecification[index].specification.length}">Valor</label>
+        <label for="specification-text-${index}">Valor</label>
         <input
           type="text"
-          id="specification-text-${arraySpecification[index].specification.length}"
-          name="specification-text-${arraySpecification[index].specification.length}"
+          id="specification-text-${index}-${i}"
+          name="specification-text-${index}"
+          value="${data?.text}"
         />
       </div>
+      <button type="button" id="btn-delete-row-${index}-${i}" data-index="${index}-${i}">X</button>
     </div>`;
     subspecifications.append(newRow);
   });

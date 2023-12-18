@@ -13,7 +13,7 @@
     </div>
     <div class="box box-search" id="box-search">
       <i class="fa-solid fa-magnifying-glass" id="search-active"></i>
-      <form action="" class="search-form">
+      <form action="/products" class="search-form">
         <input type="text" placeholder="Buscar productos..." />
       </form>
       <i class="fas fa-times close-search" id="close-search"></i>
@@ -34,6 +34,11 @@
           <li>
             <a href="/user/profile"
               ><i class="fa-solid fa-user"></i>Mi perfil</a
+            >
+          </li>
+          <li>
+            <a href="/user/logout"
+              ><i class="fas fa-sign-in-alt"></i>Cerrar sesión</a
             >
           </li>
           <% } else { %>

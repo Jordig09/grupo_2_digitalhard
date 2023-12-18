@@ -7,8 +7,8 @@ const session = require("express-session");
 const mainRouter = require("./routes/main");
 const productsRouter = require("./routes/products");
 const usersRouter = require("./routes/users");
+const buildRoute = require("./routes/buildRoute");
 const searchRouter = require("./routes/searchCategories");
-// const buildRoute = require("./routes/buildRoute");
 // const cartRoute = require("./routes/cartRoute");
 const helpRoute = require("./routes/helpRoute");
 
@@ -40,7 +40,7 @@ app.use(methodOverride("_method"));
 app.use("/", mainRouter);
 app.use("/products", productsRouter);
 app.use("/categories", productsRouter);
-// app.use("/build", buildRoute);
+app.use("/build", buildRoute);
 // app.use("/cart", cartRoute);
 app.use("/help", helpRoute);
 app.use("/user", usersRouter);

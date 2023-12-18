@@ -9,10 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Image.belongsToMany(models.Product, {
+      Image.belongsTo(models.Product, {
         as: "product",
-        foreignKey: "image_id",
-        through: "ImageProduct",
+        foreignKey: "products_id",
       });
     }
   }
@@ -20,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     {
       url: {
         type: DataTypes.STRING,
+        allowNull: false,
+      },
+      products_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },

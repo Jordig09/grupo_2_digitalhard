@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "CartStatus",
-      tableName: "cart_statuses",
+      tableName: "cart_status",
       timestamps: false,
     }
   );

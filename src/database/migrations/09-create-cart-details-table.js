@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      cart_id: {
+      carts_id: {
         type: Sequelize.INTEGER,
         references: {
           model: {
@@ -18,7 +18,7 @@ module.exports = {
           key: "id",
         },
       },
-      product_id: {
+      products_id: {
         type: Sequelize.INTEGER,
         references: {
           model: {
@@ -27,7 +27,8 @@ module.exports = {
           key: "id",
         },
       },
-      cuantity: {
+      quantity: {
+        default: 0,
         type: Sequelize.INTEGER,
         allowNull: false,
       },

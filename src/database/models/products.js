@@ -11,20 +11,19 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Product.belongsTo(models.Brand, {
         as: "brand",
-        foreignKey: "brand_id",
-      });
-      Product.belongsTo(models.Category, {
-        as: "category",
-        foreignKey: "category_id",
+        foreignKey: "brands_id",
       });
       Product.belongsTo(models.Subcategory, {
         as: "subcategory",
-        foreignKey: "subcategory_id",
+        foreignKey: "subcategories_id",
       });
-      Product.belongsToMany(models.Image, {
+      Product.hasMany(models.Image, {
         as: "images",
-        foreignKey: "product_id",
-        through: "ImageProduct",
+        foreignKey: "products_id",
+      });
+      Product.hasMany(models.SpecificationDetails, {
+        as: "specification",
+        foreignKey: "products_id",
       });
     }
   }
@@ -54,13 +53,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      brand_id: {
+      brands_id: {
         type: DataTypes.INTEGER,
       },
-      category_id: {
-        type: DataTypes.INTEGER,
-      },
-      subcategory_id: {
+      subcategories_id: {
         type: DataTypes.INTEGER,
       },
     },

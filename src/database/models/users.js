@@ -12,11 +12,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.belongsTo(models.Rol, {
         as: "rol",
-        foreignKey: "rol_id",
+        foreignKey: "roles_id",
       });
       User.hasMany(models.Cart, {
         as: "cart",
-        foreignKey: "user_id",
+        foreignKey: "users_id",
       });
     }
   }
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      rol_id: {
+      roles_id: {
         type: DataTypes.INTEGER,
       },
     },

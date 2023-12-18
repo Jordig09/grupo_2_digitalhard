@@ -13,7 +13,7 @@ const controller = {
       ],
     });
   },
-  async registerProcess(req, res) {
+  registerProcess: async (req, res) => {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -33,7 +33,7 @@ const controller = {
       const newUser = {
         ...req.body,
         avatar: req.file?.filename,
-        rol_id: rol.id,
+        roles_id: rol.id,
       };
       await db.User.create(newUser);
       return res.redirect("/user/login");
@@ -66,12 +66,15 @@ const controller = {
           oldData: req.body,
         });
       }
+
       const user = await db.User.findOne({ where: { email: req.body.email } });
       req.session._id = user.id;
-      console.log(req.session);
+      req.session.avatar = user.avatar;
       if (req.body.remember) {
         res.cookie("email", user.email);
       }
+      const rol = await db.Rol.findByPk(user.roles_id);
+      if (rol.name == "Administrador") req.session.isAdmin = true;
       return res.redirect("/user/profile");
     } catch (error) {
       return res.status(500).send(error);
