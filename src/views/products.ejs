@@ -11,43 +11,48 @@
             <div class="categories sidebar-section">
               <div class="sidebar-heading" id="categories">
                 <h4>Categoría</h4>
-                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-chevron-down sidebar-dropdown-arrow"></i>
               </div>
-              <ul id="categories-options">
-                <% categories.forEach( data => {%>
-                <li><p><%= data.name %></p></li>
-                <% } ) %>
-              </ul>
+              <div id="categories-options" class="dropdown-container">
+                <% categories.forEach(category => { %>
+                <ul>
+                  <p class="category-title"><%= category.name %></p>
+                  <% category.subcategories.forEach(subcategory => { %>
+                  <li><p><%= subcategory.name %></p></li>
+                  <% });%>
+                </ul>
+                <% }); %>
+              </div>
             </div>
             <form action="">
               <div class="brands sidebar-section">
                 <div class="sidebar-heading">
                   <h4>Marca</h4>
-                  <i class="fas fa-chevron-down"></i>
+                  <i class="fas fa-chevron-down sidebar-dropdown-arrow"></i>
                 </div>
-                <div class="brands-options">
-                  <% brands.forEach( data => { %>
+                <div class="brands-options dropdown-container">
+                  <% brands.forEach(brand => { %>
                   <div class="checkbox-container">
                     <label class="control control-checkbox">
                       <input
                         type="checkbox"
-                        id="<%= data.name %>"
-                        name="<%= data.name %>"
-                        value="<%= data.name %>"
+                        id="<%= brand.name %>"
+                        name="<%= brand.name %>"
+                        value="<%= brand.name %>"
                       />
-                      <%= data.name %>
+                      <%= brand.name %>
                       <div class="control-indicator"></div>
                     </label>
                   </div>
-                  <% } ) %>
+                  <% }) %>
                 </div>
               </div>
               <div class="price sidebar-section">
                 <div class="sidebar-heading">
                   <h4>Precio ($)</h4>
-                  <i class="fas fa-chevron-down"></i>
+                  <i class="fas fa-chevron-down sidebar-dropdown-arrow"></i>
                 </div>
-                <div class="price-picker">
+                <div class="price-picker dropdown-container">
                   <div class="price-range">
                     <div class="price-range-box">
                       <label for="min">Min</label>
@@ -114,4 +119,5 @@
   </body>
 
   <script src="/js/index.js"></script>
+  <script src="/js/products.js"></script>
 </html>

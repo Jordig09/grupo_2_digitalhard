@@ -7,6 +7,7 @@ const controller = require("../controllers/usersController");
 const {
   createUserValidation,
   validateUserLogin,
+  profileValidation,
 } = require("../middlewares/userValidations");
 const {
   isLoggedMiddleware,
@@ -39,6 +40,7 @@ router.post(
 router.get("/login", isLoggedMiddleware, controller.login);
 router.post("/login", validateUserLogin, controller.loginProcess);
 router.get("/profile", isNotLoggedMiddleware, controller.profile);
+router.post("/profile/data", profileValidation, controller.profileData);
 router.get("/logout", controller.logout);
 
 module.exports = router;

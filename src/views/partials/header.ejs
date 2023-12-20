@@ -24,16 +24,10 @@
       </a>
       <div class="user" id="user-dropdown">
         <div class="user-icon">
-          <% if(locals.avatar){ %>
-          <img
-            src="/images/users/<%= locals.avatar %>"
-            alt="Imagen de usuario"
-          />
-          <% }else{ %>
-          <img src="/images/default.png" alt="Imagen de usuario" />
-          <%} %>
+          <img src=<%= locals.isLogged ? `/images/users/${locals.avatar}` :
+          "/images/default.png" %> alt="Imagen de usuario" />
         </div>
-        <i class="fas fa-chevron-down arrow"></i>
+        <i class="fas fa-chevron-down arrow" id="user-dropdown-arrow"></i>
         <ul id="client-dropdown">
           <% if(locals.isLogged) { %>
           <li>

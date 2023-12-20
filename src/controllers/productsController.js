@@ -275,106 +275,52 @@ const controller = {
       res.status(500).send(error);
     }
   },
-  update: async (req, res) => {
-    try {
-      const { name, brand, price, discount, stock, description, subcategory } =
-        req.body;
-      let { specification, toDelete, toUpdate } = getSpecification(req);
-
-      await toDelete.forEach(async (id) => {
-        await db.SpecificationDetails.destroy({ where: { id } });
-      });
-      for (let i = 0; i < toUpdate.length; i++) {
-        await db.SpecificationDetails.update(
-          { name: toUpdate[i].name, text: toUpdate[i].text },
-          { where: { id: toUpdate[i].id } }
-        );
-      }
-      for (let i = 0; i < specification.length; i++) {
-        for (let j = 0; j < specification[i].specifications.length; j++) {
-          const findSpec = await db.SpecificationDetails.findOne({
-            where: {
-              [Op.and]: [
-                { products_id: Number(req.params.id) },
-                { name: specification[i].specifications[j].name },
-                { text: specification[i].specifications[j].text },
-              ],
-            },
-          });
-          if (!findSpec) {
-            let title =
-              (await db.Specification.findOne({
-                where: { title: specification[i].title },
-              })) ||
-              (await db.Specification.create({
-                title: specification[i].title,
-              }));
-            await db.SpecificationDetails.create({
-              name: specification[i].specifications[j].name,
-              text: specification[i].specifications[j].text,
-              products_id: req.params.id,
-              specifications_id: title.dataValues.id,
-            });
-          } else {
-            if (specification[i].title != findSpec.title) {
-              let title =
-                (await db.Specification.findOne({
-                  where: { title: specification[i].title },
-                })) ||
-                (await db.Specification.create({
-                  title: specification[i].title,
-                }));
-              await db.SpecificationDetails.update(
-                { specifications_id: title.dataValues.id },
-                { where: { id: findSpec.id } }
+  update: (req, res) => {
+    const products = getProducts();
+    const indexProduct = products.findIndex(
+      (product) => product.id == req.params.id
+    );
+    if (req.files) {
+      products[indexProduct].images[0] =
+        "/images/products-images/default-product.jpg"
+          ? (products[indexProduct].images = req.files.map(
+              (file) => `/images/products-images/${file.filename}`
+            ))
+          : req.files.forEach((file) => {
+              products[indexProduct].images.push(
+                `/images/products-images/${file.filename}`
               );
-            }
-          }
-        }
-      }
-      const subcategories_id = +subcategory;
-      const productUpdate = {
-        name,
-        description,
-        brands_id: +brand,
-        price: +price,
-        discount: +discount,
-        stock: +stock,
-        subcategories_id,
-      };
-      const mainImage = req.files.find((file) => file.fieldname == "mainImage");
-      if (mainImage) productUpdate.mainImage = mainImage.filename;
-      req.files.forEach(async (file) => {
-        if (file.fieldname == "images") {
-          await db.Image.create({
-            url: file.filename,
-            products_id: Number(req.params.id),
-          });
-        }
-      });
-      if (req.body.deleteImages) {
-        if (!Array.isArray(req.body.deleteImages))
-          req.body.deleteImages = [req.body.deleteImages];
-        req.body.deleteImages.forEach(async (image) => {
-          await db.Image.destroy({ where: { url: image } });
-          fs.unlink(
-            path.join("./src/public/images/products/", image),
-            (err) => {
-              if (err) console.error(err);
-            }
-          );
-        });
-        delete req.body.deleteImages;
-      }
-      await db.Product.update(
-        { ...productUpdate },
-        { where: { id: req.params.id } }
-      );
-
-      res.redirect(`/products/${req.params.id}`);
-    } catch (error) {
-      res.status(500).send(error);
+            });
     }
+    if (req.body.deleteImages) {
+      if (!Array.isArray(req.body.deleteImages))
+        req.body.deleteImages = [req.body.deleteImages];
+      req.body.deleteImages.forEach((image) => {
+        fs.unlink(path.join("./src/public", image), (err) => {
+          if (err) console.error(err);
+        });
+        const index = products[indexProduct].images.indexOf(image);
+        products[indexProduct].images.splice(index, 1); // Elimina las imágenes del producto
+      });
+      delete req.body.deleteImages;
+    }
+    req.body.images =
+      products[indexProduct].images != ""
+        ? products[indexProduct].images
+        : ["/images/products-images/default-product.jpg"];
+    req.body.categories = Array.isArray(req.body.categories)
+      ? req.body.categories.map(Number)
+      : [Number(req.body.categories)];
+    req.body.brand = Number(req.body.brand);
+    req.body.price = Number(req.body.price);
+    req.body.discount = Number(req.body.discount);
+    req.body.stock = Number(req.body.stock);
+    products[indexProduct] = {
+      ...products[indexProduct],
+      ...req.body,
+    };
+    fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
+    res.redirect("/products");
   },
   destroy: async (req, res) => {
     try {

@@ -82,7 +82,15 @@
         </section>
         <section>
           <h4>Categorías</h4>
-          <div class="category-radio">
+          <div class="box-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              placeholder="Buscar Categorías..."
+              id="category-search"
+            />
+          </div>
+          <div class="category-radio" id="categories">
             <% categories.forEach(category => { %>
             <p><%= category.name %></p>
             <% category.subcategories.forEach(subcategory => { %>
