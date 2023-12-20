@@ -322,6 +322,35 @@ const controller = {
     fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
     res.redirect("/products");
   },
+  destroy: async (req, res) => {
+    try {
+      const product = await db.Product.findByPk(req.params.id, {
+        include: ["images", "specification"],
+      });
+      product.images.forEach(async (image) => {
+        await db.Image.destroy({ where: { products_id: req.params.id } });
+        fs.unlink(
+          path.join("./src/public/images/products/", image.url),
+          (err) => {
+            if (err) console.error(err);
+          }
+        );
+      });
+      fs.unlink(
+        path.join("./src/public/images/products/", product.mainImage),
+        (err) => {
+          if (err) console.error(err);
+        }
+      );
+      await db.SpecificationDetails.destroy({
+        where: { products_id: req.params.id },
+      });
+      await db.Product.destroy({ where: { id: req.params.id } });
+      res.redirect("/products");
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  },
 };
 
 module.exports = controller;

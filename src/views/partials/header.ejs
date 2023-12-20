@@ -24,8 +24,7 @@
       </a>
       <div class="user" id="user-dropdown">
         <div class="user-icon">
-          <img src=<%= locals.isLogged ?
-          `/images/users/${locals.userLogged.dataValues.avatar}` :
+          <img src=<%= locals.isLogged ? `/images/users/${locals.avatar}` :
           "/images/default.png" %> alt="Imagen de usuario" />
         </div>
         <i class="fas fa-chevron-down arrow" id="user-dropdown-arrow"></i>

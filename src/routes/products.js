@@ -14,7 +14,9 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, "../public/images/products"));
   },
   filename: (req, file, cb) => {
-    const newFileName = `img-${Date.now()}${path.extname(file.originalname)}`;
+    const newFileName = `img-${Date.now()}-${
+      Math.floor(Math.random() * 90000) + 10000
+    }${path.extname(file.originalname)}`;
     cb(null, newFileName);
   },
 });
