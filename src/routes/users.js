@@ -4,9 +4,15 @@ const path = require("path");
 
 const controller = require("../controllers/usersController");
 
-const { createUserValidation } = require("../middlewares/userValidations");
-const isNotLoggedMiddleware = require("../middlewares/isNotLoggedMiddleware");
-const isLoggedMiddleware = require("../middlewares/isLoggedMiddleware");
+const {
+  createUserValidation,
+  validateUserLogin,
+  profileValidation,
+} = require("../middlewares/userValidations");
+const {
+  isLoggedMiddleware,
+  isNotLoggedMiddleware,
+} = require("../middlewares/isLoggedMiddleware");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -32,8 +38,9 @@ router.post(
   controller.registerProcess
 );
 router.get("/login", isLoggedMiddleware, controller.login);
-router.post("/login", controller.loginProcess);
+router.post("/login", validateUserLogin, controller.loginProcess);
 router.get("/profile", isNotLoggedMiddleware, controller.profile);
+router.post("/profile/data", profileValidation, controller.profileData);
 router.get("/logout", controller.logout);
 
 module.exports = router;

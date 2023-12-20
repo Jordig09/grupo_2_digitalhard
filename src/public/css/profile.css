@@ -1,0 +1,49 @@
+.view-title {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-container {
+  width: 90%;
+  margin: auto;
+}
+
+.profile-container form {
+  border: 1px solid var(--color-grey);
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.profile-container form h4 {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.profile-container .input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-container .input-container input {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #eeeeee;
+  border: none;
+  resize: none;
+}
+
+@media (min-width: 768px) {
+  .view-title,
+  .profile-container {
+    max-width: 800px;
+  }
+  .profile-container .input-group {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .profile-container .input-group .input-container {
+    width: 48%;
+  }
+}

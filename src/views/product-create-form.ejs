@@ -10,6 +10,7 @@
         method="POST"
         enctype="multipart/form-data"
         class="edit-form"
+        id="form"
       >
         <section>
           <h4>Información General</h4>
@@ -49,7 +50,20 @@
           </div>
         </section>
         <section>
-          <h4>Imágenes</h4>
+          <h4>Imágen Principal</h4>
+          <div class="file-input">
+            <label for="mainImage">+</label>
+            <input
+              type="file"
+              id="mainImage"
+              name="mainImage"
+              accept=".png, .jpg, .jpeg, .webp"
+            />
+            <div id="main-preview" class="preview"></div>
+          </div>
+        </section>
+        <section>
+          <h4>Otras imágenes</h4>
           <div class="file-input">
             <label for="images">+</label>
             <input
@@ -70,28 +84,40 @@
           <h4>Categorías</h4>
           <div class="box-search">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Buscar Categorías..." />
+            <input
+              type="text"
+              placeholder="Buscar Categorías..."
+              id="category-search"
+            />
           </div>
-          <div class="category-radio">
+          <div class="category-radio" id="categories">
             <% categories.forEach(category => { %>
+            <p><%= category.name %></p>
+            <% category.subcategories.forEach(subcategory => { %>
             <label class="category-label">
               <input
                 type="radio"
-                id="<%= category.name %>"
-                name="categories"
-                value="<%= category.id %>"
+                id="<%= subcategory.name %>"
+                name="subcategory"
+                value="<%= subcategory.id %>"
               />
-              <%= category.name %>
+              <%= subcategory.name %>
             </label>
-            <%}); %>
+            <% }); %> <%}); %>
           </div>
-          <div id="subcategory-radio" class="category-radio"></div>
         </section>
         <section>
           <h4>Atributos</h4>
           <div id="simple-product-form" class="input-container">
             <label for="stock">Stock</label>
             <input type="number" name="stock" id="stock" min="0" />
+          </div>
+        </section>
+        <section>
+          <h4>Especificaciones</h4>
+          <div id="specifications"></div>
+          <div class="input-container">
+            <button type="button" id="btn-add-specification">Añadir</button>
           </div>
         </section>
         <div class="submit">

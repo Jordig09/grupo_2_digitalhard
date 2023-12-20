@@ -4,10 +4,7 @@
 
 .full-view {
   display: flex;
-}
-
-.sidebar {
-  display: none;
+  margin-bottom: 20px;
 }
 
 /** Barra de Filtros **/
@@ -44,6 +41,24 @@
 
 .selectors-container .filter-selector {
   margin-right: 3%;
+}
+
+/** Sidebar **/
+
+.sidebar {
+  display: none;
+}
+
+.hide-dropdown {
+  display: none !important;
+}
+
+.dropdown-container .category-title {
+  font-weight: 600;
+}
+
+.dropdown-container li {
+  margin-left: 10px;
 }
 
 /** Listado de productos **/
@@ -235,7 +250,7 @@
 @media (min-width: 1024px) {
   main {
     width: 80%;
-    margin: auto;
+    margin: 0 auto;
     max-width: 1200px;
   }
 
@@ -253,11 +268,12 @@
   }
 
   .filters-applied-info {
-    max-width: 82%;
+    max-width: 80%;
   }
 
   .selectors-container {
-    width: 15%;
+    width: 18%;
+    max-width: 120px;
   }
 
   .selectors-container .filter-selector {
@@ -290,6 +306,10 @@
     justify-content: space-between;
   }
 
+  .dropdown-container li:hover {
+    cursor: pointer;
+  }
+
   .categories ul {
     list-style-type: none;
     margin: 0;
@@ -318,7 +338,9 @@
     padding-left: 30px;
     cursor: pointer;
     font-size: 1rem;
+    padding-top: 2px;
   }
+
   .checkbox-container .control input {
     position: absolute;
     z-index: -1;

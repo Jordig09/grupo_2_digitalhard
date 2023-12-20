@@ -4,14 +4,52 @@
   <body>
     <%- include('./partials/header.ejs') %>
     <div>
-      <div>
-        <div>
-          <h2>Hola <%= user.firstName %> <%= user.lastName %></h2>
-          <img src="/images/users/<%= user.avatar %>" />
-          <br />
-          <br />
-          <div><%= user.email %></div>
-        </div>
+      <h2 class="view-title">Mi Cuenta</h2>
+      <div class="profile-container">
+        <form action="/user/profile/data" method="POST">
+          <h4>Datos Personales</h4>
+          <div class="input-group">
+            <div class="input-container">
+              <label for="firstName">Nombre</label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                value="<%= locals.user?.firstName && user?.firstName%>"
+              />
+              <% if(locals.errors?.firstName) { %>
+              <p class="error"><%= errors.firstName.msg %></p>
+              <% } %>
+            </div>
+            <div class="input-container">
+              <label for="lastName">Apellido</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                value="<%= locals.user?.lastName && user?.lastName %>"
+              />
+              <% if(locals.errors?.lastName) { %>
+              <p class="error"><%= errors.lastName.msg %></p>
+              <% } %>
+            </div>
+          </div>
+          <div class="input-container">
+            <label for="email">Correo electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value="<%= locals.user?.email && user?.email %>"
+            />
+            <% if(locals.errors?.email) { %>
+            <p class="error"><%= errors.email.msg %></p>
+            <% } %>
+          </div>
+          <div class="submit">
+            <input type="submit" id="submit" value="Guardar" />
+          </div>
+        </form>
       </div>
     </div>
     <%- include('./partials/footer.ejs') %>
