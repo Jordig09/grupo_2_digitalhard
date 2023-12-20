@@ -13,19 +13,29 @@ module.exports = (sequelize, DataTypes) => {
   }
   Address.init(
     {
-      city: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
       province: {
         type: DataTypes.STRING,
-        allowNull: true,
+      },
+      city: {
+        type: DataTypes.STRING,
       },
       postal: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      address: {
+      street: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      streetAddress: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      floorNumber: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      flatLetter: {
         type: DataTypes.STRING,
         allowNull: false,
       },

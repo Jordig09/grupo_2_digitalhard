@@ -11,19 +11,27 @@ module.exports = {
       },
       city: {
         type: Sequelize.STRING,
-        allowNull: true,
       },
       province: {
         type: Sequelize.STRING,
-        allowNull: true,
       },
       postal: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      address: {
+      street: {
         type: Sequelize.STRING,
+        allowNull: false
+      },
+      streetAddress: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+      },
+      floorNumber: {
+        type: Sequelize.INTEGER,
+      },
+      flatLetter: {
+        type: Sequelize.STRING,
       },
       users_id: {
         type: Sequelize.INTEGER,
