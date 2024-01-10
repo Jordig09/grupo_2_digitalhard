@@ -8,7 +8,8 @@ const mainRouter = require("./routes/main");
 const productsRouter = require("./routes/products");
 const usersRouter = require("./routes/users");
 const buildRoute = require("./routes/buildRoute");
-const cartRoute = require("./routes/cartRoute");
+const searchRouter = require("./routes/searchCategories");
+// const cartRoute = require("./routes/cartRoute");
 const helpRoute = require("./routes/helpRoute");
 
 const app = express();
@@ -38,10 +39,12 @@ app.use(methodOverride("_method"));
 
 app.use("/", mainRouter);
 app.use("/products", productsRouter);
+app.use("/categories", productsRouter);
 app.use("/build", buildRoute);
-app.use("/cart", cartRoute);
+// app.use("/cart", cartRoute);
 app.use("/help", helpRoute);
 app.use("/user", usersRouter);
+app.use("/search", searchRouter);
 
 app.get("*", (req, res) => {
   res.render("404");

@@ -38,6 +38,8 @@ La reunión concluyó con un compromiso renovado por parte del equipo para imple
 ## Adjuntos
 - Se adjunta enlace del tablero de la reunión para referencia.
 
+## RETROS
+
 https://miro.com/welcomeonboard/WnhublFYUDVZUFRMSTA0MXQycXZGenhzRVByNXhWeFRjZjZOWHNINXdJSXZ2b0ZZOTNySlFOeDZXNFdFR3FGYnwzNDU4NzY0NTYzNDc0NzM3NDUwfDI=?share_link_id=387706326954
 
 - Además se adjunta el link del tablero de Trello que usamos para organizar este sprint.

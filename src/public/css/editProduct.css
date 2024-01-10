@@ -1,5 +1,11 @@
+main {
+  align-content: center;
+}
+
 .view-title {
-  margin-left: 5%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .edit-form {
@@ -20,6 +26,7 @@
   padding: 10px;
   background-color: #eeeeee;
   border: none;
+  resize: none;
 }
 
 .edit-form section h4 {
@@ -63,7 +70,8 @@
   z-index: -1;
 }
 
-.edit-form .file-input label[for="images"] {
+.edit-form .file-input label[for="images"],
+.edit-form .file-input label[for="mainImage"] {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -186,8 +194,11 @@
   display: none !important;
 }
 
-.specification {
-  margin-top: 20px;
+.specification-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--color-grey);
 }
 
 .variable-attributes {
@@ -205,10 +216,9 @@
     width: 23%;
     margin-right: 2%;
   }
-}
 
-@media (min-width: 768px) {
-  .edit-form {
+  .edit-form,
+  .view-title {
     max-width: 800px;
   }
 }
