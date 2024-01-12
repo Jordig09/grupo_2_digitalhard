@@ -13,7 +13,7 @@ function recordarmeMiddleware(req, res, next) {
       users = JSON.parse(usersJSON);
     }
 
-    for (let i = 0; i < users.lenght; i++) {
+    for (let i = 0; i < users.length; i++) {
       if (users[i].email == req.cookies.recordarme) {
         usuarioALoguearse = users[i];
         break;

@@ -20,8 +20,18 @@ const storage = multer.diskStorage({
     cb(null, newFileName);
   },
 });
+const fileFilter=(req,file,cb)=>{
+  const allowedFiles=['jpg','jpeg','png','webp'];
+  const fileExt= file.originalname.split('.').pop().toLowerCase();
+  if(allowedFiles.includes(fileExt)){
+    cb(null, true);
+  }
+  else{
+    cb(new Error('Extensión no permitida.'),false);
+  }
+};
 
-const upload = multer({ storage });
+const upload = multer({ storage, fileFilter });
 
 router.get("/", productsController.index);
 
