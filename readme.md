@@ -1,4 +1,28 @@
-# Bienvenido a nuestro Ecommerce de Artículos Electrónicos
+# Índice
+
+- [Índice](#índice)
+  - [Bienvenido a nuestro Ecommerce de Artículos Electrónicos](#bienvenido-a-nuestro-ecommerce-de-artículos-electrónicos)
+  - [Público Objetivo](#público-objetivo)
+  - [Referentes](#referentes)
+  - [Wireframes](#wireframes)
+      - [Desktop : Clic aquí para ver](#desktop--clic-aquí-para-ver)
+      - [Mobile : Clic aquí para ver](#mobile--clic-aquí-para-ver)
+      - [Tablet : Clic aquí para ver](#tablet--clic-aquí-para-ver)
+  - [Equipo](#equipo)
+    - [Jesús Ramirez](#jesús-ramirez)
+      - [Desarrollador Full Stack](#desarrollador-full-stack)
+    - [Contacto](#contacto)
+    - [Sebastián Alamo](#sebastián-alamo)
+      - [Desarrollador Web](#desarrollador-web)
+    - [Contacto](#contacto-1)
+    - [Nicolás Luna](#nicolás-luna)
+      - [Desarrollador Full Stack | Estudiante de Ingeniería informática](#desarrollador-full-stack--estudiante-de-ingeniería-informática)
+    - [Contacto](#contacto-2)
+    - [Jordi Godoy](#jordi-godoy)
+      - [Desarrollador Full Stack](#desarrollador-full-stack-1)
+    - [Contacto](#contacto-3)
+
+## Bienvenido a nuestro Ecommerce de Artículos Electrónicos
 
 Este proyecto es un sitio de comercio electrónico especializado en la venta de productos electrónicos para PC y relacionados, incluyendo PCs pre-armadas, componentes individuales, consolas de videojuegos y periféricos. Nuestro objetivo es brindar a los entusiastas de la tecnología y los gamers una plataforma confiable y conveniente para adquirir los productos que necesitan para mejorar su experiencia digital.
 
@@ -94,19 +118,6 @@ Hoy en día, junto a mis compañeros de proyecto aquí presentados, me encuentro
 <p><a href="https://www.linkedin.com/in/jordi-godoy/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="alsiam"/></a><a href="https://github.com/Jordig09" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
 
 ___
-
-### Agostina Svenson
-#### Desarrollador Full Stack 
-
-¡Hola! Soy Agostina Svenson, desarrolladora de software con más de 4 años de experiencia en marketing. 
-Mi enfoque es crear sitios web empresariales y de comercio electrónico usando WordPress. He trabajado en proyectos nacionales e internacionales, implementando métodos de envío, plataformas de pago y campus virtuales para escuelas con miles de alumnos. Me especializo en front-end y resolución de problemas. 
-Con esta capacitación busco complementar mis habilidades con otros tipos de tecnologías.
-
-### Contacto
-📧 &emsp; mail: agostinasvenson@gmail.com
-<p><a href="https://www.linkedin.com/in/agostina-svenson/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="alsiam"/></a><a href="https://github.com/agostinasvenson" target="_blank"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="alsiam"/></a></p>
-
-
 ---
 
 ¡Gracias por visitar nuestro proyecto! Esperamos que disfrutes explorando nuestra selección de productos electrónicos y encuentres lo que estás buscando.

@@ -12,10 +12,12 @@ const createUserValidation = [
   body("email")
     .notEmpty()
     .withMessage("El Campo email es requerido.")
+    .exists()
     .isEmail()
     .withMessage(
       "El Campo debe tener el formato de un correo electrónico válido"
     )
+    .bail()
     .custom(async (value, { req }) => {
       if (await db.User.findOne({ where: { email: value } }))
         throw new Error("Este email ya está registrado");
@@ -32,7 +34,9 @@ const validateUserLogin = [
   body("email")
     .notEmpty()
     .withMessage("El campo email es requerido.")
+    .exists()
     .isEmail()
+    .bail()
     .custom(async (value, { req }) => {
       const user = await db.User.findOne({ where: { email: value } });
       if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
@@ -52,10 +56,12 @@ const profileValidation = [
   body("email")
     .notEmpty()
     .withMessage("El Campo email es requerido.")
+    .exists()
     .isEmail()
     .withMessage(
       "El Campo debe tener el formato de un correo electrónico válido"
     )
+    .bail()
     .custom(async (value, { req }) => {
       const user = await db.User.findOne({ where: { email: value } });
       if (user && user.id != req.session._id)
