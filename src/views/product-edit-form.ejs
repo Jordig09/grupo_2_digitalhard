@@ -19,7 +19,7 @@
               <label for="brand">Marca</label>
               <select name="brand" id="brand">
                 <% brands.forEach(brand => { %>
-                  <option value="<%= brand.id %>" id="<%= brand.name %>" <%= product.brand_id === brand.id && 'selected' %>>
+                  <option value="<%= brand.id %>" id="<%= brand.name %>" <%= product.brands_id === brand.id && 'selected' %>>
                     <%= brand.name %>
                   </option>
                 <%}); %>
@@ -95,23 +95,20 @@
             </div>
             <div class="category-radio" id="categories">
               <% categories.forEach(category => { %>
-              <p><%= category.name %></p>
-              <% category.subcategories.forEach(subcategory => { %>
-              <label class="category-label">
-              <p><%= category.name %></p>
-              <% category.subcategories.forEach(subcategory => { %>
-              <label class="category-label">
-                <input
-                  type="radio"
-                  id="<%= subcategory.name %>"
-                  name="subcategory"
-                  value="<%= subcategory.id %>"
-                  <%= (product.subcategory_id == subcategory.id) && "checked"  %>
-                />
-                <%= subcategory.name %>
-              </label>
-              <% }); %> <%}); %>
-              <% }); %> <%}); %>
+                <p><%= category.name %></p>
+                <% category.subcategories.forEach(subcategory => { %>
+                <label class="category-label">
+                  <input
+                    type="radio"
+                    id="<%= subcategory.name %>"
+                    name="subcategory"
+                    value="<%= subcategory.id %>"
+                    <%= (product.subcategories_id == subcategory.id) && "checked"  %>
+                  />
+                  <%= subcategory.name %>
+                </label>
+                <% }); %> <%}); %>
+          
             </div>
           </section>
           <section>
