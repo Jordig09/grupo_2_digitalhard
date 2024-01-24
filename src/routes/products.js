@@ -4,8 +4,11 @@ const path = require("path");
 
 const productsController = require("../controllers/productsController");
 
+
 const { isNotLoggedMiddleware } = require("../middlewares/isLoggedMiddleware");
 const { checkIsAdmin } = require("../middlewares/auth");
+const { getSpecification } = require("../middlewares/getSpecifications")
+const { productValidation } = require("../middlewares/productValidations")
 
 const router = express.Router();
 
@@ -42,7 +45,7 @@ router.get(
   productsController.create
 );
 
-router.post("/", upload.any(), productsController.store);
+router.post("/create", upload.any(), getSpecification, productValidation, productsController.store);
 router.get("/:id", productsController.detail);
 
 router.get(
@@ -51,7 +54,7 @@ router.get(
   checkIsAdmin,
   productsController.edit
 );
-router.put("/:id", upload.any(), productsController.update);
+router.put("/:id",upload.any(), getSpecification, productValidation, productsController.update);
 
 router.delete("/:id", productsController.destroy);
 

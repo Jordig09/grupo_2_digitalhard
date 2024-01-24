@@ -16,6 +16,7 @@
             method="post"
             enctype="multipart/form-data"
             class="form-inner"
+            id="registrationForm"
           >
             <h2 id="title">Crear cuenta</h2>
             <div class="inputs">
@@ -27,9 +28,11 @@
                 placeholder="Nombre"
                 value="<%= locals.oldData?.firstName && oldData?.firstName%>"
               />
-              <% if(locals.errors?.firstName) { %>
-              <p class="error"><%= errors.firstName.msg %></p>
-              <% } %>
+              <p class="error" id="erFirstName">
+                <% if (locals.errors && locals.errors.firstName) { %>
+                  <%= errors.firstName.msg %>
+                <% }%>
+              </p>
               <label for="txfLastName">Apellido</label>
               <input
                 type="text"
@@ -38,9 +41,11 @@
                 placeholder="Apellido"
                 value="<%= locals.oldData?.lastName && oldData?.lastName %>"
               />
-              <% if(locals.errors?.lastName) { %>
-              <p class="error"><%= errors.lastName.msg %></p>
-              <% } %>
+              <p class="error" id="erLastName">
+                <% if (locals.errors && locals.errors.lastName) { %>
+                  <%= errors.lastName.msg %>
+                <% }%>
+              </p>
               <label for="txfEmail">Correo electrónico</label>
               <input
                 type="email"
@@ -49,9 +54,11 @@
                 placeholder="ejemplo@ejemplo.com"
                 value="<%= locals.oldData?.email && oldData?.email %>"
               />
-              <% if(locals.errors?.email) { %>
-              <p class="error"><%= errors.email.msg %></p>
-              <% } %>
+              <p class="error" id="erEmail">
+                <% if (locals.errors && locals.errors.email) { %>
+                  <%= errors.email.msg %>
+                <% }%>
+              </p>
               <label for="txfPassword">Contraseña</label>
               <input
                 type="password"
@@ -59,9 +66,11 @@
                 name="password"
                 placeholder="Establece tu contraseña"
               />
-              <% if(locals.errors?.password) { %>
-              <p class="error"><%= errors.password.msg %></p>
-              <% } %>
+              <p class="error" id="erPassword">
+                <% if (locals.errors && locals.errors.password) { %>
+                  <%= errors.password.msg %>
+                <% }%>
+              </p>
               <label for="avatar">Imágen de Perfil</label>
               <input
                 type="file"
@@ -84,6 +93,6 @@
       </div>
       <div class="info"></div>
     </div>
-    <script src="js/registerValidation.js"></script>
   </body>
+  <script src="/js/registerValidation.js"></script>
 </html>

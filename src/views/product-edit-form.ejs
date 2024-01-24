@@ -13,13 +13,24 @@
             <h4>Información General</h4>
             <div class="input-container">
               <label for="name">Nombre de Producto</label>
+            <small id="erName">
+              <% if (locals.errors && locals.errors.name) { %>
+                <%= errors.name.msg %>
+              <% }%>
+            </small>
               <input type="text" id="name" name="name" value="<%= product.name %>" />
             </div>
             <div class="input-container">
               <label for="brand">Marca</label>
+              <small id="erBrand">
+                <% if (locals.errors && locals.errors.brand) { %>
+                  <%= errors.brand.msg %>
+                <% }%>
+              </small>
               <select name="brand" id="brand">
                 <% brands.forEach(brand => { %>
-                  <option value="<%= brand.id %>" id="<%= brand.name %>" <%= product.brands_id === brand.id && 'selected' %>>
+                  <option value="<%= brand.id %>" id="<%= brand.name %>"
+                    <%= (locals.oldData?.brand && oldData?.brand == brand.id && 'selected') || (product.brands_id === brand.id && 'selected') %>>
                     <%= brand.name %>
                   </option>
                 <%}); %>
@@ -28,16 +39,26 @@
             <div class="input-group">
               <div class="input-container">
                 <label for="price">Precio</label>
+                <small id="erPrice">
+                  <% if (locals.errors && locals.errors.price) { %>
+                    <%= errors.price.msg %>
+                  <% }%>
+                </small>
                 <input type="number" id="price" name="price" min="0" value="<%= product.price %>" />
               </div>
               <div class="input-container">
                 <label for="discount">Descuento (%)</label>
-                <input type="number" id="discount" name="discount" min="0" max="100" value="<%= product.discount %>" />
+                <small id="erDiscount">
+                  <% if (locals.discount && locals.errors.discount) { %>
+                    <%= errors.discount.msg %>
+                  <% }%>
+                </small>
+                <input type="number" id="discount" name="discount" min="0" max="100" value="<%= (locals.oldData?.discount && oldData?.discount) || product.discount %>" />
               </div>
             </div>
             <div class="input-container">
               <label for="description">Descripción del producto</label>
-              <textarea name="description" id="description" rows="5"><%= product.description %></textarea>
+              <textarea name="description" id="description"><%= (locals.oldData?.description && oldData?.description) || product.description %></textarea>
             </div>
           </section>
           <section>
@@ -93,6 +114,11 @@
               <i class="fa-solid fa-magnifying-glass"></i>
               <input type="text" placeholder="Buscar Categorías..." />
             </div>
+            <small id="erCategory">
+              <% if (locals.errors && locals.errors.subcategory) { %>
+                <%= errors.subcategory.msg %>
+              <% }%>
+            </small>
             <div class="category-radio" id="categories">
               <% categories.forEach(category => { %>
                 <p><%= category.name %></p>
@@ -103,18 +129,22 @@
                     id="<%= subcategory.name %>"
                     name="subcategory"
                     value="<%= subcategory.id %>"
-                    <%= (product.subcategories_id == subcategory.id) && "checked"  %>
+                    <%= (locals.oldData?.subcategory && oldData?.subcategory == subcategory.id && 'checked') || (product.subcategories_id == subcategory.id && 'checked')  %>
                   />
                   <%= subcategory.name %>
                 </label>
                 <% }); %> <%}); %>
-          
             </div>
           </section>
           <section>
             <h4>Atributos</h4>
             <div id="simple-product-form" class="input-container">
               <label for="stock">Stock</label>
+              <small id="erStock">
+                <% if (locals.errors && locals.errors.stock) { %>
+                  <%= errors.stock.msg %>
+                <% }%>
+              </small>
               <input
                 type="number"
                 name="stock"
@@ -126,8 +156,17 @@
           </section>
           <section>
             <h4>Especificaciones</h4>
+            <small id="erSpecification">
+              <% if (locals.errors && locals.errors.specification) { %>
+                <%= errors.specification.msg %>
+              <% }%>
+            </small>
             <div id="specifications">
+              <% if(locals.oldData?.specification && oldData?.specification){ %>
+                <%- include('./partials/specification.ejs', {  specification: oldData?.specification}) %>
+              <% } else{ %>
               <%- include('./partials/specification.ejs', {  specification: specifications}) %>
+              <% }; %>
             </div>
             <div class="input-container">
               <button type="button" id="btn-add-specification">Añadir</button>
@@ -148,4 +187,5 @@
   </body>
   <script src="/js/index.js"></script>
   <script src="/js/editProduct.js" ></script>
+  <script src="/js/productValidation.js"></script>
 </html>
