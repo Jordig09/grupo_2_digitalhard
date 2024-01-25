@@ -4,6 +4,7 @@ const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 
+const apiUsers = require("./routes/api/apiUsers");
 const mainRouter = require("./routes/main");
 const productsRouter = require("./routes/products");
 const usersRouter = require("./routes/users");
@@ -45,6 +46,7 @@ app.use("/build", buildRoute);
 app.use("/help", helpRoute);
 app.use("/user", usersRouter);
 app.use("/search", searchRouter);
+app.use("/api/users", apiUsers);
 
 app.get("*", (req, res) => {
   res.render("404");
