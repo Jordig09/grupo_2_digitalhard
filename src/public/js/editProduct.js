@@ -129,6 +129,7 @@ function renderSpecification() {
       });
     renderRow(i);
     const btnAddRow = document.getElementById(`btn-add-row-${i + 1}`);
+    btnAddRow.classList.add("btn-add-row");
     btnAddRow.addEventListener("click", function (e) {
       e.preventDefault();
       const index = this.getAttribute("data-index");
@@ -138,16 +139,16 @@ function renderSpecification() {
       });
       renderRow(index);
     });
-    document
-      .getElementById(`btn-delete-spec-${i + 1}`)
-      .addEventListener("click", (e) => {
-        arraySpecification[i].specification.forEach((data) => {
-          if (Number(data.id)) specificationToDelete.push(data.id);
-        });
-        arraySpecification.splice(i, 1);
-        specificationsDiv.innerHTML = ``;
-        renderSpecification();
+    const btnDeleteSpec = document.getElementById(`btn-delete-spec-${i + 1}`);
+    btnDeleteSpec.classList.add("btn-delete-spec");
+    btnDeleteSpec.addEventListener("click", (e) => {
+      arraySpecification[i].specification.forEach((data) => {
+        if (Number(data.id)) specificationToDelete.push(data.id);
       });
+      arraySpecification.splice(i, 1);
+      specificationsDiv.innerHTML = ``;
+      renderSpecification();
+    });
   });
 }
 
@@ -178,7 +179,7 @@ function renderRow(index) {
           value="${data?.text}"
         />
       </div>
-      <button type="button" id="btn-delete-row-${index}-${i}" data-index="${index}-${i}" index="${data?.id}">X</button>
+      <button type="button" class="btn-delete-row" id="btn-delete-row-${index}-${i}" data-index="${index}-${i}" index="${data?.id}">X</button>
     </div>`;
     subspecifications.append(newRow);
     const nameChange = document.getElementById(
