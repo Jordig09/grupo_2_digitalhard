@@ -302,7 +302,11 @@ main {
   justify-content: center;
 }
 
-
+.error {
+  color: #6f0d0dff;
+  font-size: 14px;
+  text-align: left;
+}
 
 @media (min-width: 768px) {
   .edit-form .category-checkboxes label {

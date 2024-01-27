@@ -26,16 +26,25 @@ formulario.addEventListener("submit", function (e) {
   if (inputName.value.trim().length < 1) {
     errores.name = "Este campo debe estar completo";
   }
-  if (Number(inputPrice.value) == NaN) {
+  if (Number(inputBrand.value) == 0) {
     errores.brand = "Debes selecionar una opcion";
   }
-  if (Number(inputPrice.value) == NaN || Number(inputPrice.value) < 0) {
+  if (
+    !inputPrice.value ||
+    Number(inputPrice.value) == NaN ||
+    Number(inputPrice.value) < 0
+  ) {
     errores.price = "El valor debe ser mayor o igual a 0";
   }
-  if (Number(inputStock.value) == NaN || Number(inputStock.value) < 0) {
+  if (
+    !inputStock.value ||
+    Number(inputStock.value) == NaN ||
+    Number(inputStock.value) < 0
+  ) {
     errores.stock = "El valor debe ser mayor o igual a 0";
   }
   if (
+    !inputDiscount.value ||
     Number(inputDiscount.value) == NaN ||
     Number(inputDiscount.value) < 0 ||
     Number(inputDiscount.value) > 100
@@ -76,5 +85,6 @@ formulario.addEventListener("submit", function (e) {
     erSpecification.innerText = errores.specification
       ? errores.specification
       : "";
+    console.log(errores);
   }
 });

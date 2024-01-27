@@ -4,11 +4,10 @@ const path = require("path");
 
 const productsController = require("../controllers/productsController");
 
-
 const { isNotLoggedMiddleware } = require("../middlewares/isLoggedMiddleware");
 const { checkIsAdmin } = require("../middlewares/auth");
-const { getSpecification } = require("../middlewares/getSpecifications")
-const { productValidation } = require("../middlewares/productValidations")
+const { getSpecification } = require("../middlewares/getSpecifications");
+const { productValidation } = require("../middlewares/productValidations");
 
 const router = express.Router();
 
@@ -23,14 +22,13 @@ const storage = multer.diskStorage({
     cb(null, newFileName);
   },
 });
-const fileFilter=(req,file,cb)=>{
-  const allowedFiles=['jpg','jpeg','png','webp'];
-  const fileExt= file.originalname.split('.').pop().toLowerCase();
-  if(allowedFiles.includes(fileExt)){
+const fileFilter = (req, file, cb) => {
+  const allowedFiles = ["jpg", "jpeg", "png", "webp"];
+  const fileExt = file.originalname.split(".").pop().toLowerCase();
+  if (allowedFiles.includes(fileExt)) {
     cb(null, true);
-  }
-  else{
-    cb(new Error('Extensión no permitida.'),false);
+  } else {
+    cb(new Error("Extensión no permitida."), false);
   }
 };
 
@@ -40,21 +38,33 @@ router.get("/", productsController.index);
 
 router.get(
   "/create",
-  isNotLoggedMiddleware,
-  checkIsAdmin,
+  // isNotLoggedMiddleware,
+  // checkIsAdmin,
   productsController.create
 );
 
-router.post("/create", upload.any(), getSpecification, productValidation, productsController.store);
+router.post(
+  "/create",
+  upload.any(),
+  getSpecification,
+  productValidation,
+  productsController.store
+);
 router.get("/:id", productsController.detail);
 
 router.get(
   "/:id/edit",
-  isNotLoggedMiddleware,
-  checkIsAdmin,
+  // isNotLoggedMiddleware,
+  // checkIsAdmin,
   productsController.edit
 );
-router.put("/:id",upload.any(), getSpecification, productValidation, productsController.update);
+router.put(
+  "/:id",
+  upload.any(),
+  getSpecification,
+  productValidation,
+  productsController.update
+);
 
 router.delete("/:id", productsController.destroy);
 

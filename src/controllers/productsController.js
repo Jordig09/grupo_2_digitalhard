@@ -74,9 +74,17 @@ const controller = {
           errors: errors.mapped(),
           oldData: req.body,
         });
-      };
-      const { name, brand, price, discount, stock, description, subcategory, specification } =
-        req.body;
+      }
+      const {
+        name,
+        brand,
+        price,
+        discount,
+        stock,
+        description,
+        subcategory,
+        specification,
+      } = req.body;
       const subcategories_id = +subcategory;
       const mainImage = req.files.find((file) => file.fieldname == "mainImage");
       const subcategoryDB = await db.Subcategory.findByPk(subcategories_id);
@@ -89,9 +97,8 @@ const controller = {
         stock: +stock,
         subcategories_id,
         categories_id: subcategoryDB.categories_id,
-        mainImage: mainImage.filename,
+        mainImage: mainImage ? mainImage.filename : "default.jpg",
       };
-
       const product = await db.Product.create(newProduct);
       req.files.forEach(async (file) => {
         if (file.fieldname == "images") {
@@ -286,9 +293,19 @@ const controller = {
             "/css/editProduct.css",
           ],
         });
-      };
-      const { name, brand, price, discount, stock, description, subcategory, specification, toDelete, toUpdate } =
-        req.body;
+      }
+      const {
+        name,
+        brand,
+        price,
+        discount,
+        stock,
+        description,
+        subcategory,
+        specification,
+        toDelete,
+        toUpdate,
+      } = req.body;
 
       await toDelete.forEach(async (id) => {
         await db.SpecificationDetails.destroy({ where: { id } });
@@ -352,8 +369,12 @@ const controller = {
         subcategories_id,
       };
       const mainImage = req.files.find((file) => file.fieldname == "mainImage");
-      if(req.body.deleteImages && req.body.deleteImages.includes(product.mainImage)) productUpdate.mainImage = null;
-      if(mainImage) productUpdate.mainImage = mainImage.filename;
+      if (
+        req.body.deleteImages &&
+        req.body.deleteImages.includes(product.mainImage)
+      )
+        productUpdate.mainImage = "default.jpg";
+      if (mainImage) productUpdate.mainImage = mainImage.filename;
       req.files.forEach(async (file) => {
         if (file.fieldname == "images") {
           await db.Image.create({
@@ -366,13 +387,15 @@ const controller = {
         if (!Array.isArray(req.body.deleteImages))
           req.body.deleteImages = [req.body.deleteImages];
         req.body.deleteImages.forEach(async (image) => {
-          await db.Image.destroy({ where: { url: image } });
-          fs.unlink(
-            path.join("./src/public/images/products/", image),
-            (err) => {
-              if (err) console.error(err);
-            }
-          );
+          if (image != "default.jpg") {
+            await db.Image.destroy({ where: { url: image } });
+            fs.unlink(
+              path.join("./src/public/images/products/", image),
+              (err) => {
+                if (err) console.error(err);
+              }
+            );
+          }
         });
         delete req.body.deleteImages;
       }
@@ -400,12 +423,14 @@ const controller = {
           }
         );
       });
-      fs.unlink(
-        path.join("./src/public/images/products/", product.mainImage),
-        (err) => {
-          if (err) console.error(err);
-        }
-      );
+      if (product.mainImage != "default.jpg") {
+        fs.unlink(
+          path.join("./src/public/images/products/", product.mainImage),
+          (err) => {
+            if (err) console.error(err);
+          }
+        );
+      }
       await db.SpecificationDetails.destroy({
         where: { products_id: req.params.id },
       });
