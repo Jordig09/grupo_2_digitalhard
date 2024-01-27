@@ -4,6 +4,10 @@ const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 
+
+const apiProducts = require("./routes/api/apiProducts");
+
+
 const mainRouter = require("./routes/main");
 const productsRouter = require("./routes/products");
 const usersRouter = require("./routes/users");
@@ -11,6 +15,7 @@ const buildRoute = require("./routes/buildRoute");
 const searchRouter = require("./routes/searchCategories");
 // const cartRoute = require("./routes/cartRoute");
 const helpRoute = require("./routes/helpRoute");
+
 
 const app = express();
 
@@ -37,6 +42,9 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(methodOverride("_method"));
 
+
+app.use("/api/products", apiProducts);
+
 app.use("/", mainRouter);
 app.use("/products", productsRouter);
 app.use("/categories", productsRouter);
@@ -45,6 +53,7 @@ app.use("/build", buildRoute);
 app.use("/help", helpRoute);
 app.use("/user", usersRouter);
 app.use("/search", searchRouter);
+
 
 app.get("*", (req, res) => {
   res.render("404");
