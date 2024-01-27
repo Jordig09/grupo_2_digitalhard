@@ -38,8 +38,8 @@ router.get("/", productsController.index);
 
 router.get(
   "/create",
-  // isNotLoggedMiddleware,
-  // checkIsAdmin,
+  isNotLoggedMiddleware,
+  checkIsAdmin,
   productsController.create
 );
 
@@ -54,8 +54,8 @@ router.get("/:id", productsController.detail);
 
 router.get(
   "/:id/edit",
-  // isNotLoggedMiddleware,
-  // checkIsAdmin,
+  isNotLoggedMiddleware,
+  checkIsAdmin,
   productsController.edit
 );
 router.put(
