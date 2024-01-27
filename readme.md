@@ -2,6 +2,7 @@
 
 - [Índice](#índice)
   - [Bienvenido a nuestro Ecommerce de Artículos Electrónicos](#bienvenido-a-nuestro-ecommerce-de-artículos-electrónicos)
+  - [Instalación](#instalación) 
   - [Público Objetivo](#público-objetivo)
   - [Referentes](#referentes)
   - [Wireframes](#wireframes)
@@ -22,9 +23,32 @@
       - [Desarrollador Full Stack](#desarrollador-full-stack-1)
     - [Contacto](#contacto-3)
 
+
 ## Bienvenido a nuestro Ecommerce de Artículos Electrónicos
 
 Este proyecto es un sitio de comercio electrónico especializado en la venta de productos electrónicos para PC y relacionados, incluyendo PCs pre-armadas, componentes individuales, consolas de videojuegos y periféricos. Nuestro objetivo es brindar a los entusiastas de la tecnología y los gamers una plataforma confiable y conveniente para adquirir los productos que necesitan para mejorar su experiencia digital.
+
+## Instalación
+
+Sigue estos pasos para instalar y ejecutar el proyecto localmente.
+
+### 1. Clonar el Repositorio
+bash
+```git clone https://github.com/Jordig09/grupo_2_digitalhard.git```
+
+### 2. Instalar Módulos de Node
+bash
+```npm install```
+
+### 3. Migrar la Base de Datos
+bash
+```npx sequelize-cli db:migrate```
+```npx sequelize-cli db:seed:all```
+
+### 4. Correr el Proyecto
+bash
+```npm run dev```
+
 
 ## Público Objetivo
 
