@@ -11,7 +11,7 @@ const apiProductsController = {
                 return acc;
             }, {});
 
-            const formattedProducts = products.map(product => ({
+            const productDetail = products.map(product => ({
                 id: product.id,
                 name: product.name,
                 description: product.description,
@@ -22,7 +22,7 @@ const apiProductsController = {
             res.json({
                 count,
                 countByCategory,
-                products: formattedProducts,
+                products: productDetail,
             });
         } catch (error) {
             res.status(500).json({
