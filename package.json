@@ -4,7 +4,7 @@
   "description": "Este proyecto es un sitio de comercio electrónico especializado en la venta de productos electrónicos para PC y relacionados, incluyendo PCs pre-armadas, componentes individuales, consolas de videojuegos y periféricos. Nuestro objetivo es brindar a los entusiastas de la tecnología y los gamers una plataforma confiable y conveniente para adquirir los productos que necesitan para mejorar su experiencia digital.",
   "main": "app.js",
   "scripts": {
-    "start": "node ./src/app.js",  
+    "start": "node ./src/app.js",
     "dev": "nodemon ./src/app.js"
   },
   "repository": {
