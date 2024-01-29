@@ -13,16 +13,16 @@
             <h4>Información General</h4>
             <div class="input-container">
               <label for="name">Nombre de Producto</label>
-            <small id="erName">
+            <small id="erName" class="error">
               <% if (locals.errors && locals.errors.name) { %>
                 <%= errors.name.msg %>
               <% }%>
             </small>
-              <input type="text" id="name" name="name" value="<%= product.name %>" />
+              <input type="text" id="name" name="name" value="<%= product.name %>"/>
             </div>
             <div class="input-container">
               <label for="brand">Marca</label>
-              <small id="erBrand">
+              <small id="erBrand" class="error">
                 <% if (locals.errors && locals.errors.brand) { %>
                   <%= errors.brand.msg %>
                 <% }%>
@@ -39,7 +39,7 @@
             <div class="input-group">
               <div class="input-container">
                 <label for="price">Precio</label>
-                <small id="erPrice">
+                <small id="erPrice" class="error">
                   <% if (locals.errors && locals.errors.price) { %>
                     <%= errors.price.msg %>
                   <% }%>
@@ -48,7 +48,7 @@
               </div>
               <div class="input-container">
                 <label for="discount">Descuento (%)</label>
-                <small id="erDiscount">
+                <small id="erDiscount" class="error">
                   <% if (locals.discount && locals.errors.discount) { %>
                     <%= errors.discount.msg %>
                   <% }%>
@@ -114,7 +114,7 @@
               <i class="fa-solid fa-magnifying-glass"></i>
               <input type="text" placeholder="Buscar Categorías..." />
             </div>
-            <small id="erCategory">
+            <small id="erCategory" class="error">
               <% if (locals.errors && locals.errors.subcategory) { %>
                 <%= errors.subcategory.msg %>
               <% }%>
@@ -140,7 +140,7 @@
             <h4>Atributos</h4>
             <div id="simple-product-form" class="input-container">
               <label for="stock">Stock</label>
-              <small id="erStock">
+              <small id="erStock" class="error">
                 <% if (locals.errors && locals.errors.stock) { %>
                   <%= errors.stock.msg %>
                 <% }%>
@@ -156,7 +156,7 @@
           </section>
           <section>
             <h4>Especificaciones</h4>
-            <small id="erSpecification">
+            <small id="erSpecification" class="error">
               <% if (locals.errors && locals.errors.specification) { %>
                 <%= errors.specification.msg %>
               <% }%>

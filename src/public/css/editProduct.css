@@ -303,9 +303,13 @@ main {
 }
 
 .error {
-  color: #6f0d0dff;
+  color: rgb(200, 0, 0);
   font-size: 14px;
   text-align: left;
+}
+
+.inputError {
+  border: red solid 1px;
 }
 
 @media (min-width: 768px) {
