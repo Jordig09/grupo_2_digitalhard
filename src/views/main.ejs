@@ -5,28 +5,22 @@
   <body>
     <%- include('./partials/header.ejs') %>
     <main>
-      <section class="box box-carousel">
-        <div class="carousel">
-          <div class="arrow"><i class="fas fa-chevron-left"></i></div>
-          <div class="carousel-slider">
-            <div class="product-info">
-              <h3>amd radeon rx 79000 xt</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id
-                modi quis repellendus nam illo ex quisquam iusto aspernatur
-                corporis maiores cum hic quidem nemo perspiciatis, molestiae
-                vero iste sunt?
-              </p>
-              <button class="buy-now">Comprar ahora</button>
+      <section id="gallery" class="box">
+        <div class="nav-button prev-button"><i class="fas fa-chevron-left"></i></div>
+          <div class="gallery-container">
+            <div class="gallery-item">
+              <a href="/products"><img src="/images/Componentes-de-PC.png" alt="Imagen 1" /></a>
             </div>
-            <div class="product-img">
-              <img src="images/products/amd-radeon-7900xt.png" alt="" />
+            <div class="gallery-item">
+              <a href="/build"><img src="/images/BANNER-ARMAR-PC.png" alt="Imagen 2" /></a>
             </div>
+            <div class="gallery-item">
+              <a href="/products/6"><img src="/images/RTX3080.jpg" alt="Imagen 3" /></a>
+            </div>
+            <!-- ... otras imágenes ... -->
           </div>
-          <div class="arrow"><i class="fas fa-chevron-right"></i></div>
-        </div>
+          <div class="nav-button next-button"><i class="fas fa-chevron-right"></i></div>
       </section>
-
       <section class="box">
         <h2 class="title">NOVEDADES</h2>
         <div class="product-cards-slider">
@@ -54,4 +48,5 @@
     <%- include('./partials/footer.ejs') %>
   </body>
   <script src="/js/index.js"></script>
+  <script src="/js/home.js"></script>
 </html>

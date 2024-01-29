@@ -163,18 +163,20 @@ const controller = {
         ],
       });
       const specifications = [];
-      product.specification.forEach((data) => {
-        let index = specifications.findIndex(
-          (i) => i.id == data.specification.id
-        );
-        if (index == -1)
-          specifications.push({
-            id: data.specification.id,
-            title: data.specification.title,
-            detail: [data],
-          });
-        else specifications[index].detail.push(data);
-      });
+      if(product){
+        product.specification.forEach((data) => {
+          let index = specifications.findIndex(
+            (i) => i.id == data.specification.id
+          );
+          if (index == -1)
+            specifications.push({
+              id: data.specification.id,
+              title: data.specification.title,
+              detail: [data],
+            });
+          else specifications[index].detail.push(data);
+        });
+      }
       const products = await db.Product.findAll({ limit: 4 });
       res.render("detail", {
         product,
