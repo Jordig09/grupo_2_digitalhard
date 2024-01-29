@@ -31,6 +31,7 @@
       </div>
       <button
         type="button"
+        class="btn-delete-row"
         id="btn-delete-row-<%= i %>-<%= j %>"
         data-index="<%= i %>-<%= j %>"
         index="<%= det.id %>"
@@ -40,10 +41,10 @@
     </div>
     <% }) %>
   </div>
-  <button type="button" id="btn-add-row-<%= i + 1 %>" data-index="<%= i %>">
+  <button type="button" class="btn-add-row" id="btn-add-row-<%= i + 1 %>" data-index="<%= i %>">
     Añadir nueva fila
   </button>
-  <button type="button" id="btn-delete-spec-<%= i + 1 %>" data-index="<%= i %>">
+  <button type="button" class="btn-delete-spec" id="btn-delete-spec-<%= i + 1 %>" data-index="<%= i %>">
     Borrar especificacion
   </button>
 </div>
