@@ -8,117 +8,62 @@ main .box {
   margin-bottom: 50px;
 }
 
-main .box-carousel {
-  background-image: url("https://img.freepik.com/premium-vector/black-red-metal-background_71775-391.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+/* Slider */
 
-/* Carousel */
-.carousel {
-  width: 100%;
-  height: auto;
-  min-height: 75vh;
+/* Estilo básico para el Slider*/
+#gallery {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  flex-wrap: nowrap;
+  max-height: 450px;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
 }
 
-.carousel .arrow {
+.gallery-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.gallery-item {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Navegación del Slider */
+.nav-button {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.carousel div i {
+.nav-button i {
   position: absolute;
   font-size: 2rem;
   color: #d6d6d6;
   z-index: 2;
 }
 
-.carousel div .fa-chevron-left {
+.nav-button .fa-chevron-left {
   left: 3vw;
 }
 
-.carousel div .fa-chevron-right {
+.nav-button .fa-chevron-right {
   right: 3vw;
 }
 
-.buy-now {
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-text);
-  font-size: 18px;
-  color: #ffffffff;
-  background: #6f0d0dff;
-  border: none;
-  border-radius: 1px;
-  box-shadow: 0px 4px 9px #6f0d0d, 0px 0px 2px #6f0d0d;
-  max-width: 250px;
+.nav-button i:hover {
+  color: #ffffff;
+  font-weight: bold;
 }
 
-.buy-now:hover {
-  color: #ffffffff;
-  background: #520a0aff;
-}
-
-.buy-now:hover:active {
-  color: #ffffffff;
-  background: #370707ff;
-}
-
-.carousel .carousel-slider {
-  width: 100%;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: space-around;
-  align-items: center;
-  margin-left: 5vw;
-}
-
-.carousel .carousel-slider .product-info {
-  width: 80%;
-  height: auto;
-  padding: 0 5vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  text-align: center;
-}
-
-.carousel .carousel-slider .product-info h3 {
-  font-family: var(--font-title);
-  font-size: 36px;
-  font-weight: 700;
-  margin: 10px 0;
-  color: var(--color-white);
-  text-transform: uppercase;
-  z-index: 3;
-}
-
-.carousel .carousel-slider .product-info p {
-  font-family: var(--font-text);
-  font-size: 16px;
-  color: var(--color-grey);
-  margin: 10px 0;
-  z-index: 3;
-}
-
-.carousel .carousel-slider .product-img {
-  display: none;
-}
-
-/* Carousel - FIN */
+/* Slider - FIN */
 
 /** Product Cards Slider **/
 .product-cards-slider {
