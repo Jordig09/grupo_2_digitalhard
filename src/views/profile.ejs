@@ -46,6 +46,48 @@
             <p class="error"><%= errors.email.msg %></p>
             <% } %>
           </div>
+          <h4>Direcciones</h4>
+          <% locals.addresses.map((address) => { %>
+          <div class="input-group">
+            <div class="input-container">
+              <label for="street">Calle</label>
+              <input
+                type="text"
+                id="street"
+                name="street"
+                value="<%= address?.street%>"
+              />
+              <% if(locals.errors?.street) { %>
+              <p class="error"><%= errors.street.msg %></p>
+              <% } %>
+            </div>
+
+            <div class="input-container">
+              <label for="streetAddress">Número</label>
+              <input
+                type="text"
+                id="streetAddress"
+                name="streetAddress"
+                value="<%= address?.streetAddress %>"
+              />
+              <% if(locals.errors?.lastName) { %>
+              <p class="error"><%= errors.lastName.msg %></p>
+              <% } %>
+            </div>
+          </div>
+          <div class="input-container">
+            <label for="email">Correo electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value="<%= locals.user?.email && user?.email %>"
+            />
+            <% if(locals.errors?.email) { %>
+            <p class="error"><%= errors.email.msg %></p>
+            <% } %>
+          </div>
+          <% }) %>
           <div class="submit">
             <input type="submit" id="submit" value="Guardar" />
           </div>
