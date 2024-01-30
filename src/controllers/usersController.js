@@ -28,11 +28,10 @@ const controller = {
           oldData: req.body,
         });
       }
-
       const rol = await db.Rol.findOne({ where: { name: "Usuario" } });
       const newUser = {
         ...req.body,
-        avatar: req.file?.filename,
+        avatar: req.file ? req.file.filename : "default.png",
         roles_id: rol.id,
       };
       const userCreated = await db.User.create(newUser);
