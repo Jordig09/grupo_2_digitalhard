@@ -41,11 +41,11 @@ btnAddToCart.addEventListener("click", async (e) => {
 btnBuyNow.addEventListener("click", async (e) => {
   const data = btnAddToCart.getAttribute("data");
   postProduct(data);
-  location.href = "/cart";
+  setTimeout(() => location.href = "/cart", 100)
 });
 
 async function postProduct(products_id) {
-  await fetch("/cart", {
+  const res = await fetch("/cart", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -53,8 +53,7 @@ async function postProduct(products_id) {
     body: JSON.stringify({
       products_id: Number(products_id),
       quantity: Number(quantity.value),
-    })
-  }).then(res => {
-    if(res.redirected) location.href = "/user/login";
-  })
+    }),
+  });
+  if (res.redirected) location.href = "/user/login";
 }

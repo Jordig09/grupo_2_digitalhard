@@ -5,8 +5,8 @@ const controller = require("../controllers/cartController");
 const { isNotLoggedMiddleware } = require("../middlewares/isLoggedMiddleware");
 
 router.get("/", isNotLoggedMiddleware, controller.index);
-router.post("/", isNotLoggedMiddleware, controller.addProduct)
-router.delete("/:products_id", controller.deleteProduct)
-router.post("/checkout", controller.checkout)
+router.post("/", isNotLoggedMiddleware, controller.addProduct);
+router.delete("/:products_id", isNotLoggedMiddleware, controller.deleteProduct);
+router.post("/checkout", isNotLoggedMiddleware, controller.checkout);
 
 module.exports = router;

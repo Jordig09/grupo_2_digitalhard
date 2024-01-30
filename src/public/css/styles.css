@@ -575,6 +575,15 @@ section {
   margin: 20px;
 }
 
+.btn-delete-product {
+  cursor: pointer;
+}
+
+.name-product-cart{
+  color: #080e1e;
+  text-decoration: none;
+}
+
 .carrito {
   font-family: var(--font-title);
 }
