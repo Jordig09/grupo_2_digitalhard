@@ -18,6 +18,15 @@ const app = express();
 
 const userLoggedMiddleware = require("./middlewares/userLoggedMiddleware");
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5173"); // o '*' para permitir desde cualquier origen
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use(
   session({
     secret: "Shhh, It's a secret",
