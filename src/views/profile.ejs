@@ -40,14 +40,23 @@
               type="email"
               id="email"
               name="email"
+              disabled
               value="<%= locals.user?.email && user?.email %>"
             />
             <% if(locals.errors?.email) { %>
             <p class="error"><%= errors.email.msg %></p>
             <% } %>
           </div>
+          <div class="submit">
+            <input type="submit" id="submit" value="Guardar" />
+          </div>
+        </form>
+        <form action="/user/profile/data" method="POST">
           <h4>Direcciones</h4>
-          <% locals.addresses.map((address) => { %>
+          <% locals.addresses?.map((address, index) => { if(addresses.length >
+          1) { %>
+          <h5>Dirección <%= index + 1 %></h5>
+          <%} %>
           <div class="input-group">
             <div class="input-container">
               <label for="street">Calle</label>
@@ -61,7 +70,6 @@
               <p class="error"><%= errors.street.msg %></p>
               <% } %>
             </div>
-
             <div class="input-container">
               <label for="streetAddress">Número</label>
               <input
@@ -75,17 +83,71 @@
               <% } %>
             </div>
           </div>
-          <div class="input-container">
-            <label for="email">Correo electrónico</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value="<%= locals.user?.email && user?.email %>"
-            />
-            <% if(locals.errors?.email) { %>
-            <p class="error"><%= errors.email.msg %></p>
-            <% } %>
+          <div class="input-group">
+            <div class="input-group-sm">
+              <div class="input-container">
+                <label for="floorNumber">Piso</label>
+                <input
+                  type="text"
+                  id="floorNumber"
+                  name="floorNumber"
+                  value="<%= address?.floorNumber %>"
+                />
+                <% if(locals.errors?.floorNumber) { %>
+                <p class="error"><%= errors.floorNumber.msg %></p>
+                <% } %>
+              </div>
+              <div class="input-container">
+                <label for="flatLetter">Departamento</label>
+                <input
+                  type="text"
+                  id="flatLetter"
+                  name="flatLetter"
+                  value="<%= address?.flatLetter %>"
+                />
+                <% if(locals.errors?.flatLetter) { %>
+                <p class="error"><%= errors.flatLetter.msg %></p>
+                <% } %>
+              </div>
+            </div>
+            <div class="input-container">
+              <label for="postal">Código Postal</label>
+              <input
+                type="text"
+                id="postal"
+                name="postal"
+                value="<%= address?.postal %>"
+              />
+              <% if(locals.errors?.postal) { %>
+              <p class="error"><%= errors.postal.msg %></p>
+              <% } %>
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="input-container">
+              <label for="city">Ciudad</label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                value="<%= address?.city%>"
+              />
+              <% if(locals.errors?.city) { %>
+              <p class="error"><%= errors.city.msg %></p>
+              <% } %>
+            </div>
+            <div class="input-container">
+              <label for="province">Provincia</label>
+              <input
+                type="text"
+                id="province"
+                name="province"
+                value="<%= address?.province %>"
+              />
+              <% if(locals.errors?.province) { %>
+              <p class="error"><%= errors.province.msg %></p>
+              <% } %>
+            </div>
           </div>
           <% }) %>
           <div class="submit">
