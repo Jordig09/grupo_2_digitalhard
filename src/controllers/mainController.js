@@ -4,11 +4,12 @@ const { Op } = require("sequelize");
 const controller = {
   index: async (req, res) => {
     try {
-      const products = await db.Product.findAll();
+      const products = await db.Product.findAll({ limit: 4 });
       const productsOff = await db.Product.findAll({
         where: {
           discount: { [Op.gt]: 0 },
         },
+        limit: 4
       });
       res.render("main.ejs", {
         products: products,

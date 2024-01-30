@@ -11,7 +11,7 @@
           />
         </div>
         <div class="form">
-          <form action="/user/login" method="post" class="form-inner">
+          <form action="/user/login" method="post" class="form-inner" id="loginForm">
             <h2 id="title">Iniciar sesión</h2>
             <div class="inputs">
               <label for="txfEmail">Correo electrónico</label>
@@ -29,9 +29,11 @@
                 name="password"
                 placeholder="Escriba aquí su contraseña"
               />
-              <% if (locals.errors) { %>
-              <p class="error"><%= errors.email.msg %></p>
-              <% }%>
+                <small class="error" id="erLogin">
+                  <% if (locals.errors && locals.errors.email) { %>
+                    <%= errors.email.msg %>
+                  <% }%>
+                </small>
               <div class="remember-forgot">
                 <div class="remember">
                   <input
@@ -62,6 +64,6 @@
 
       <div class="info"></div>
     </div>
-    <script src="js/loginValidation.js"></script>
   </body>
+  <script src="/js/loginValidation.js"></script>
 </html>
