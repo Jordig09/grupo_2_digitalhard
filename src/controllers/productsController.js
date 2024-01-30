@@ -8,7 +8,10 @@ const { Op } = require("sequelize");
 const controller = {
   index: async (req, res) => {
     try {
-      const products = await db.Product.findAll();
+      const { search } = req.query
+      const products = search
+        ? await db.Product.findAll({ where: { name: { [Op.like]: "%" + search + "%" }} })
+        : await db.Product.findAll();
       const [categories, brands] = await Promise.all([
         db.Category.findAll({ include: ["subcategories"] }),
         db.Brand.findAll(),
@@ -17,6 +20,7 @@ const controller = {
         products,
         categories,
         brands,
+        filter: req.query,
         styles: [
           "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
           "https://fonts.googleapis.com/css2?family=Metrophobic&family=Montserrat:wght@100;200;300;400&display=swap",
@@ -163,7 +167,7 @@ const controller = {
         ],
       });
       const specifications = [];
-      if(product){
+      if (product) {
         product.specification.forEach((data) => {
           let index = specifications.findIndex(
             (i) => i.id == data.specification.id

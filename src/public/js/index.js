@@ -25,6 +25,7 @@ document.getElementById("user-dropdown").addEventListener("click", () => {
 });
 
 document.getElementById("product-dropdown").addEventListener("click", () => {
+  productDropdown.classList.toggle("close-dropdown");
   document
     .getElementById("categoty-dropdown")
     .classList.toggle("product-dropdown-active");
