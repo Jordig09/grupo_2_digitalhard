@@ -1,61 +1,17 @@
 const db = require("../database/models");
 const fs = require("fs");
+const { validationResult } = require("express-validator");
 
 const path = require("path");
 const { Op } = require("sequelize");
 
-function getSpecification(req) {
-  const specification = [];
-  let reqSpecification = req.body[`specification-title`] || [];
-  if (!Array.isArray(reqSpecification)) reqSpecification = [reqSpecification];
-  reqSpecification.forEach((data, i) => {
-    specification.push({
-      title: data,
-      specifications: [],
-    });
-    let names = req.body[`specification-name-${i}`] || [];
-    let texts = req.body[`specification-text-${i}`] || [];
-    if (!Array.isArray(names)) names = [names];
-    if (!Array.isArray(texts)) texts = [texts];
-    for (let j = 0; j < names.length; j++) {
-      specification[i].specifications.push({
-        name: names[j],
-        text: texts[j],
-      });
-    }
-  });
-
-  let toDelete = req.body.deleteSpecifications || [];
-  if (toDelete && !Array.isArray(toDelete)) toDelete = [toDelete];
-
-  const toUpdate = [];
-  if (req.body.idUpdate) {
-    let idsToUpdate = req.body.idUpdate;
-    if (!Array.isArray(idsToUpdate)) idsToUpdate = [idsToUpdate];
-    idsToUpdate.forEach((data) => {
-      if (!toDelete.includes(data)) {
-        let newName = req.body[`nameUpdate-${data}`];
-        let newText = req.body[`textUpdate-${data}`];
-        toUpdate.push({
-          id: data,
-          name: newName,
-          text: newText,
-        });
-      }
-    });
-  }
-
-  return {
-    specification,
-    toDelete,
-    toUpdate,
-  };
-}
-
 const controller = {
   index: async (req, res) => {
     try {
-      const products = await db.Product.findAll();
+      const { search } = req.query
+      const products = search
+        ? await db.Product.findAll({ where: { name: { [Op.like]: "%" + search + "%" }} })
+        : await db.Product.findAll();
       const [categories, brands] = await Promise.all([
         db.Category.findAll({ include: ["subcategories"] }),
         db.Brand.findAll(),
@@ -64,6 +20,7 @@ const controller = {
         products,
         categories,
         brands,
+        filter: req.query,
         styles: [
           "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
           "https://fonts.googleapis.com/css2?family=Metrophobic&family=Montserrat:wght@100;200;300;400&display=swap",
@@ -101,9 +58,37 @@ const controller = {
   },
   store: async (req, res) => {
     try {
-      const { name, brand, price, discount, stock, description, subcategory } =
-        req.body;
-      const { specification } = getSpecification(req);
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        const [categories, brands] = await Promise.all([
+          db.Category.findAll({ include: ["subcategories"] }),
+          db.Brand.findAll(),
+        ]);
+        return res.render("product-create-form", {
+          styles: [
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
+            "https://fonts.googleapis.com/css2?family=Metrophobic&family=Montserrat:wght@100;200;300;400&display=swap",
+            "/css/normalize.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css",
+            "/css/styles.css",
+            "/css/editProduct.css",
+          ],
+          categories: categories,
+          brands: brands,
+          errors: errors.mapped(),
+          oldData: req.body,
+        });
+      }
+      const {
+        name,
+        brand,
+        price,
+        discount,
+        stock,
+        description,
+        subcategory,
+        specification,
+      } = req.body;
       const subcategories_id = +subcategory;
       const mainImage = req.files.find((file) => file.fieldname == "mainImage");
       const subcategoryDB = await db.Subcategory.findByPk(subcategories_id);
@@ -116,9 +101,8 @@ const controller = {
         stock: +stock,
         subcategories_id,
         categories_id: subcategoryDB.categories_id,
-        mainImage: mainImage.filename,
+        mainImage: mainImage ? mainImage.filename : "default.jpg",
       };
-
       const product = await db.Product.create(newProduct);
       req.files.forEach(async (file) => {
         if (file.fieldname == "images") {
@@ -133,7 +117,7 @@ const controller = {
           (await db.Specification.findOne({
             where: { title: spec.title },
           })) || (await db.Specification.create({ title: spec.title }));
-        spec.specifications.forEach(async (data) => {
+        spec.detail.forEach(async (data) => {
           await db.SpecificationDetails.create({
             name: data.name,
             text: data.text,
@@ -142,7 +126,7 @@ const controller = {
           });
         });
       });
-      res.redirect("/products");
+      return res.redirect("/products");
     } catch (error) {
       for (let file of req.files) {
         fs.unlink(
@@ -183,18 +167,20 @@ const controller = {
         ],
       });
       const specifications = [];
-      product.specification.forEach((data) => {
-        let index = specifications.findIndex(
-          (i) => i.id == data.specification.id
-        );
-        if (index == -1)
-          specifications.push({
-            id: data.specification.id,
-            title: data.specification.title,
-            detail: [data],
-          });
-        else specifications[index].detail.push(data);
-      });
+      if (product) {
+        product.specification.forEach((data) => {
+          let index = specifications.findIndex(
+            (i) => i.id == data.specification.id
+          );
+          if (index == -1)
+            specifications.push({
+              id: data.specification.id,
+              title: data.specification.title,
+              detail: [data],
+            });
+          else specifications[index].detail.push(data);
+        });
+      }
       const products = await db.Product.findAll({ limit: 4 });
       res.render("detail", {
         product,
@@ -275,52 +261,159 @@ const controller = {
       res.status(500).send(error);
     }
   },
-  update: (req, res) => {
-    const products = getProducts();
-    const indexProduct = products.findIndex(
-      (product) => product.id == req.params.id
-    );
-    if (req.files) {
-      products[indexProduct].images[0] =
-        "/images/products-images/default-product.jpg"
-          ? (products[indexProduct].images = req.files.map(
-              (file) => `/images/products-images/${file.filename}`
-            ))
-          : req.files.forEach((file) => {
-              products[indexProduct].images.push(
-                `/images/products-images/${file.filename}`
-              );
-            });
-    }
-    if (req.body.deleteImages) {
-      if (!Array.isArray(req.body.deleteImages))
-        req.body.deleteImages = [req.body.deleteImages];
-      req.body.deleteImages.forEach((image) => {
-        fs.unlink(path.join("./src/public", image), (err) => {
-          if (err) console.error(err);
-        });
-        const index = products[indexProduct].images.indexOf(image);
-        products[indexProduct].images.splice(index, 1); // Elimina las imágenes del producto
+  update: async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      const product = await db.Product.findByPk(req.params.id, {
+        include: [
+          "images",
+          {
+            model: db.Subcategory,
+            as: "subcategory",
+            include: [
+              {
+                model: db.Category,
+                as: "category",
+              },
+            ],
+          },
+        ],
       });
-      delete req.body.deleteImages;
+      if (!errors.isEmpty()) {
+        const [categories, brands] = await Promise.all([
+          db.Category.findAll({ include: ["subcategories"] }),
+          db.Brand.findAll(),
+        ]);
+        return res.render("product-edit-form", {
+          product,
+          categories,
+          brands,
+          errors: errors.mapped(),
+          oldData: req.body,
+          styles: [
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
+            "https://fonts.googleapis.com/css2?family=Metrophobic&family=Montserrat:wght@100;200;300;400&display=swap",
+            "/css/normalize.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css",
+            "/css/styles.css",
+            "/css/editProduct.css",
+          ],
+        });
+      }
+      const {
+        name,
+        brand,
+        price,
+        discount,
+        stock,
+        description,
+        subcategory,
+        specification,
+        toDelete,
+        toUpdate,
+      } = req.body;
+
+      await toDelete.forEach(async (id) => {
+        await db.SpecificationDetails.destroy({ where: { id } });
+      });
+      for (let i = 0; i < toUpdate.length; i++) {
+        await db.SpecificationDetails.update(
+          { name: toUpdate[i].name, text: toUpdate[i].text },
+          { where: { id: toUpdate[i].id } }
+        );
+      }
+      for (let i = 0; i < specification.length; i++) {
+        for (let j = 0; j < specification[i].detail.length; j++) {
+          const findSpec = await db.SpecificationDetails.findOne({
+            where: {
+              [Op.and]: [
+                { products_id: Number(req.params.id) },
+                { name: specification[i].detail[j].name },
+                { text: specification[i].detail[j].text },
+              ],
+            },
+          });
+          if (!findSpec) {
+            let title =
+              (await db.Specification.findOne({
+                where: { title: specification[i].title },
+              })) ||
+              (await db.Specification.create({
+                title: specification[i].title,
+              }));
+            await db.SpecificationDetails.create({
+              name: specification[i].detail[j].name,
+              text: specification[i].detail[j].text,
+              products_id: req.params.id,
+              specifications_id: title.dataValues.id,
+            });
+          } else {
+            if (specification[i].title != findSpec.title) {
+              let title =
+                (await db.Specification.findOne({
+                  where: { title: specification[i].title },
+                })) ||
+                (await db.Specification.create({
+                  title: specification[i].title,
+                }));
+              await db.SpecificationDetails.update(
+                { specifications_id: title.dataValues.id },
+                { where: { id: findSpec.id } }
+              );
+            }
+          }
+        }
+      }
+      const subcategories_id = +subcategory;
+      const productUpdate = {
+        name,
+        description,
+        brands_id: +brand,
+        price: +price,
+        discount: +discount,
+        stock: +stock,
+        subcategories_id,
+      };
+      const mainImage = req.files.find((file) => file.fieldname == "mainImage");
+      if (
+        req.body.deleteImages &&
+        req.body.deleteImages.includes(product.mainImage)
+      )
+        productUpdate.mainImage = "default.jpg";
+      if (mainImage) productUpdate.mainImage = mainImage.filename;
+      req.files.forEach(async (file) => {
+        if (file.fieldname == "images") {
+          await db.Image.create({
+            url: file.filename,
+            products_id: Number(req.params.id),
+          });
+        }
+      });
+      if (req.body.deleteImages) {
+        if (!Array.isArray(req.body.deleteImages))
+          req.body.deleteImages = [req.body.deleteImages];
+        req.body.deleteImages.forEach(async (image) => {
+          if (image != "default.jpg") {
+            await db.Image.destroy({ where: { url: image } });
+            fs.unlink(
+              path.join("./src/public/images/products/", image),
+              (err) => {
+                if (err) console.error(err);
+              }
+            );
+          }
+        });
+        delete req.body.deleteImages;
+      }
+      await db.Product.update(
+        { ...productUpdate },
+        { where: { id: req.params.id } }
+      );
+
+      res.redirect(`/products/${req.params.id}`);
+    } catch (error) {
+      res.status(500).send(error);
     }
-    req.body.images =
-      products[indexProduct].images != ""
-        ? products[indexProduct].images
-        : ["/images/products-images/default-product.jpg"];
-    req.body.categories = Array.isArray(req.body.categories)
-      ? req.body.categories.map(Number)
-      : [Number(req.body.categories)];
-    req.body.brand = Number(req.body.brand);
-    req.body.price = Number(req.body.price);
-    req.body.discount = Number(req.body.discount);
-    req.body.stock = Number(req.body.stock);
-    products[indexProduct] = {
-      ...products[indexProduct],
-      ...req.body,
-    };
-    fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
-    res.redirect("/products");
   },
   destroy: async (req, res) => {
     try {
@@ -336,15 +429,18 @@ const controller = {
           }
         );
       });
-      fs.unlink(
-        path.join("./src/public/images/products/", product.mainImage),
-        (err) => {
-          if (err) console.error(err);
-        }
-      );
+      if (product.mainImage != "default.jpg") {
+        fs.unlink(
+          path.join("./src/public/images/products/", product.mainImage),
+          (err) => {
+            if (err) console.error(err);
+          }
+        );
+      }
       await db.SpecificationDetails.destroy({
         where: { products_id: req.params.id },
       });
+      await db.CartDetails.destroy({ where: { products_id: req.params.id} })
       await db.Product.destroy({ where: { id: req.params.id } });
       res.redirect("/products");
     } catch (error) {

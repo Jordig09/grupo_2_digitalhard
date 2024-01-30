@@ -1,8 +1,10 @@
 <div class="table-item">
-  <img src="/images/default-product.jpg" alt="Producto" />
-  <p><%= product.name %></p>
-  <p>$<%= product.price %></p>
-  <p><%= product.amount %></p>
-  <p>$<%= product.amount * product.price %></p>
-  <i class="fas fa-trash"></i>
+  <img src="/images/products/<%= detail.product.mainImage %>" alt="Producto" />
+  <a href="/products/<%= detail.product.id %>" class="name-product-cart"><p><%= detail.product.name %></p></a>
+  <p>$<%= detail.product.price %></p>
+  <p><%= detail.quantity %></p>
+  <p>$<%= detail.quantity * detail.product.price %></p>
+  <form action="/cart/<%= detail.product.id %>?_method=DELETE" method="POST">
+    <button type="submit" class="btn-delete-product" id="delete"><i class="fas fa-trash"></i></button>
+  </form>
 </div>

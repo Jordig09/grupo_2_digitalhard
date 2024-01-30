@@ -32,77 +32,125 @@ const arraySpecification = [];
 const specificationsDiv = document.getElementById("specifications");
 const specificationsBtn = document.getElementById("btn-add-specification");
 
-specificationsBtn.addEventListener("click", (e) => {
+specificationsBtn.addEventListener("click", function (e) {
   e.preventDefault();
   addNewSpecification();
-  const newSpecification = document.createElement("div");
-  newSpecification.innerHTML = `
-  <div class="input-container specification-container">
-    <label for="specification-title-${arraySpecification.length}">Título</label>
-    <input
-      type="text"
-      id="specification-title-${arraySpecification.length}"
-      name="specification-title-${arraySpecification.length}"
-    />
-    <div id="subspecifications${arraySpecification.length - 1}"></div>
-    <button
-      type="button"
-      id="btn-add-row-${arraySpecification.length}"
-      data-index="${arraySpecification.length - 1}"
-    >
-    Añadir nueva fila
-    </button>
-  </div>`;
-  specificationsDiv.append(newSpecification);
-
-  const btnAddRow = document.getElementById(
-    `btn-add-row-${arraySpecification.length}`
-  );
-  const subspecifications = document.getElementById(
-    `subspecifications${arraySpecification.length - 1}`
-  );
-  btnAddRow.addEventListener("click", function (e) {
-    e.preventDefault;
-    const index = this.getAttribute("data-index");
-    arraySpecification[index].specification.push({
-      name: "",
-      text: "",
-    });
-    const newRow = document.createElement("div");
-    newRow.id = `row-${index}`;
-    newRow.innerHTML = `<div class="input-group">
-      <div class="input-container">
-        <label for="specification-name-${index}">Nombre</label>
-        <input
-          type="text"
-          id="specification-name-${index}"
-          name="specification-name-${index}"
-          value="${arraySpecification[index].specification.name}"
-        />
-      </div>
-      <div class="input-container">
-        <label for="specification-text-${index}">Valor</label>
-        <input
-          type="text"
-          id="specification-text-${index}"
-          name="specification-text-${index}"
-          value="${
-            arraySpecification[index].specification[
-              arraySpecification[index].specification.length - 1
-            ].text
-          }"
-        />
-      </div>
-      <button type="button" id="btn-delete-row-${index}" data-index="${index}">X</button>
-    </div>`;
-    subspecifications.append(newRow);
-  });
+  specificationsDiv.innerHTML = ``;
+  renderSpecification();
 });
 
 function addNewSpecification() {
   arraySpecification.push({
     title: "",
     specification: [],
+  });
+}
+
+function renderSpecification() {
+  arraySpecification.forEach((data, i) => {
+    const newSpecification = document.createElement("div");
+    newSpecification.innerHTML = `
+    <div class="input-container">
+      <label for="specification-title">Título</label>
+      <input
+        type="text"
+        id="specification-title-${i + 1}"
+        name="specification-title"
+        value="${data?.title}"
+      />
+      <div id="subspecifications${i}"></div>
+      <button
+        type="button"
+        id="btn-add-row-${i + 1}"
+        data-index="${i}"
+      >
+      Añadir nueva fila
+      </button>
+      <button
+        type="button"
+        id="btn-delete-spec-${i + 1}"
+        data-index="${i}"
+      >
+      Borrar especificacion
+      </button>
+    </div>`;
+    specificationsDiv.append(newSpecification);
+    document
+      .getElementById(`specification-title-${i + 1}`)
+      .addEventListener("change", (e) => {
+        arraySpecification[i].title = e.target.value;
+      });
+    renderRow(i);
+    const btnAddRow = document.getElementById(`btn-add-row-${i + 1}`);
+    btnAddRow.classList.add("btn-add-row");
+    btnAddRow.addEventListener("click", function (e) {
+      e.preventDefault();
+      const index = this.getAttribute("data-index");
+      arraySpecification[index].specification.push({
+        name: "",
+        text: "",
+      });
+      renderRow(index);
+    });
+    const btnDeleteSpec = document.getElementById(`btn-delete-spec-${i + 1}`);
+    btnDeleteSpec.classList.add("btn-delete-spec");
+    btnDeleteSpec.addEventListener("click", (e) => {
+      arraySpecification.splice(i, 1);
+      specificationsDiv.innerHTML = ``;
+      renderSpecification();
+    });
+  });
+}
+
+function renderRow(index) {
+  const subspecifications = document.getElementById(
+    `subspecifications${index}`
+  );
+  subspecifications.innerHTML = ``;
+  arraySpecification[index].specification.forEach((data, i) => {
+    const newRow = document.createElement("div");
+    newRow.id = `row-${index}-${i}`;
+    newRow.innerHTML = `<div class="input-group">
+      <div class="input-container">
+        <label for="specification-name-${index}">Nombre</label>
+        <input
+          type="text"
+          id="specification-name-${index}-${i}"
+          name="specification-name-${index}"
+          value="${data?.name}"
+        />
+      </div>
+      <div class="input-container">
+        <label for="specification-text-${index}">Valor</label>
+        <input
+          type="text"
+          id="specification-text-${index}-${i}"
+          name="specification-text-${index}"
+          value="${data?.text}"
+        />
+      </div>
+      <button type="button" class="btn-delete-row" id="btn-delete-row-${index}-${i}" data-index="${index}-${i}">X</button>
+    </div>`;
+    subspecifications.append(newRow);
+    document
+      .getElementById(`specification-name-${index}-${i}`)
+      .addEventListener("change", (e) => {
+        arraySpecification[index].specification[i].name = e.target.value;
+      });
+    document
+      .getElementById(`specification-text-${index}-${i}`)
+      .addEventListener("change", (e) => {
+        arraySpecification[index].specification[i].text = e.target.value;
+      });
+    const btnDeleteRow = document.getElementById(
+      `btn-delete-row-${index}-${i}`
+    );
+    btnDeleteRow.addEventListener("click", (e) => {
+      e.preventDefault();
+      const index = btnDeleteRow.getAttribute("data-index").split("-");
+      arraySpecification[index[0]].specification.splice(index[1], 1);
+      renderRow(index[0]);
+    });
   });
 }
 

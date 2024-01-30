@@ -1,13 +1,18 @@
-window.addEventListener("load", function() {
-    let formulario = document.querySelector("#loginForm");
+let formulario = document.getElementById("loginForm");
 
-    formulario.addEventListener("submit", function(event) {
-        let email = document.querySelector("#txfEmail").value;
-        let password = document.querySelector("#txfPassword").value;
+formulario.addEventListener("submit", function (e) {
+  const errores = {};
+  const inputEmail = document.getElementById("txfEmail");
+  const inputPassword = document.getElementById("txfPassword");
 
-        if (email === "" || password === "") {
-          alert("Por favor, complete todos los campos.");
-          event.preventDefault(); 
-        }
-      });
-})
+  const erLogin = document.getElementById("erLogin");
+
+  if (inputEmail.value.trim() < 1 || inputPassword.value.trim() < 1) {
+    errores.login = "Completa todos los campos.";
+  }
+
+  if (Object.keys(errores).length >= 1) {
+    e.preventDefault();
+    erLogin.innerText = errores.login ? errores.login : "";
+  }
+});

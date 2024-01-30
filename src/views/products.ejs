@@ -13,31 +13,32 @@
                 <h4>Categoría</h4>
                 <i class="fas fa-chevron-down sidebar-dropdown-arrow"></i>
               </div>
-              <div id="categories-options" class="dropdown-container">
+              <div id="categories-options" class="dropdown-container hide-dropdown">
                 <% categories.forEach(category => { %>
                 <ul>
                   <p class="category-title"><%= category.name %></p>
                   <% category.subcategories.forEach(subcategory => { %>
-                  <li><p><%= subcategory.name %></p></li>
-                  <% });%>
+                  <li><%= subcategory.name %></li>
+                  <% })%>
                 </ul>
-                <% }); %>
+                <% }) %>
               </div>
             </div>
-            <form action="">
+            <form id="filter">
               <div class="brands sidebar-section">
                 <div class="sidebar-heading">
                   <h4>Marca</h4>
                   <i class="fas fa-chevron-down sidebar-dropdown-arrow"></i>
                 </div>
-                <div class="brands-options dropdown-container">
+                <div class="brands-options dropdown-container hide-dropdown">
                   <% brands.forEach(brand => { %>
                   <div class="checkbox-container">
                     <label class="control control-checkbox">
                       <input
                         type="checkbox"
-                        id="<%= brand.name %>"
-                        name="<%= brand.name %>"
+                        id="<%= brand.id %>"
+                        name="brand"
+                        class="brand"
                         value="<%= brand.name %>"
                       />
                       <%= brand.name %>
@@ -52,7 +53,7 @@
                   <h4>Precio ($)</h4>
                   <i class="fas fa-chevron-down sidebar-dropdown-arrow"></i>
                 </div>
-                <div class="price-picker dropdown-container">
+                <div class="price-picker dropdown-container hide-dropdown">
                   <div class="price-range">
                     <div class="price-range-box">
                       <label for="min">Min</label>
@@ -63,13 +64,6 @@
                       <input type="text" id="max" name="max" />
                     </div>
                   </div>
-                  <input
-                    type="range"
-                    id="price"
-                    name="price"
-                    min="0"
-                    max="62499"
-                  />
                 </div>
               </div>
             </form>
@@ -78,21 +72,14 @@
         <div class="main-section">
           <div class="filters-container">
             <div class="filters-applied-info">
-              <div class="results"><p>8 Resultados</p></div>
+              <div class="results"><p><%= products?.length %> Resultados</p></div>
               <div class="filters-applied-container">
-                <div class="applied"><p>Filtros:</p></div>
-                <div class="filter-applied">
-                  <p>Redragon</p>
-                  <i class="fas fa-times"></i>
-                </div>
-                <div class="filter-applied">
-                  <p>Periféricos</p>
-                  <i class="fas fa-times"></i>
-                </div>
-                <div class="filter-applied">
-                  <p>Desde $0 a $7500</p>
-                  <i class="fas fa-times"></i>
-                </div>
+                <% if(filter.search){ %>
+                  <div class="filter-applied">
+                    <p><%= filter.search %></p>
+                    <a href="/products"><i class="fas fa-times"></i></a>
+                  </div>
+                <% } %>
               </div>
             </div>
             <div class="selectors-container">

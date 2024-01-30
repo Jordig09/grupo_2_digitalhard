@@ -6,6 +6,8 @@ const productsController = require("../controllers/productsController");
 
 const { isNotLoggedMiddleware } = require("../middlewares/isLoggedMiddleware");
 const { checkIsAdmin } = require("../middlewares/auth");
+const { getSpecification } = require("../middlewares/getSpecifications");
+const { productValidation } = require("../middlewares/productValidations");
 
 const router = express.Router();
 
@@ -20,8 +22,17 @@ const storage = multer.diskStorage({
     cb(null, newFileName);
   },
 });
+const fileFilter = (req, file, cb) => {
+  const allowedFiles = ["jpg", "jpeg", "png", "webp"];
+  const fileExt = file.originalname.split(".").pop().toLowerCase();
+  if (allowedFiles.includes(fileExt)) {
+    cb(null, true);
+  } else {
+    cb(new Error("Extensión no permitida."), false);
+  }
+};
 
-const upload = multer({ storage });
+const upload = multer({ storage, fileFilter });
 
 router.get("/", productsController.index);
 
@@ -32,7 +43,13 @@ router.get(
   productsController.create
 );
 
-router.post("/", upload.any(), productsController.store);
+router.post(
+  "/create",
+  upload.any(),
+  getSpecification,
+  productValidation,
+  productsController.store
+);
 router.get("/:id", productsController.detail);
 
 router.get(
@@ -41,7 +58,13 @@ router.get(
   checkIsAdmin,
   productsController.edit
 );
-router.put("/:id", upload.any(), productsController.update);
+router.put(
+  "/:id",
+  upload.any(),
+  getSpecification,
+  productValidation,
+  productsController.update
+);
 
 router.delete("/:id", productsController.destroy);
 

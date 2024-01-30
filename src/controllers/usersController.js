@@ -28,14 +28,14 @@ const controller = {
           oldData: req.body,
         });
       }
-
       const rol = await db.Rol.findOne({ where: { name: "Usuario" } });
       const newUser = {
         ...req.body,
-        avatar: req.file?.filename,
+        avatar: req.file ? req.file.filename : "default.png",
         roles_id: rol.id,
       };
-      await db.User.create(newUser);
+      const userCreated = await db.User.create(newUser);
+      await db.Cart.create({ users_id: userCreated.id, status_id: 1 });
       return res.redirect("/user/login");
     } catch (error) {
       return res.status(500).send(error);
@@ -83,6 +83,10 @@ const controller = {
   async profile(req, res) {
     try {
       const user = await db.User.findByPk(req.session._id);
+      const addresses = await db.Address.findAll({
+        where: { users_id: user.id },
+      });
+      console.log(addresses);
       return res.render("profile", {
         styles: [
           "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
@@ -92,6 +96,7 @@ const controller = {
           "/css/profile.css",
         ],
         user: { ...user.dataValues },
+        addresses,
       });
     } catch (error) {
       return res.status(500).send(error);
