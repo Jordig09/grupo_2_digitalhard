@@ -35,7 +35,8 @@ const controller = {
         avatar: req.file?.filename,
         roles_id: rol.id,
       };
-      await db.User.create(newUser);
+      const userCreated = await db.User.create(newUser);
+      await db.Cart.create({ users_id: userCreated.id, status_id: 1 });
       return res.redirect("/user/login");
     } catch (error) {
       return res.status(500).send(error);

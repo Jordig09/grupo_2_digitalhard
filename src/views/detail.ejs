@@ -30,8 +30,7 @@
         <div class="content">
           <div class="product-images-container">
             <div class="main-image">
-              <img id="main-image" src="/images/products/<%= product?.mainImage
-              || product.images[0]?.url || "default-product.jpg" %>" alt="" />
+              <img id="main-image" src="/images/products/<%= product?.mainImage %>" alt="" />
             </div>
             <div class="other-images">
               <img src="/images/products/<%= product.mainImage %>" alt="" />
@@ -45,7 +44,6 @@
             <div class="price">
               <i class="fa-solid fa-dollar-sign"></i><%= product.price %>
             </div>
-
             <div class="payment-methods">
               <img src="/images/MercadoPago.png" alt="" />
               <p>Pagá con Mercado Pago</p>
@@ -55,24 +53,30 @@
                 <option value="">Calcular mi envio</option>
               </select>
             </div>
+            <div class="stock">
+              <p>Stock: </p>
+              <input id="stock" value="<%= product.stock || "Sin stock" %>" disabled="disabled"></input>
+            </div>
             <div class="quantity">
               <p>Cantidad</p>
               <div class="group-button">
                 <button id="btn-minus">-</button>
-                <span
+                <input
                   id="quantity-value"
-                  data-quantity="0"
+                  data-quantity="1"
                   class="quantity-view"
-                  >0</span
-                >
+                  type="number"
+                  min="1"
+                  value="1"
+                  ></input>
                 <button id="btn-plus">+</button>
               </div>
             </div>
             <div class="actions-buttons">
-              <button class="add-cart">
-                <i class="fa-solid fa-cart-shopping"> </i> Agregar al carrito
+              <button class="add-cart" id="add-cart" data="<%= product.id %>">
+                <i class="fa-solid fa-cart-shopping"></i> Agregar al carrito
               </button>
-              <button class="buy-now">Comprar ahora</button>
+              <button class="buy-now" id="buy-now" data="<%= product.id %>">Comprar ahora</button>
             </div>
           </div>
         </div>
