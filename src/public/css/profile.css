@@ -42,6 +42,11 @@
     display: flex;
     justify-content: space-between;
   }
+  .profile-container .input-group-sm {
+    display: flex;
+    justify-content: space-between;
+    max-width: 48%;
+  }
 
   .profile-container .input-group .input-container {
     width: 48%;

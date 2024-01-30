@@ -83,6 +83,10 @@ const controller = {
   async profile(req, res) {
     try {
       const user = await db.User.findByPk(req.session._id);
+      const addresses = await db.Address.findAll({
+        where: { users_id: user.id },
+      });
+      console.log(addresses);
       return res.render("profile", {
         styles: [
           "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
@@ -92,6 +96,7 @@ const controller = {
           "/css/profile.css",
         ],
         user: { ...user.dataValues },
+        addresses,
       });
     } catch (error) {
       return res.status(500).send(error);
