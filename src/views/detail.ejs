@@ -55,7 +55,7 @@
             </div>
             <div class="stock">
               <p>Stock: </p>
-              <input id="stock" value="<%= product.stock || "Sin stock" %>" disabled="disabled"></input>
+              <input id="stock" type="number" value="<%= product.stock || "Sin stock" %>" disabled/>
             </div>
             <div class="quantity">
               <p>Cantidad</p>
@@ -68,6 +68,7 @@
                   type="number"
                   min="1"
                   value="1"
+                  readonly
                   ></input>
                 <button id="btn-plus">+</button>
               </div>

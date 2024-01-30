@@ -58,25 +58,30 @@ const controller = {
           [Op.and]: [{ carts_id: cart.id }, { products_id: products_id }],
         },
       });
+      const product = await db.Product.findByPk(products_id);
       if (!findProduct) {
-        await db.CartDetails.create({
-          carts_id: cart.id,
-          products_id,
-          quantity,
-        });
-      } else {
-        await db.CartDetails.update(
-          {
+        if (quantity <= product.stock) {
+          await db.CartDetails.create({
             carts_id: cart.id,
             products_id,
-            quantity: findProduct.quantity + quantity,
-          },
-          {
-            where: {
-              [Op.and]: [{ carts_id: cart.id }, { products_id: products_id }],
+            quantity,
+          });
+        }
+      } else {
+        if (findProduct.quantity + quantity <= product.stock) {
+          await db.CartDetails.update(
+            {
+              carts_id: cart.id,
+              products_id,
+              quantity: findProduct.quantity + quantity,
             },
-          }
-        );
+            {
+              where: {
+                [Op.and]: [{ carts_id: cart.id }, { products_id: products_id }],
+              },
+            }
+          );
+        }
       }
     } catch (error) {
       res.send(error);
@@ -108,7 +113,7 @@ const controller = {
           carts_id: cart.id,
         },
       });
-      res.redirect("/")
+      res.redirect("/");
     } catch (error) {
       res.send(error);
     }
