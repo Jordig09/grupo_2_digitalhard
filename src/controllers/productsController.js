@@ -440,6 +440,7 @@ const controller = {
       await db.SpecificationDetails.destroy({
         where: { products_id: req.params.id },
       });
+      await db.CartDetails.destroy({ where: { products_id: req.params.id} })
       await db.Product.destroy({ where: { id: req.params.id } });
       res.redirect("/products");
     } catch (error) {

@@ -12,34 +12,48 @@ imagesElements.forEach((img) => {
   });
 });
 
-const btnAdd = document.getElementById("btn-add");
-const quantityElement = document.getElementById("quantity-value");
-const iconCartShopping = document.getElementById("icon-cart-shopping");
-
-btnAdd.addEventListener("click", (event) => {
-  iconCartShopping.dataset.product_quantity =
-    parseInt(iconCartShopping.dataset.product_quantity) +
-    parseInt(quantityElement.dataset.quantity);
-});
-
-const btnPlus = document.getElementById("btn-plus");
 const btnMinus = document.getElementById("btn-minus");
+const btnPlus = document.getElementById("btn-plus");
+const quantity = document.getElementById("quantity-value");
+const stock = document.getElementById("stock");
 
-[btnPlus, btnMinus].forEach((btn) => {
-  btn.addEventListener("click", (event) => {
-    let result;
-
-    if (event.currentTarget.id == "btn-minus") {
-      result = parseInt(quantityElement.dataset.quantity) - 1;
-    } else {
-      result = parseInt(quantityElement.dataset.quantity) + 1;
-    }
-
-    if (result < 0) {
-      return;
-    }
-
-    quantityElement.textContent = result;
-    quantityElement.dataset.quantity = result;
-  });
+btnMinus.addEventListener("click", (e) => {
+  if (Number(quantity.value) > 1) {
+    quantity.value = Number(quantity.value) - 1;
+  }
 });
+btnPlus.addEventListener("click", (e) => {
+  if (
+    Number(stock.value) != NaN &&
+    Number(quantity.value) < Number(stock.value)
+  ) {
+    quantity.value = Number(quantity.value) + 1;
+  }
+});
+
+const btnAddToCart = document.getElementById("add-cart");
+const btnBuyNow = document.getElementById("buy-now");
+
+btnAddToCart.addEventListener("click", async (e) => {
+  const data = btnAddToCart.getAttribute("data");
+  postProduct(data);
+});
+btnBuyNow.addEventListener("click", async (e) => {
+  const data = btnAddToCart.getAttribute("data");
+  postProduct(data);
+  setTimeout(() => location.href = "/cart", 100)
+});
+
+async function postProduct(products_id) {
+  const res = await fetch("/cart", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      products_id: Number(products_id),
+      quantity: Number(quantity.value),
+    }),
+  });
+  if (res.redirected) location.href = "/user/login";
+}

@@ -6,40 +6,49 @@
 
     <!-- CONTENIDO - INICIO -->
     <section>
+      <% if(cartDetail){ %>
       <div class="cart-container">
         <div class="product">
           <h3><i class="fas fa-cart-shopping"></i> Resumen de compra</h3>
-          <% cart.products.forEach(product=> { %>
-          <%-include('./partials/cartCard', { product }) %> <%})%>
+          <% if(cartDetail.length > 0){ %> <% cartDetail.forEach(detail => { %>
+          <%-include('./partials/cartCard', { detail }) %> <%})%> <% }else{%>
+          <h4>No hay productos en el carrito</h4>
+          <a href="/products">Ir a productos...</a>
+          <% } %>
         </div>
-
         <div class="summary-container">
           <div class="summary">
             <p><i class="far fa-clipboard"></i> Resumen</p>
           </div>
-
           <div class="discount-summary">
             <div class="subtotal">
               <p>Subtotal</p>
-              <p>$<%= cart.subtotal %></p>
+              <p>$<%= subtotal %></p>
             </div>
             <div class="discount">
               <p>Descuento</p>
-              <p>$<%= cart.discount %></p>
+              <p>$<%= discount %></p>
             </div>
           </div>
-
           <br />
-
           <div class="cart-summary">
             <div class="total">
               <p>Total</p>
-              <p>$<%= cart.total %></p>
+              <p>$<%= total %></p>
             </div>
-            <button id="checkout-button">Proceder al pago</button>
+            <form action="/cart/checkout" method="POST" id="checkout-form">
+              <button id="checkout-button" <%= cartDetail.length <= 0 ? 'disabled="disabled"':"" %>>Proceder al pago</button>
+            </form>
           </div>
         </div>
       </div>
+      <% }else{ %>
+        <div class="error-cart">
+          <h3>No hay carrito asociado a tu usuario</h3>
+          <h4>Ponte en contacto con soporte</h4>
+          <a href="/help">Mas informacion...</a>
+        </div>
+      <% } %>
     </section>
     <!-- CONTENIDO - FINAL -->
 
@@ -47,4 +56,5 @@
   </body>
 
   <script src="/js/index.js"></script>
+  <script src="/js/cart.js"></script>
 </html>
